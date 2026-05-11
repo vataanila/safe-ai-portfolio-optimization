@@ -1,0 +1,59 @@
+# config_template.yaml
+# --------------------
+# Template configuration file for the ML-enhanced portfolio optimization pipeline.
+# Copy this file to config.yaml and adjust the values to match your environment.
+# config.yaml is excluded from version control (.gitignore).
+
+# ─── Data paths ──────────────────────────────────────────────────────────────
+# All paths are relative to the repository root.
+# The pipeline scripts resolve them automatically via BASE_DIR.
+
+data:
+  raw_dir:         data/raw/
+  clean_dir:       data/clean/
+  results_dir:     data/results/
+  figures_dir:     data/figures/
+
+# ─── Bloomberg input files ────────────────────────────────────────────────────
+# These files are not included in the repository (proprietary data).
+# Place your own equivalently formatted files here before running step 1.
+input_files:
+  metadata:       data/raw/METADATA.xlsx
+  prices:         data/raw/PRICES.xlsx
+  mkt_cap:        data/raw/MKT_CAP.xlsx
+  volume:         data/raw/VOLUME.xlsx
+  tri:            data/raw/TOT_RETURN_INDEX_GROSS_DVDS.xlsx
+
+# ─── Sample and model window ─────────────────────────────────────────────────
+dates:
+  sample_start:   "2010-01-01"
+  sample_end:     "2025-12-31"
+  model_start:    "2016-01-01"   # start of ML feature estimation window
+  model_end:      "2025-12-31"
+  test_start:     "2023-01-01"   # start of out-of-sample evaluation period
+  test_end:       "2025-12-31"
+
+# ─── Portfolio optimization constraints ───────────────────────────────────────
+portfolio:
+  cardinality:    10             # K = number of stocks to hold
+  weight_min:     0.01           # minimum weight per selected stock
+  weight_max:     0.20           # maximum weight per stock
+  sector_cap:     0.30           # maximum total weight in any single GICS sector
+  lambda:         1.0            # risk-return trade-off parameter (MV objective)
+  estim_window:   252            # rolling window for covariance estimation (trading days)
+  rebal_freq:     "M"            # rebalancing frequency: M = monthly end
+
+# ─── Gurobi solver settings ───────────────────────────────────────────────────
+solver:
+  time_limit:     60             # maximum solver time per rebalancing date (seconds)
+  mip_gap:        0.01           # MIP optimality gap tolerance
+
+# ─── Machine learning settings ────────────────────────────────────────────────
+ml:
+  random_state:   42
+  n_val_dates:    6              # validation dates for Ridge/MLP hyperparameter selection
+  xgb_cv_folds:   4             # cross-validation folds for XGBoost tuning
+
+# ─── Transaction cost sensitivity ─────────────────────────────────────────────
+transaction_costs:
+  bps:            [10, 20, 30]   # cost levels tested (basis points per unit turnover)

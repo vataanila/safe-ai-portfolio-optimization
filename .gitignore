@@ -1,0 +1,95 @@
+# ─── Raw and derived Bloomberg data ──────────────────────────────────────────
+# These directories contain proprietary data and cannot be redistributed.
+data/raw/
+data/clean/
+data/predictions/
+data/results/
+data/figures/
+
+# Keep data documentation
+!data/README_data.md
+
+# ─── All financial data file formats ─────────────────────────────────────────
+*.csv
+*.xlsx
+*.xls
+*.xlsm
+*.xlsb
+*.parquet
+*.pkl
+*.pickle
+*.joblib
+
+# ─── Serialised model files (trained on proprietary data) ────────────────────
+*.json
+!config/config_template.yaml
+!package.json
+
+# ─── Research papers (copyrighted — not redistributable) ─────────────────────
+papers/
+*.pdf
+
+# ─── Generated outputs and solver files ──────────────────────────────────────
+outputs/
+*.log
+*.sol
+*.mps
+*.lp
+gurobi.lic
+
+# ─── Python cache and build artefacts ────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ─── Virtual environments ─────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+.conda/
+*.conda
+
+# ─── Jupyter notebook checkpoints ────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ─── IDE and editor files ─────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Local configuration and secrets ─────────────────────────────────────────
+.env
+.env.*
+config/config.yaml
+config/*.local.yaml
+
+# ─── Personal notes and internal documents ───────────────────────────────────
+docs/project_notes.txt
+docs/pipeline_overview.txt
+promptclaudecode.txt
+read.txt
+
+# ─── Deprecated and diagnostic scripts (not part of main pipeline) ───────────
+src/archive/
+src/diagnostics/
+
+# ─── Notebooks placeholder (not yet implemented) ─────────────────────────────
+notebooks/
+
+# ─── Temporary files ─────────────────────────────────────────────────────────
+*.tmp
+*.bak
+*.orig
