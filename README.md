@@ -15,6 +15,18 @@ The empirical analysis uses a Bloomberg dataset of approximately 400 large-cap U
 
 ---
 
+## Project status
+
+This repository is a code sample from my ongoing MSc thesis project in Quantitative Finance at the University of Pavia.
+
+The current version implements the main quantitative pipeline: data cleaning, feature engineering, machine learning-based expected return forecasting, constrained Markowitz portfolio construction, and out-of-sample portfolio evaluation.
+
+The next stage of the thesis is the integration of the SAFE AI evaluation framework. The repository already documents how SAFE AI is intended to be adapted to the portfolio optimization setting, but the empirical implementation of the SAFE dimensions is still under development.
+
+Raw Bloomberg data, derived datasets, portfolio outputs and figures are not included because of data licensing restrictions.
+
+---
+
 ## Research question
 
 Can machine learning models (Ridge regression, XGBoost, MLP) produce expected return estimates that lead to better out-of-sample portfolio performance than trailing historical means, within a constrained Markowitz MIQP framework?

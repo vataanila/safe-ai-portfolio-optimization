@@ -80,11 +80,11 @@ The RGE (Relative Gini Explainability) metric from `safeaipackage` is also appli
 
 ## Implementation status
 
-The SAFE AI evaluation is partially implemented. The RGA, RGR, RGF, and RGE metrics from `safeaipackage` are computed in the pipeline and saved to `data/clean/safe_results.csv`. Portfolio-level Sustainability and Accuracy diagnostics are fully implemented.
+The quantitative portfolio optimization pipeline has already been implemented in the repository, including the Markowitz benchmark, the machine learning forecasting models, portfolio construction and out-of-sample comparison.
 
-SHAP analysis and the full Fairness diagnostics are still being developed and are not yet automated in the pipeline. They are computed manually for the thesis write-up.
+The SAFE AI component is the next stage of the thesis work. At this stage, this document explains how the SAFE AI framework is intended to be adapted to a portfolio optimization setting.
 
-The application of SAFE AI to portfolio management is not a standard use case of the framework. The mapping of SAFE dimensions to portfolio concepts is the author's own adaptation, following guidance from the supervisor and the Giudici (2024) paper. Results should be read with this in mind.
+The empirical implementation of the SAFE dimensions is still being developed. For this reason, this section should be read as the evaluation framework guiding the next part of the thesis, rather than as a fully completed validation module.
 
 ---
 
