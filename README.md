@@ -7,11 +7,11 @@ Supervisor: Prof. Paolo Giudici
 
 ## Overview
 
-This repository contains the code developed for my MSc thesis in Quantitative Finance at the University of Pavia. The project studies whether machine learning-based expected return forecasts can improve constrained Markowitz portfolio construction compared with a classical historical-mean benchmark. The pipeline is then evaluated through an adaptation of the SAFE AI framework (Giudici 2024), which assesses portfolio systems along four dimensions: Sustainability/Security, Accuracy, Fairness, and Explainability.
+This repository contains the code developed for my MSc thesis in Quantitative Finance at the University of Pavia. The project studies whether machine learning-based expected return forecasts can improve constrained Markowitz portfolio construction compared with a classical historical-mean benchmark. The pipeline is then evaluated through an adaptation of the SAFE AI framework (Giudici 2024) : Sustainability/Security, Accuracy, Fairness, and Explainability.
 
 The empirical analysis uses a Bloomberg dataset of approximately 400 large-cap US equities over the period 2010–2025, with out-of-sample portfolio evaluation from January 2023 to December 2025.
 
-**This is research code developed for an academic thesis. It is not production software and some components are still being refined.**
+**This is research code developed for an academic thesis, some components are still being refined.**
 
 ---
 
