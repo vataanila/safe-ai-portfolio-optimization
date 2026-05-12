@@ -51,7 +51,7 @@ The panel is saved to `data/results/step4/ml_panel.csv`.
 
 ## Machine learning return forecasting
 
-Three models are trained in `step5a_train_ridge.py`, `step5b_train_xgboost.py`, and `step5c_train_mlp.py`:
+Three models are trained in `step5a_train_ridge.py`, `step5b_train_xgboost.py`, and `step5c_train_mlp.py`. XGBoost is the primary forecasting model of interest and the focus of the SAFE AI evaluation. Ridge regression and the MLP are included as additional ML benchmarks to assess whether XGBoost outperforms alternative forecasting approaches on this type of financial panel data.
 
 - **Ridge regression** — linear model with L2 regularisation; hyperparameter selected on a rolling validation window
 - **XGBoost** — gradient boosting trees; hyperparameters tuned by 4-fold cross-validation on the expanding training set
@@ -130,4 +130,4 @@ Net-of-cost performance is also computed at 10, 20, and 30 basis points per unit
 - The ML models are trained on cross-sectional ranks, which limits their ability to capture the overall market direction.
 - The MIQP solver uses a fixed time limit of 60 seconds. For some rebalancing dates, the solver terminates at the MIP gap tolerance rather than at the proven global optimum.
 - Feature engineering is kept simple (momentum, volatility, liquidity). More sophisticated features or alternative data could change the results.
-- The SAFE AI evaluation is based on the metrics described above. The safeaipackage implementation is still being validated in the context of portfolio management.
+- The SAFE AI evaluation focuses on the XGBoost return forecasting model. Portfolio performance metrics (Sharpe, Sortino, Calmar, drawdown, turnover) are used as a separate evaluation layer to assess the economic implications of the forecasts, not as direct SAFE AI metrics. The `safeaipackage` integration is still being developed as part of the ongoing thesis work.

@@ -13,7 +13,7 @@ The repository contains the Python implementation of a quantitative finance rese
 3. **Portfolio optimisation** — constrained Markowitz mean-variance optimisation formulated as a mixed-integer quadratic program (MIQP), solved with Gurobi. Constraints include cardinality (K = 10 stocks), weight bounds (1%–20% per stock), and a sector cap (30%).
 4. **Machine learning return forecasting** — three models trained in an expanding-window out-of-sample framework: Ridge regression, XGBoost (gradient boosting), and a multi-layer perceptron. Features are built from cross-sectional momentum, volatility, liquidity, and market cap signals, ranked at each rebalancing date to reduce look-ahead bias.
 5. **Out-of-sample backtesting** — ML-predicted expected returns replace the historical mean in the MIQP, and four portfolio variants (baseline, Ridge, XGBoost, MLP) are compared on risk-adjusted performance metrics (Sharpe, Sortino, Calmar, maximum drawdown, turnover).
-6. **SAFE AI evaluation** — an adaptation of the SAFE AI framework (Giudici 2024) assesses the investment pipeline along four dimensions: Sustainability/Security, Accuracy, Fairness, and Explainability.
+6. **SAFE AI evaluation** — an adaptation of the SAFE AI framework (Giudici 2024) evaluates the XGBoost return forecasting model along four dimensions: Sustainability/Security, Accuracy, Fairness, and Explainability. Portfolio-level performance and risk metrics are assessed separately to examine the economic consequences of using XGBoost forecasts within the Markowitz optimizer.
 
 The code is written in Python 3.11 and uses pandas, numpy, scikit-learn, XGBoost, scipy, matplotlib, and Gurobi.
 

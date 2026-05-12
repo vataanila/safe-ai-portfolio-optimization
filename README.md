@@ -7,7 +7,7 @@ Supervisor: Prof. Paolo Giudici
 
 ## Overview
 
-This repository contains the code developed for my MSc thesis in Quantitative Finance at the University of Pavia. The project studies whether machine learning-based expected return forecasts can improve constrained Markowitz portfolio construction compared with a classical historical-mean benchmark. The pipeline is then evaluated through an adaptation of the SAFE AI framework (Giudici 2024) : Sustainability/Security, Accuracy, Fairness, and Explainability.
+This repository contains the code developed for my MSc thesis in Quantitative Finance at the University of Pavia. The project studies whether machine learning-based expected return forecasts can improve constrained Markowitz portfolio construction compared with a classical historical-mean benchmark. The main machine learning model is XGBoost; Ridge regression and a multi-layer perceptron are included as additional ML benchmarks. The XGBoost return forecasting model is evaluated using an adaptation of the SAFE AI framework (Giudici 2024): Sustainability/Security, Accuracy, Fairness, and Explainability. The resulting portfolios are assessed separately using standard performance and risk metrics.
 
 The empirical analysis uses a Bloomberg dataset of approximately 400 large-cap US equities over the period 2010–2025, with out-of-sample portfolio evaluation from January 2023 to December 2025.
 
@@ -21,7 +21,7 @@ Mean-variance portfolio construction is well understood in theory, but its pract
 
 Machine learning offers a different approach. Rather than modelling expected returns directly, the models in this pipeline rank stocks cross-sectionally based on momentum, volatility, and liquidity signals -- signals that have known empirical support in the asset pricing literature. The question the thesis addresses is simple: does replacing the historical mean with ML-ranked expected returns produce better out-of-sample portfolios, after controlling for turnover and transaction costs?
 
-The SAFE AI layer adds a second angle. ML models are often evaluated only on predictive accuracy. In a portfolio context, accuracy alone is insufficient: a model that predicts well but produces fragile, concentrated, or unexplainable allocation decisions is not useful in practice. SAFE AI provides a more complete evaluation framework, and adapting it to portfolio systems is one of the methodological contributions of the thesis.
+The SAFE AI layer adds a second angle. ML models are often evaluated only on predictive accuracy. In a portfolio context, accuracy alone is insufficient: a model that predicts well on average but produces unstable, biased, or opaque forecasts may not translate into a reliable investment strategy. SAFE AI provides a more complete evaluation framework for the ML forecasting model itself, and adapting it to the assessment of return forecasting models used in portfolio construction is one of the methodological contributions of the thesis.
 
 ---
 
@@ -39,7 +39,7 @@ Raw Bloomberg data, derived datasets, portfolio outputs and figures are not incl
 
 ## Research question
 
-Can machine learning models (Ridge regression, XGBoost, MLP) produce expected return estimates that lead to better out-of-sample portfolio performance than trailing historical means, within a constrained Markowitz MIQP framework?
+Can XGBoost-based expected return estimates lead to better out-of-sample portfolio performance than a classical Markowitz baseline using trailing historical means, within a constrained MIQP framework? Ridge regression and a multi-layer perceptron are included as additional ML benchmarks to situate XGBoost within a broader comparison of forecasting approaches on this type of financial panel data.
 
 ---
 
@@ -52,7 +52,7 @@ The pipeline runs in six numbered steps:
 3. **Baseline portfolio** — Construct the benchmark portfolio using trailing historical mean expected returns and rolling Ledoit-Wolf covariance, solved via a mixed-integer quadratic program (MIQP) with cardinality and sector constraints (K=10 stocks, 1%–20% per stock, 30% sector cap). Solved with Gurobi. Also produces an efficient frontier visualization and baseline performance diagnostics.
 4. **Feature engineering** — Build a monthly cross-sectional panel of momentum, volatility, liquidity, and market cap features. Features are ranked cross-sectionally at each rebalancing date to reduce look-ahead bias.
 5. **ML return forecasting** — Train three models in an expanding-window out-of-sample framework: Ridge regression, XGBoost, and a multi-layer perceptron. Each model predicts next-month cross-sectional return ranks, which are then rescaled to the baseline mu distribution. No portfolio optimization is performed at this step.
-6. **ML-enhanced portfolios and evaluation** — Run the same MIQP optimization as the baseline, replacing the historical mean with each ML model's predictions. Compare all four portfolios (baseline, Ridge, XGBoost, MLP) on out-of-sample performance metrics and through the SAFE AI framework.
+6. **ML-enhanced portfolios and evaluation** — Run the same MIQP optimization as the baseline, replacing the historical mean with each ML model's predictions. Compare all four portfolios (baseline, Ridge, XGBoost, MLP) on out-of-sample performance and risk metrics. The SAFE AI evaluation focuses specifically on the XGBoost return forecasting model.
 
 ---
 
@@ -164,12 +164,14 @@ The covariance matrix Σ is estimated using rolling Ledoit-Wolf shrinkage on the
 
 ## SAFE AI evaluation
 
-The SAFE AI framework (Giudici 2024) is adapted to evaluate the full investment pipeline:
+The SAFE AI framework (Giudici 2024) is adapted to evaluate the XGBoost return forecasting model across four dimensions:
 
-- **Sustainability/Security** — portfolio robustness, drawdown, turnover, transaction cost sensitivity
-- **Accuracy** — out-of-sample forecast quality (information coefficient) and portfolio performance metrics (Sharpe, Sortino, Calmar ratios)
-- **Fairness** — sector allocation balance, stock concentration, diversification
+- **Sustainability/Security** — robustness and stability of XGBoost forecasts across the out-of-sample period
+- **Accuracy** — forecast accuracy measured by the information coefficient (IC) and reliability of cross-sectional return rank predictions
+- **Fairness** — whether XGBoost predictions exhibit systematic bias across stocks or market segments
 - **Explainability** — feature importance and SHAP analysis for the XGBoost model
+
+Portfolio-level diagnostics — annualised return, volatility, Sharpe, Sortino, and Calmar ratios, maximum drawdown, turnover, and transaction cost sensitivity — are used as a separate evaluation layer to assess the practical and economic implications of using XGBoost forecasts within the Markowitz optimizer. These metrics are compared across all four portfolios (baseline, Ridge, XGBoost, MLP).
 
 See `docs/safe_ai_framework.md` for details.
 
