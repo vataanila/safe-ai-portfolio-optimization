@@ -183,7 +183,7 @@ Raw Bloomberg data (prices, total return index, volume, market cap, metadata) ar
 
 ## Limitations
 
-- The out-of-sample test period (January 2023 to December 2025) is short and includes the post-COVID normalisation and the 2022 rate shock aftermath. Results should not be read as evidence that the models will generalise to other regimes.
+- The out-of-sample test period (January 2023 to December 2025) is short and includes the post-COVID normalisation period and the aftermath of the 2022 rate shock. Results should not be read as evidence that the models will generalise to other regimes.
 - ML models are trained on cross-sectional return ranks, not raw returns. This means they capture relative ordering across stocks but do not predict the overall market direction.
 - The MIQP solver (Gurobi) runs with a 60-second time limit and a 1% MIP gap. On some rebalancing dates the solver terminates at the gap tolerance rather than at the proven global optimum.
 - Feature engineering is kept intentionally simple (momentum, volatility, liquidity, market cap). More sophisticated signals or alternative data could change the results in either direction.
