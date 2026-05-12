@@ -61,7 +61,7 @@ For a reviewer assessing Python and ML skills in a quantitative finance context,
 | ML forecasting (regression, gradient boosting, neural network) | `step5a–5c` |
 | Feature engineering (cross-sectional financial signals) | `step4` |
 | Performance and risk analysis | `step6d`, `step6e` |
-| Risk-AI framework evaluation | `step6d`, `docs/safe_ai_framework.md` |
+| SAFE AI framework evaluation | `step6d`, `docs/safe_ai_framework.md` |
 
 ---
 

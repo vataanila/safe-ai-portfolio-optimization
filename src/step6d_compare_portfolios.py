@@ -1,9 +1,9 @@
-﻿"""
+"""
 step6d_compare_portfolios.py
 ============================
-PURPOSE : Step 6d â€” Baseline vs ML portfolio comparison.
+PURPOSE : Step 6d - Baseline vs ML portfolio comparison.
           Reads pre-computed summary CSVs from Step 3 (baseline) and
-          Steps 6aâ€“6c (Ridge, XGBoost, MLP). Aggregates results into a
+          Steps 6a-6c (Ridge, XGBoost, MLP). Aggregates results into a
           unified comparison table with rankings.
 
           This script does NOT rerun any optimization, backtesting,
@@ -12,11 +12,11 @@ PURPOSE : Step 6d â€” Baseline vs ML portfolio comparison.
           Optionally aggregates net-cost summaries if those files exist.
 
 PIPELINE:
-  Step 3  â†’ step3_baseline_portfolio.py              (Markowitz baseline, historical mu)
-  Step 6a â†’ step6a_portfolio_ridge.py      (Ridge MIQP portfolio)
-  Step 6b â†’ step6b_portfolio_xgboost.py    (XGBoost MIQP portfolio)
-  Step 6c â†’ step6c_portfolio_mlp.py        (MLP MIQP portfolio)
-  Step 6d â†’ this script                    (aggregate comparison, rankings)
+  Step 3  -> step3_baseline_portfolio.py              (Markowitz baseline, historical mu)
+  Step 6a -> step6a_portfolio_ridge.py      (Ridge MIQP portfolio)
+  Step 6b -> step6b_portfolio_xgboost.py    (XGBoost MIQP portfolio)
+  Step 6c -> step6c_portfolio_mlp.py        (MLP MIQP portfolio)
+  Step 6d -> this script                    (aggregate comparison, rankings)
 
 INPUTS (required):
   data/results/baseline_summary.csv
@@ -24,7 +24,7 @@ INPUTS (required):
   data/results/step6/xgboost/xgboost_summary.csv
   data/results/step6/mlp/mlp_summary.csv
 
-INPUTS (optional â€” net cost aggregation):
+INPUTS (optional - net cost aggregation):
   data/results/baseline_net_cost_summary.csv
   data/results/step6/ridge/ridge_net_cost_summary.csv
   data/results/step6/xgboost/xgboost_net_cost_summary.csv
@@ -53,8 +53,8 @@ ROW ORDER (all output tables):
   4. mlp
 
 Author  : Anila Vata
-Project : MSc Thesis â€” ML-Enhanced Portfolio Optimization with SAFE AI Evaluation
-          University of Pavia Â· Supervisor: Prof. Paolo Giudici
+Project : MSc Thesis - ML-Enhanced Portfolio Optimization with SAFE AI Evaluation
+          University of Pavia * Supervisor: Prof. Paolo Giudici
 """
 
 import os
@@ -103,7 +103,7 @@ MODEL_ORDER = ["baseline_markowitz", "ridge", "xgboost", "mlp"]
 # 1. LOAD SUMMARIES
 # =============================================================================
 log("=" * 70)
-log("STEP 6d â€” BASELINE vs ML PORTFOLIO COMPARISON")
+log("STEP 6d - BASELINE vs ML PORTFOLIO COMPARISON")
 log(f"Run: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 log("=" * 70)
 log("\n-- 1. LOADING SUMMARIES ------------------------------------------------")
@@ -136,7 +136,7 @@ for label, path in _sources.items():
         raise ValueError(
             f"[step6d] Expected exactly 1 row in {path}, got {len(df)}."
         )
-    df["model"] = label  # normalise label (baseline â†’ baseline_markowitz)
+    df["model"] = label  # normalise label (baseline -> baseline_markowitz)
     frames.append(df)
     log(f"  Loaded: {os.path.relpath(path, BASE_DIR)}")
 
@@ -158,7 +158,7 @@ missing = [c for c in REQUIRED_METRICS if c not in combined.columns]
 if missing:
     raise ValueError(
         f"[step6d] Missing required metric columns: {missing}\n"
-        f"  Check that step3 and step6aâ€“c outputs contain all expected fields."
+        f"  Check that step3 and step6a-c outputs contain all expected fields."
     )
 log(f"  All required metric columns present: {REQUIRED_METRICS}")
 
@@ -206,11 +206,11 @@ ranked["overall_rank"]       = ranked["overall_rank_score"].rank(
 ).astype(int)
 
 log("  Individual ranking directions:")
-log("    rank_sharpe       â€” descending (higher Sharpe is better)")
-log("    rank_sortino      â€” descending (higher Sortino is better)")
-log("    rank_calmar       â€” descending (higher Calmar is better)")
-log("    rank_max_drawdown â€” ascending  (positive magnitude; smaller drawdown is better)")
-log("    rank_avg_turnover â€” ascending  (lower turnover is better)")
+log("    rank_sharpe       - descending (higher Sharpe is better)")
+log("    rank_sortino      - descending (higher Sortino is better)")
+log("    rank_calmar       - descending (higher Calmar is better)")
+log("    rank_max_drawdown - ascending  (positive magnitude; smaller drawdown is better)")
+log("    rank_avg_turnover - ascending  (lower turnover is better)")
 log("  overall_rank_score = average of the five individual rank columns")
 log("  overall_rank       = rank of overall_rank_score ascending (lower is better)")
 
@@ -221,7 +221,7 @@ log("\n-- 5. SAVING RAW COMPARISON --------------------------------------------"
 
 ranked.to_csv(OUT_SUMMARY, index=False)
 log(f"  Saved: ml_portfolio_comparison_summary.csv  "
-    f"({ranked.shape[0]} models Ã— {ranked.shape[1]} columns)")
+    f"({ranked.shape[0]} models x {ranked.shape[1]} columns)")
 
 # =============================================================================
 # 6. SAVE PRETTY COMPARISON (human-readable)
@@ -265,10 +265,10 @@ net_frames: list[pd.DataFrame] = []
 for label, path in _net_cost_sources.items():
     if not os.path.exists(path):
         if label == "baseline_markowitz":
-            log(f"  WARNING: baseline net cost file not found â€” skipping: "
+            log(f"  WARNING: baseline net cost file not found - skipping: "
                 f"{os.path.relpath(path, BASE_DIR)}")
         else:
-            log(f"  WARNING: {label} net cost file not found â€” "
+            log(f"  WARNING: {label} net cost file not found - "
                 f"step6a/6b/6c may not have been run yet: "
                 f"{os.path.relpath(path, BASE_DIR)}")
         continue
@@ -290,7 +290,7 @@ if net_frames:
     net_combined.to_csv(OUT_NET_COST, index=False)
     log(f"  Saved: ml_net_cost_comparison_summary.csv  ({len(net_combined)} rows)")
 else:
-    log("  No net cost files found â€” ml_net_cost_comparison_summary.csv not written.")
+    log("  No net cost files found - ml_net_cost_comparison_summary.csv not written.")
 
 # =============================================================================
 # 8. CONSOLE PERFORMANCE TABLE (sorted by overall_rank)

@@ -1,4 +1,4 @@
-﻿"""
+"""
 step1_load_data.py
 =============
 PURPOSE : Load, inspect, and clean the raw dataset.
@@ -245,12 +245,12 @@ print(f"  Negative prices: {(valid_vals < 0).sum()} | Zero: {(valid_vals == 0).s
 
 nan_pct       = prices_data.isna().mean()
 nan_pct_model = prices_data.loc[MODEL_START:MODEL_END].isna().mean()
-print(f"\n  Missing price structure (full sample window {SAMPLE_START}â€“{SAMPLE_END}):")
+print(f"\n  Missing price structure (full sample window {SAMPLE_START} to {SAMPLE_END}):")
 print(f"    0% missing    : {(nan_pct == 0).sum()} stocks")
 print(f"    0-5% missing  : {((nan_pct > 0) & (nan_pct < 0.05)).sum()} stocks")
 print(f"    5-20% missing : {((nan_pct >= 0.05) & (nan_pct <= 0.20)).sum()} stocks")
 print(f"    >20% missing  : {(nan_pct > 0.20).sum()} stocks")
-print(f"\n  Missing price structure (model window {MODEL_START}â€“{MODEL_END}):")
+print(f"\n  Missing price structure (model window {MODEL_START} to {MODEL_END}):")
 print(f"    0% missing    : {(nan_pct_model == 0).sum()} stocks")
 print(f"    0-5% missing  : {((nan_pct_model > 0) & (nan_pct_model <= 0.05)).sum()} stocks  (at or below removal threshold)")
 print(f"    >5% missing   : {(nan_pct_model > 0.05).sum()} stocks  (above removal threshold, filter E)")
@@ -363,9 +363,9 @@ print(f"  [D] removed   0  ->  {len(meta)} stocks remain  "
       f"(filled {n_miss_sector} sector, {n_miss_country} country with 'Unknown')")
 
 # -- E: Remove stocks with >5% missing prices or TRI in the model window -----
-# Missingness is evaluated only in the model window (MODEL_STARTâ€“MODEL_END)
+# Missingness is evaluated only in the model window (MODEL_START to MODEL_END)
 # because that is where returns, covariance, and factor features are computed.
-# A stock may have gaps in the warm-up period (2010â€“2015) without penalty,
+# A stock may have gaps in the warm-up period (2010-2015) without penalty,
 # as long as its model-window coverage meets the 95% threshold.
 # Both prices and TRI must meet the threshold: prices are used for liquidity proxies such as the Amihud ratio; TRI is the
 # primary series for log-return computation, covariance estimation, realized
@@ -442,7 +442,7 @@ print(f"  [F] removed {removed:3d}  ->  {len(meta)} stocks remain"
 # Forward-filling TRI produces artificial zero log-returns on filled days
 # (log(TRI[t] / TRI[t-1]) = 0), which suppresses daily volatility and
 # compresses momentum signals. This is acceptable for micro-gaps but would
-# systematically bias features if applied to longer interruptions â€” hence the
+# systematically bias features if applied to longer interruptions -- hence the
 # 5-day cap. Back-fill is excluded because it uses future index levels to
 # impute earlier missing observations, introducing look-ahead bias
 # (Lo & MacKinlay 1990).
@@ -549,7 +549,7 @@ print("  " + "-" * 68)
 print(f"  {'FINAL CLEAN UNIVERSE':<48} {'':>8} {n_final:>10} stocks")
 print(f"  {'FINAL TRADING DAYS':<48} {'':>8} {n_days_final:>10}")
 print(f"\n  NOTE: this is a balanced investable panel conditional on data")
-print(f"  availability over the model window ({MODEL_START}â€“{MODEL_END}),")
+print(f"  availability over the model window ({MODEL_START} to {MODEL_END}),")
 print(f"  not the full historical S&P 500 constituent universe. Stocks")
 print(f"  that entered or exited the index within the sample period are")
 print(f"  excluded if they fail coverage thresholds, introducing a degree of survivorship/data-availability bias documented in section 12.")

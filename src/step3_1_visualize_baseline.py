@@ -1,4 +1,4 @@
-﻿"""
+"""
 step3_1_visualize_baseline.py
 ====================
 PURPOSE : Diagnostic visualisations for the Markowitz MIQP baseline
@@ -6,7 +6,7 @@ PURPOSE : Diagnostic visualisations for the Markowitz MIQP baseline
 
 INPUTS  :
   data/results/baseline_returns.csv -- daily log-return series (date, portfolio_return)
-  data/results/baseline_weights.csv -- rebal_date Ã— tickers (sparse weights)
+  data/results/baseline_weights.csv -- rebal_date x tickers (sparse weights)
   data/clean/meta_clean.csv         -- ticker metadata with GICS sector column
   ^GSPC (yfinance, optional)        -- S&P 500 benchmark daily prices
 
@@ -40,14 +40,14 @@ try:
     HAS_SEABORN = True
 except ImportError:
     HAS_SEABORN = False
-    print("  NOTE: seaborn not found â€” heatmap will use matplotlib imshow.")
+    print("  NOTE: seaborn not found - heatmap will use matplotlib imshow.")
 
 try:
     import yfinance as yf
     HAS_YFINANCE = True
 except ImportError:
     HAS_YFINANCE = False
-    print("  NOTE: yfinance not found â€” S&P 500 benchmark line will be omitted.")
+    print("  NOTE: yfinance not found - S&P 500 benchmark line will be omitted.")
 
 BASE_DIR    = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RESULTS_DIR = os.path.join(BASE_DIR, "data", "results")
@@ -88,13 +88,13 @@ def source_note(ax):
 
 
 print("=" * 70)
-print("  STEP VIZ â€” BASELINE PORTFOLIO DIAGNOSTICS")
+print("  STEP VIZ - BASELINE PORTFOLIO DIAGNOSTICS")
 print("=" * 70)
 
 # =============================================================================
 # 1. LOAD DATA
 # =============================================================================
-print("\n[0] Loading data â€¦")
+print("\n[0] Loading data -")
 
 def _require(path):
     if not os.path.exists(path):
@@ -141,7 +141,7 @@ DATE_END   = ret_series.index[-1]
 
 print(f"  baseline_returns : {len(ret_series)} days "
       f"({DATE_START.date()} to {DATE_END.date()})")
-print(f"  baseline_weights : {weights_df.shape[0]} rebal dates Ã— "
+print(f"  baseline_weights : {weights_df.shape[0]} rebal dates x "
       f"{weights_df.shape[1]} tickers")
 print(f"  meta             : {len(meta)} stocks, sector col='{sector_col}'")
 
@@ -184,9 +184,9 @@ if HAS_YFINANCE:
             bench_cum = bench_log.cumsum().reindex(ret_series.index)
             print(f"  S&P 500 benchmark: {len(bench_log)} days downloaded")
         else:
-            print("  yfinance returned empty data â€” benchmark omitted.")
+            print("  yfinance returned empty data - benchmark omitted.")
     except Exception as e:
-        print(f"  yfinance error ({e}) â€” benchmark omitted.")
+        print(f"  yfinance error ({e}) - benchmark omitted.")
 
 # Turnover data
 turnover_path = os.path.join(RESULTS_DIR, "baseline_turnover.csv")
@@ -210,9 +210,9 @@ turnover_df = turnover_df.sort_values("rebal_date").reset_index(drop=True)
 mean_turnover = float(turnover_df["turnover"].mean())
 
 # =============================================================================
-# FIGURE 1 â€” CUMULATIVE RETURNS
+# FIGURE 1 - CUMULATIVE RETURNS
 # =============================================================================
-print("\n[1] Figure 1: Cumulative Returns â€¦")
+print("\n[1] Figure 1: Cumulative Returns -")
 try:
     setup_style()
     fig, ax = plt.subplots(figsize=(12, 5))
@@ -253,7 +253,7 @@ try:
 
     ax.axhline(0, color="black", linewidth=0.6, linestyle=":", zorder=2)
 
-    ax.set_title("Baseline Portfolio â€” Cumulative Returns (2023â€“2025)",
+    ax.set_title("Baseline Portfolio - Cumulative Returns (2023-2025)",
                  fontsize=13, fontweight="bold", pad=10)
     ax.set_xlabel("Date", fontsize=11)
     ax.set_ylabel("Cumulative Log Return", fontsize=11)
@@ -278,9 +278,9 @@ except Exception as e:
     print(f"  ERROR in Figure 1: {e}")
 
 # =============================================================================
-# FIGURE 2 â€” ROLLING SHARPE
+# FIGURE 2 - ROLLING SHARPE
 # =============================================================================
-print("\n[2] Figure 2: Rolling Sharpe Ratio â€¦")
+print("\n[2] Figure 2: Rolling Sharpe Ratio -")
 try:
     ROLL_WIN = 126
     setup_style()
@@ -313,7 +313,7 @@ try:
             color="#1f3c6b", linewidth=1.4, zorder=4,
             label=f"Rolling {ROLL_WIN}-day Sharpe")
 
-    ax.set_title(f"Baseline Portfolio â€” Rolling Sharpe Ratio ({ROLL_WIN}-day window)",
+    ax.set_title(f"Baseline Portfolio - Rolling Sharpe Ratio ({ROLL_WIN}-day window)",
                  fontsize=13, fontweight="bold", pad=10)
     ax.set_xlabel("Date", fontsize=11)
     ax.set_ylabel("Sharpe Ratio", fontsize=11)
@@ -339,9 +339,9 @@ except Exception as e:
     print(f"  ERROR in Figure 2: {e}")
 
 # =============================================================================
-# FIGURE 3 â€” DRAWDOWN
+# FIGURE 3 - DRAWDOWN
 # =============================================================================
-print("\n[3] Figure 3: Drawdown â€¦")
+print("\n[3] Figure 3: Drawdown -")
 try:
     setup_style()
     fig, ax = plt.subplots(figsize=(12, 4))
@@ -365,7 +365,7 @@ try:
                   alpha=0.85),
     )
 
-    ax.set_title("Baseline Portfolio â€” Drawdown (2023â€“2025)",
+    ax.set_title("Baseline Portfolio - Drawdown (2023-2025)",
                  fontsize=13, fontweight="bold", pad=10)
     ax.set_xlabel("Date", fontsize=11)
     ax.set_ylabel("Drawdown", fontsize=11)
@@ -396,9 +396,9 @@ except Exception as e:
     print(f"  ERROR in Figure 3: {e}")
 
 # =============================================================================
-# FIGURE 4 â€” TURNOVER
+# FIGURE 4 - TURNOVER
 # =============================================================================
-print("\n[4] Figure 4: Monthly Turnover â€¦")
+print("\n[4] Figure 4: Monthly Turnover -")
 try:
     setup_style()
     fig, ax = plt.subplots(figsize=(12, 4))
@@ -431,7 +431,7 @@ try:
         dates.iloc[-1] + pd.Timedelta(days=20),
     )
 
-    ax.set_title("Baseline Portfolio â€” Monthly Turnover",
+    ax.set_title("Baseline Portfolio - Monthly Turnover",
                  fontsize=13, fontweight="bold", pad=10)
     ax.set_xlabel("Rebalancing Date", fontsize=11)
     ax.set_ylabel("Turnover (one-way)", fontsize=11)
@@ -454,9 +454,9 @@ except Exception as e:
     print(f"  ERROR in Figure 4: {e}")
 
 # =============================================================================
-# FIGURE 5 â€” SECTOR HEATMAP
+# FIGURE 5 - SECTOR HEATMAP
 # =============================================================================
-print("\n[5] Figure 5: Sector Allocation Heatmap â€¦")
+print("\n[5] Figure 5: Sector Allocation Heatmap -")
 try:
     setup_style()
 
@@ -529,7 +529,7 @@ try:
                             fontsize=7.5,
                             color="black" if v < 0.20 else "white")
 
-    ax.set_title("Baseline Portfolio â€” Sector Allocation Over Time",
+    ax.set_title("Baseline Portfolio - Sector Allocation Over Time",
                  fontsize=13, fontweight="bold", pad=14)
     ax.set_xlabel("GICS Sector", fontsize=11)
     ax.set_ylabel("Rebalancing Date", fontsize=11)
@@ -558,7 +558,7 @@ except Exception as e:
 # FINAL SUMMARY
 # =============================================================================
 print("\n" + "=" * 70)
-print("  STEP VIZ â€” BASELINE DIAGNOSTICS COMPLETE")
+print("  STEP VIZ - BASELINE DIAGNOSTICS COMPLETE")
 print("=" * 70)
 print("  Figures written to: data/figures/")
 for fname in [

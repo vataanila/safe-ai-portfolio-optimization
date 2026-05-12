@@ -1,4 +1,4 @@
-﻿"""
+"""
 step2_preprocess_returns.py
 ===================
 PURPOSE : Compute log returns and estimate covariance matrices for the
@@ -294,7 +294,7 @@ else:
 log(f"\n  Final return matrix : {returns.shape[0]} days x {returns.shape[1]} stocks")
 
 # =============================================================================
-# 2d. FINAL UNIVERSE FILTER: DUPLICATE SHARE CLASS REMOVAL (GOOGL â†’ keep GOOG)
+# 2d. FINAL UNIVERSE FILTER: DUPLICATE SHARE CLASS REMOVAL (GOOGL -> keep GOOG)
 # =============================================================================
 log("\n-- 2d. FINAL UNIVERSE FILTER: DUPLICATE SHARE CLASS REMOVAL ----------")
 
@@ -323,7 +323,7 @@ else:
     if GOOG_TICKER not in returns.columns:
         log(f"  NOTE: {GOOG_TICKER} not found in universe -- cannot determine pair.")
 
-# THESIS NOTE (Chapter 3 â€” Data and Methodology):
+# THESIS NOTE (Chapter 3 - Data and Methodology):
 # The S&P 500 universe includes two share classes of Alphabet Inc.:
 # GOOG (Class C, no voting rights) and GOOGL (Class A, voting rights).
 # These two series have a sample correlation of 0.9952 over the model window,
@@ -693,7 +693,7 @@ ax.axvline(ann_vol.median(), color="#C00000", linewidth=1.2, linestyle="--",
            label=f"Median = {ann_vol.median():.3f}")
 ax.set_xlabel("Annualised Volatility")
 ax.set_ylabel("Number of stocks")
-ax.set_title("Annualised Volatility Distribution â€” Clean Universe (model window)")
+ax.set_title("Annualised Volatility Distribution - Clean Universe (model window)")
 ax.legend(frameon=False)
 ax.text(0.98, 0.92, "Source: Author's elaboration.",
         transform=ax.transAxes, ha="right", fontsize=8, color="gray")
@@ -707,7 +707,7 @@ ax.axvline(ann_ret.median(), color="#C00000", linewidth=1.2, linestyle="--",
 ax.axvline(0, color="black", linewidth=0.8, linestyle=":")
 ax.set_xlabel("Annualised Mean Return")
 ax.set_ylabel("Number of stocks")
-ax.set_title("Annualised Mean Return Distribution â€” Clean Universe (model window)")
+ax.set_title("Annualised Mean Return Distribution - Clean Universe (model window)")
 ax.legend(frameon=False)
 ax.text(0.98, 0.92, "Source: Author's elaboration.",
         transform=ax.transAxes, ha="right", fontsize=8, color="gray")
@@ -721,7 +721,7 @@ ax.axvline(off_diags["Sample"].mean(), color="#C00000", linewidth=1.2,
            linestyle="--", label=f"Mean = {off_diags['Sample'].mean():.3f}")
 ax.set_xlabel("Pairwise Correlation")
 ax.set_ylabel("Number of stock pairs")
-ax.set_title("Pairwise Correlation Distribution â€” Sample Estimator (model window)")
+ax.set_title("Pairwise Correlation Distribution - Sample Estimator (model window)")
 ax.legend(frameon=False)
 ax.text(0.98, 0.92, "Source: Author's elaboration.",
         transform=ax.transAxes, ha="right", fontsize=8, color="gray")
@@ -734,7 +734,7 @@ if "sector" in meta.columns:
     sector_counts.sort_values().plot(kind="barh", ax=ax, color="#4472C4",
                                      edgecolor="white")
     ax.set_xlabel("Number of stocks")
-    ax.set_title(f"Sector Breakdown â€” Clean Universe (n={n_stocks})")
+    ax.set_title(f"Sector Breakdown - Clean Universe (n={n_stocks})")
     ax.text(0.98, 0.02, "Source: Author's elaboration.",
             transform=ax.transAxes, ha="right", fontsize=8, color="gray")
     savefig("sector_breakdown.png")

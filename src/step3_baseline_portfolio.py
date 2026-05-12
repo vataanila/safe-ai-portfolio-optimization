@@ -1,7 +1,7 @@
-﻿"""
+"""
 step3_baseline_portfolio.py
 =================
-PURPOSE : Classical Markowitz MIQP baseline portfolio â€” trailing historical
+PURPOSE : Classical Markowitz MIQP baseline portfolio - trailing historical
           mean as mu, rolling Ledoit-Wolf covariance, monthly rebalancing.
 
           This is the benchmark against which all ML models are compared.
@@ -27,32 +27,32 @@ OUTPUTS :
   data/results/step3/equal_weight_summary.csv      -- equal-weight benchmark performance metrics
   data/results/step3/baseline_net_cost_summary.csv -- net-of-cost performance at 10/20/30 bps
 
-DIAGNOSTICS (Sections 8bâ€“8d):
+DIAGNOSTICS (Sections 8b-8d):
   Implementability diagnostics used in the Sustainability dimension of the
   SAFE AI framework (Giudici 2024). They do not alter portfolio construction.
-    8b â€” wealth/drawdown curve with peak and trough dates
-    8c â€” equal-weight benchmark (full universe, monthly rebalanced)
-    8d â€” transaction-cost sensitivity: net Sharpe at 10, 20, 30 bps per unit of traded turnover
+    8b - wealth/drawdown curve with peak and trough dates
+    8c - equal-weight benchmark (full universe, monthly rebalanced)
+    8d - transaction-cost sensitivity: net Sharpe at 10, 20, 30 bps per unit of traded turnover
 
 METHODOLOGY:
-  mu  : trailing 252-day historical mean Ã— 252 (annualised), winsorized p1/p99
-  Î£   : rolling Ledoit-Wolf, re-estimated at each rebalancing date using
-        trailing ESTIM_WINDOW-day returns strictly before rebal_date.
-        Both Î¼ and Î£ use only information available before each rebalancing
-        date. Step 2 full-window covariance matrices are diagnostic only
-        and are not used in the OOS optimizer.
+  mu    : trailing 252-day historical mean x 252 (annualised), winsorized p1/p99
+  Sigma : rolling Ledoit-Wolf, re-estimated at each rebalancing date using
+          trailing ESTIM_WINDOW-day returns strictly before rebal_date.
+          Both mu and Sigma use only information available before each rebalancing
+          date. Step 2 full-window covariance matrices are diagnostic only
+          and are not used in the OOS optimizer.
   MIQP:
-    minimize  w'Î£w - Î»Â·Î¼'w          (Î» = 1)
-    s.t.      Î£ w_i  = 1            (fully invested)
-              z_i âˆˆ {0,1},  Î£ z_i = K = 10   (cardinality)
-              0.01Â·z_i â‰¤ w_i â‰¤ 0.20Â·z_i      (weight bounds, selected only)
-              Î£_{iâˆˆs} w_i â‰¤ 0.30              (sector concentration cap)
+    minimize  w'Sw - lambda * mu'w        (lambda = 1)
+    s.t.      sum(w_i) = 1               (fully invested)
+              z_i in {0,1}, sum(z_i) = K = 10   (cardinality)
+              0.01*z_i <= w_i <= 0.20*z_i        (weight bounds, selected only)
+              sum_{i in s} w_i <= 0.30            (sector concentration cap)
   Solver: Gurobi via gurobipy (MVar API). TimeLimit=60s, MIPGap=0.01.
   Rebalancing: monthly (first trading day of each calendar month in test window)
   Test window: 2023-01-01 to 2025-12-31
 
 Author  : Anila Vata
-Project : MSc Thesis â€” ML-Enhanced Portfolio Optimization with SAFE AI Evaluation
+Project : MSc Thesis - ML-Enhanced Portfolio Optimization with SAFE AI Evaluation
 """
 
 # =============================================================================
@@ -81,7 +81,7 @@ STEP3_DIR   = os.path.join(RESULTS_DIR, "step3")
 os.makedirs(STEP3_DIR, exist_ok=True)
 
 # ---------- optimization parameters ------------------------------------------
-LAMBDA       = 1.0     # risk-return tradeoff: minimize w'Î£w - Î»Â·Î¼'w
+LAMBDA       = 1.0     # risk-return tradeoff: minimize w'Sw - lambda*mu'w
 K            = 10      # cardinality: exactly K stocks selected
 W_MIN        = 0.01    # minimum weight per selected stock
 W_MAX        = 0.20    # maximum weight per selected stock
@@ -94,14 +94,14 @@ MIP_GAP      = 0.01    # Gurobi MIPGap
 TEST_START   = "2023-01-01"
 TEST_END     = "2025-12-31"
 
-# Logging accumulator â€” written to file at the end
+# Logging accumulator - written to file at the end
 log_lines = []
 def log(msg=""):
     print(msg)
     log_lines.append(str(msg))
 
 log("=" * 70)
-log("  STEP 3 â€” MARKOWITZ MIQP BASELINE PORTFOLIO")
+log("  STEP 3 - MARKOWITZ MIQP BASELINE PORTFOLIO")
 log("=" * 70)
 
 if not HAS_GUROBI:
@@ -134,7 +134,7 @@ if "ticker" not in meta.columns:
     meta = meta.rename(columns={meta.columns[0]: "ticker"})
 meta["ticker"] = meta["ticker"].astype(str).str.strip().str.upper()
 
-log(f"  returns      : {returns_df.shape[0]} days Ã— {returns_df.shape[1]} stocks")
+log(f"  returns      : {returns_df.shape[0]} days x {returns_df.shape[1]} stocks")
 log(f"  meta         : {meta.shape}")
 log(f"  Return range : {returns_df.index[0].date()} to {returns_df.index[-1].date()}")
 
@@ -246,7 +246,7 @@ def solve_miqp(mu: np.ndarray, Sigma: np.ndarray) -> tuple:
     w = m.addMVar(N, lb=0.0, ub=1.0,         name="w")
     z = m.addMVar(N, vtype=GRB.BINARY,        name="z")
 
-    # Objective: minimize w'Î£w - Î»Â·Î¼'w
+    # Objective: minimize w'Sw - lambda*mu'w
     m.setObjective(w @ Sigma @ w - LAMBDA * (mu @ w), GRB.MINIMIZE)
 
     # Constraints
@@ -296,10 +296,10 @@ def solve_miqp(mu: np.ndarray, Sigma: np.ndarray) -> tuple:
 # 5. OPTIMIZATION LOOP
 # =============================================================================
 log("\n-- 5. OPTIMIZATION LOOP ---------------------------------------------")
-log(f"  Objective  : minimize w'Î£w - Î»Â·Î¼'w  (Î»={LAMBDA})")
-log(f"  K={K}, wâˆˆ[{W_MIN:.0%},{W_MAX:.0%}], sector cap={SECTOR_CAP:.0%}")
-log(f"  Î¼ estimator: trailing {ESTIM_WINDOW}-day mean Ã— {TRADING_DAYS}, winsorized p1/p99")
-log(f"  Î£ estimator: rolling Ledoit-Wolf, re-estimated at each rebalancing date"
+log(f"  Objective  : minimize w'Sw - lambda*mu'w  (lambda={LAMBDA})")
+log(f"  K={K}, w in [{W_MIN:.0%},{W_MAX:.0%}], sector cap={SECTOR_CAP:.0%}")
+log(f"  mu estimator: trailing {ESTIM_WINDOW}-day mean x {TRADING_DAYS}, winsorized p1/p99")
+log(f"  Sigma estimator: rolling Ledoit-Wolf, re-estimated at each rebalancing date"
     f" using trailing {ESTIM_WINDOW} returns (same window as mu)")
 log(f"  Gurobi     : TimeLimit={TIME_LIMIT}s, MIPGap={MIP_GAP}")
 log(f"  Out-of-sample design: both mu and Sigma are re-estimated at each rebalance"
@@ -314,7 +314,7 @@ total_solve_t = 0.0
 for rebal_date in rebal_dates:
     hist_available = returns_df.loc[returns_df.index < rebal_date]
     if len(hist_available) < ESTIM_WINDOW:
-        log(f"  {rebal_date.date()}  SKIP â€” {len(hist_available)} history days "
+        log(f"  {rebal_date.date()}  SKIP - {len(hist_available)} history days "
             f"< {ESTIM_WINDOW} required")
         if prev_weights is not None:
             weights_all[rebal_date] = prev_weights.copy()
@@ -334,7 +334,7 @@ for rebal_date in rebal_dates:
     # Carry forward previous weights on solver failure
     if weights is None:
         log(f"  {rebal_date.date()}  FAILED ({status_str}, {elapsed:.1f}s) "
-            "â€” carrying forward previous weights")
+            "- carrying forward previous weights")
         weights = prev_weights.copy() if prev_weights is not None else np.ones(N) / N
 
     weights_all[rebal_date] = weights
@@ -423,9 +423,9 @@ cum = float(daily_ret_df["portfolio_return"].cumsum().iloc[-1])
 log(f"  Cumulative log-ret : {cum:.4f}  ({np.expm1(cum):.2%} simple return)")
 
 # =============================================================================
-# 7. TURNOVER (pre-trade drifted weights â†’ new target weights)
+# 7. TURNOVER (pre-trade drifted weights -> new target weights)
 # =============================================================================
-log("\n-- 7. TURNOVER (pre-trade drifted weights â†’ new target weights) -----")
+log("\n-- 7. TURNOVER (pre-trade drifted weights -> new target weights) -----")
 log("  Turnover = 0.5 * sum|w_target_t - w_pre_trade_t|")
 log("  w_pre_trade_t is the end-of-period drifted weight from the previous")
 log("  holding period, immediately before the current rebalance trade.")
@@ -470,7 +470,7 @@ sortino  = ann_ret / down_vol if (down_vol and down_vol > 0) else np.nan
 # Wealth series starting from 1.0 so drawdown from the very first day is captured
 wealth_full      = np.concatenate([[1.0], np.exp(np.cumsum(r))])
 running_max_full = np.maximum.accumulate(wealth_full)
-drawdown_full    = wealth_full / running_max_full - 1   # â‰¤ 0 by construction
+drawdown_full    = wealth_full / running_max_full - 1   # <= 0 by construction
 max_dd           = float(abs(drawdown_full.min()))       # positive loss percentage
 calmar           = ann_ret / max_dd if max_dd > 0 else np.nan
 
@@ -539,7 +539,7 @@ log(f"  Trough date              : {trough_date.date()}  "
 log("\n-- 8c. EQUAL-WEIGHT BENCHMARK (monthly rebalanced, buy-and-hold drift) -")
 log(f"  Universe   : {N} stocks, weight = 1/{N} per stock at each rebalance date")
 log(f"  Rebalancing: monthly (same dates as baseline); weights drift between")
-log(f"  rebalancing dates â€” identical convention to the baseline portfolio.")
+log(f"  rebalancing dates - identical convention to the baseline portfolio.")
 
 ew_records = []
 
@@ -597,7 +597,7 @@ log(f"  Maximum Drawdown  : {ew_max_dd:.2%}")
 # =============================================================================
 # 8d. TRANSACTION-COST SENSITIVITY
 # =============================================================================
-log("\n-- 8d. TRANSACTION-COST SENSITIVITY (gross â†’ net) ------------------")
+log("\n-- 8d. TRANSACTION-COST SENSITIVITY (gross -> net) ------------------")
 log("  Cost applied as one-way transaction cost on traded turnover")
 log("  on the first investable day after each rebalancing date")
 log("  starting from the 2nd rebalance.")
@@ -646,7 +646,7 @@ log(f"  {'Equal Weight':<22} {ew_ann_ret:>8.2%}  {ew_ann_vol:>8.2%}  "
 # =============================================================================
 log("\n-- 9. SAVING OUTPUTS -----------------------------------------------")
 
-# baseline_weights.csv â€” wide format, one row per rebalancing date
+# baseline_weights.csv - wide format, one row per rebalancing date
 rows_w = []
 for date, w in weights_all.items():
     row = {"date": date.date().isoformat()}
@@ -656,9 +656,9 @@ for date, w in weights_all.items():
 weights_df = pd.DataFrame(rows_w).set_index("date")
 weights_df.to_csv(os.path.join(STEP3_DIR, "baseline_weights.csv"))
 log(f"  Saved: baseline_weights.csv  "
-    f"({weights_df.shape[0]} dates Ã— {weights_df.shape[1]} tickers)")
+    f"({weights_df.shape[0]} dates x {weights_df.shape[1]} tickers)")
 
-# baseline_returns.csv â€” daily portfolio returns
+# baseline_returns.csv - daily portfolio returns
 daily_ret_df.to_csv(os.path.join(STEP3_DIR, "baseline_returns.csv"))
 log(f"  Saved: baseline_returns.csv  ({len(daily_ret_df)} rows)")
 
@@ -694,7 +694,7 @@ summary_df = pd.DataFrame([{
 summary_df.to_csv(os.path.join(STEP3_DIR, "baseline_summary.csv"), index=False)
 log("  Saved: baseline_summary.csv")
 
-# baseline_wealth_drawdown.csv â€” daily wealth curve and drawdown series
+# baseline_wealth_drawdown.csv - daily wealth curve and drawdown series
 wd_df = pd.DataFrame({
     "portfolio_return" : r,
     "wealth_index"     : wealth,
@@ -747,7 +747,7 @@ print(f"  Log saved: baseline_log.txt")
 # 11. FINAL SUMMARY
 # =============================================================================
 log("\n" + "=" * 70)
-log("  STEP 3 â€” BASELINE PORTFOLIO COMPLETE")
+log("  STEP 3 - BASELINE PORTFOLIO COMPLETE")
 log("=" * 70)
 log(f"""
   Model            : Markowitz MIQP (gurobipy), historical-mean mu
@@ -759,7 +759,7 @@ log(f"""
     K (cardinality): {K}
     Weight bounds  : [{W_MIN:.0%}, {W_MAX:.0%}]
     Sector cap     : {SECTOR_CAP:.0%}
-    Lambda (Î»)     : {LAMBDA}
+    Lambda (lambda)     : {LAMBDA}
 
   Performance (gross):
     Annualised Return  : {ann_ret:.2%}
@@ -770,7 +770,7 @@ log(f"""
     Maximum Drawdown   : {max_dd:.2%}
     Avg Turnover/month : {avg_turnover:.2%}
 
-  SAFE AI â€” Sustainability diagnostics:
+  SAFE AI - Sustainability diagnostics:
     Net Sharpe @ 10 bps  : {cost_results[10]['sharpe']:.4f}
     Net Sharpe @ 20 bps  : {cost_results[20]['sharpe']:.4f}
     Net Sharpe @ 30 bps  : {cost_results[30]['sharpe']:.4f}

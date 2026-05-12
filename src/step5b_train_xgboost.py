@@ -1,4 +1,4 @@
-﻿"""
+"""
 step5b_train_xgboost.py
 =================
 PURPOSE : XGBoost-based expected return estimation (mu_hat).
@@ -139,7 +139,7 @@ def compute_baseline_mu(rebal_date: pd.Timestamp,
 
 
 # =============================================================================
-# 3. SCORE â†’ MU_HAT
+# 3. SCORE -> MU_HAT
 # =============================================================================
 
 def scores_to_mu_hat(scores: pd.Series,
@@ -160,7 +160,7 @@ def scores_to_mu_hat(scores: pd.Series,
     if s_std < 1e-10:
         raise ValueError(
             "Constant prediction scores: cannot rescale to mu_hat. "
-            "All predicted scores are identical â€” check the model or training data."
+            "All predicted scores are identical - check the model or training data."
         )
 
     s_scaled = (s - s.mean()) / s_std
@@ -347,7 +347,7 @@ def run_oos(panel, oos_dates, returns, tickers, feature_cols):
 # =============================================================================
 
 def assemble_mu_matrix(mu_hat_dict, oos_dates, tickers):
-    """Convert {date -> pd.Series} to (n_dates Ã— n_tickers) DataFrame."""
+    """Convert {date -> pd.Series} to (n_dates x n_tickers) DataFrame."""
     rows = []
     for t in oos_dates:
         if t in mu_hat_dict:
@@ -565,7 +565,7 @@ def main():
     os.makedirs(DIAG_DIR,  exist_ok=True)
 
     print("=" * 70)
-    print("  STEP 5B â€” XGBOOST EXPECTED RETURN ESTIMATION (MU_HAT)")
+    print("  STEP 5B - XGBOOST EXPECTED RETURN ESTIMATION (MU_HAT)")
     print("=" * 70)
 
     panel, returns, baseline_weights, oos_dates, tickers, feature_cols = load_inputs()
@@ -591,12 +591,12 @@ def main():
     quality_checks(mu_mat, oos_dates, tickers, baseline_weights)
 
     print("\n" + "=" * 70)
-    print("  STEP 5B â€” COMPLETE")
+    print("  STEP 5B - COMPLETE")
     print("=" * 70)
     print(f"""
   Outputs saved to: {STEP5_DIR}
 
-  mu_hat matrix ({len(oos_dates)} dates Ã— {len(tickers)} tickers):
+  mu_hat matrix ({len(oos_dates)} dates x {len(tickers)} tickers):
     ml_mu_xgboost.csv
 
   Diagnostics ({DIAG_DIR}):

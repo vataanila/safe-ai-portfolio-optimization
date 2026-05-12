@@ -1,4 +1,4 @@
-﻿"""
+"""
 step3_2_visualize_frontier.py
 ====================
 PURPOSE : Efficient frontier visualisation for the thesis chapter on
@@ -9,18 +9,18 @@ INPUTS  :
   data/results/baseline_summary.csv -- Markowitz MIQP baseline performance stats
 
 OUTPUT  :
-  data/figures/efficient_frontier.png  (300 dpi, 10Ã—7 in)
+  data/figures/efficient_frontier.png  (300 dpi, 10x7 in)
 
 METHODOLOGY:
   All statistics are estimated on the MODEL WINDOW only: 2016-01-01 to
   2022-12-31 (in-sample period, pre-test).
 
-  mu    : sample mean Ã— 252 (annualised)
-  Sigma : Ledoit-Wolf shrinkage covariance Ã— 252 (annualised)
+  mu    : sample mean x 252 (annualised)
+  Sigma : Ledoit-Wolf shrinkage covariance x 252 (annualised)
 
   Random portfolios : 500 sparse Dirichlet samples (K~U[5,30] tickers each)
-  MVP  : minimise w'Î£w  s.t. sum(w)=1, wâ‰¥0  (SLSQP)
-  MSP  : maximise Sharpe = (w'Î¼) / sqrt(w'Î£w)  s.t. same  (SLSQP)
+  MVP  : minimise w'Sigmaw  s.t. sum(w)=1, w>=0  (SLSQP)
+  MSP  : maximise Sharpe = (w'mu) / sqrt(w'Sigmaw)  s.t. same  (SLSQP)
   EW   : 1/N weights
 
 Author  : Anila Vata 
@@ -67,7 +67,7 @@ print("=" * 70)
 # =============================================================================
 # 1. LOAD AND SLICE TO MODEL WINDOW
 # =============================================================================
-print("\n[1] Loading returns â€¦")
+print("\n[1] Loading returns -")
 
 ret_path = os.path.join(CLEAN_DIR, "returns.csv")
 if not os.path.exists(ret_path):
@@ -79,14 +79,14 @@ returns_df   = returns_full.loc[MODEL_START:MODEL_END].dropna(axis=1, how="any")
 N       = returns_df.shape[1]
 tickers = returns_df.columns.tolist()
 
-print(f"  Full series  : {returns_full.shape[0]} days Ã— {returns_full.shape[1]} stocks")
+print(f"  Full series  : {returns_full.shape[0]} days x {returns_full.shape[1]} stocks")
 print(f"  Model window : {MODEL_START} to {MODEL_END}")
-print(f"  After dropna : {returns_df.shape[0]} days Ã— {N} stocks")
+print(f"  After dropna : {returns_df.shape[0]} days x {N} stocks")
 
 # =============================================================================
 # 2. ESTIMATE mu AND Sigma
 # =============================================================================
-print("\n[2] Estimating mu and Sigma (Ledoit-Wolf) â€¦")
+print("\n[2] Estimating mu and Sigma (Ledoit-Wolf) -")
 
 R     = returns_df.values          # (T, N)
 mu    = R.mean(axis=0) * TRADING_DAYS
@@ -101,7 +101,7 @@ print(f"  Sigma : LW shrinkage={lw.shrinkage_:.4f}  "
 # =============================================================================
 # 3. INDIVIDUAL ASSET STATS
 # =============================================================================
-print("\n[3] Individual asset statistics â€¦")
+print("\n[3] Individual asset statistics -")
 
 asset_vol    = np.sqrt(np.diag(Sigma))
 asset_ret    = mu
@@ -115,7 +115,7 @@ print(f"  Asset return : mean={asset_ret.mean():.4f}  "
 # =============================================================================
 # 4. MONTE CARLO RANDOM PORTFOLIOS
 # =============================================================================
-print(f"\n[4] Sampling {N_RANDOM} random portfolios (sparse Dirichlet, K~U[5,30]) â€¦")
+print(f"\n[4] Sampling {N_RANDOM} random portfolios (sparse Dirichlet, K~U[5,30]) -")
 
 rng       = np.random.default_rng(RNG_SEED)
 rand_vols = np.zeros(N_RANDOM)
@@ -145,7 +145,7 @@ print(f"  Valid portfolios (ret>0): {valid.sum()} / {N_RANDOM}")
 # =============================================================================
 # 5. MINIMUM VARIANCE PORTFOLIO (MVP)
 # =============================================================================
-print("\n[5] Computing Minimum Variance Portfolio (MVP) â€¦")
+print("\n[5] Computing Minimum Variance Portfolio (MVP) -")
 
 def portfolio_variance(w):
     return float(w @ Sigma @ w)
@@ -187,7 +187,7 @@ print(f"  MVP  n_hold : {n_mvp}")
 # =============================================================================
 # 6. MAXIMUM SHARPE PORTFOLIO (MSP)
 # =============================================================================
-print("\n[6] Computing Maximum Sharpe Portfolio (MSP) â€¦")
+print("\n[6] Computing Maximum Sharpe Portfolio (MSP) -")
 
 def neg_sharpe(w):
     r = float(w @ mu)
@@ -231,7 +231,7 @@ print(f"  MSP  n_hold : {n_msp}")
 # =============================================================================
 # 7. EQUALLY WEIGHTED PORTFOLIO (EW)
 # =============================================================================
-print("\n[7] Equally Weighted Portfolio (EW) â€¦")
+print("\n[7] Equally Weighted Portfolio (EW) -")
 
 w_ew      = np.ones(N) / N
 ret_ew    = float(w_ew @ mu)
@@ -245,7 +245,7 @@ print(f"  EW   Sharpe : {sharpe_ew:.4f}")
 # =============================================================================
 # 7b. EFFICIENT FRONTIER CURVE
 # =============================================================================
-print("\n[7b] Tracing efficient frontier (100 target-return points) â€¦")
+print("\n[7b] Tracing efficient frontier (100 target-return points) -")
 
 N_FRONTIER  = 100
 ret_max     = float(mu.max())          # upper bound: 100% in best-return stock
@@ -297,7 +297,7 @@ print(f"  Return range  : [{frontier_rets.min():.4f}, {frontier_rets.max():.4f}]
 # =============================================================================
 # 8. BASELINE MIQP PORTFOLIO
 # =============================================================================
-print("\n[8] Baseline MIQP portfolio (from baseline_summary.csv) â€¦")
+print("\n[8] Baseline MIQP portfolio (from baseline_summary.csv) -")
 
 baseline_path = os.path.join(RESULTS_DIR, "baseline_summary.csv")
 HAS_BASELINE  = os.path.exists(baseline_path)
@@ -311,13 +311,13 @@ if HAS_BASELINE:
     print(f"  BL   Vol    : {vol_bl:.4f}  ({vol_bl:.2%})")
     print(f"  BL   Sharpe : {sharpe_bl:.4f}")
 else:
-    print("  baseline_summary.csv not found â€” baseline point will be omitted.")
+    print("  baseline_summary.csv not found - baseline point will be omitted.")
     ret_bl = vol_bl = sharpe_bl = None
 
 # =============================================================================
 # 9. LABELS FOR INDIVIDUAL ASSETS
 # =============================================================================
-print("\n[9] Selecting asset labels â€¦")
+print("\n[9] Selecting asset labels -")
 
 def clean_ticker(t: str) -> str:
     for suffix in (" UN EQUITY", " UW EQUITY", " US EQUITY", " UP EQUITY",
@@ -370,7 +370,7 @@ for idx, offset, role in label_specs:
 # =============================================================================
 # 10. FIGURE
 # =============================================================================
-print("\n[10] Rendering figure â€¦")
+print("\n[10] Rendering figure -")
 
 plt.rcParams.update({
     "font.family"        : "serif",
@@ -470,12 +470,12 @@ ax.set_xlabel("Annualised Volatility", fontsize=12)
 ax.set_ylabel("Annualised Return", fontsize=12)
 
 ax.set_title(
-    "Efficient Frontier â€” S&P 500 Universe (2016â€“2022)",
+    "Efficient Frontier - S&P 500 Universe (2016-2022)",
     fontsize=13, fontweight="bold", pad=10,
 )
 ax.text(
     0.5, 1.015,
-    f"{N} stocks Â· Ledoit-Wolf covariance Â· Monte Carlo simulation (n={N_RANDOM})",
+    f"{N} stocks * Ledoit-Wolf covariance * Monte Carlo simulation (n={N_RANDOM})",
     transform=ax.transAxes,
     ha="center", va="bottom",
     fontsize=9, color="#777777",
@@ -507,7 +507,7 @@ print(f"  Saved: {out_path}")
 # 11. SUMMARY PRINT
 # =============================================================================
 print("\n" + "=" * 70)
-print("  EFFICIENT FRONTIER â€” PORTFOLIO SUMMARY")
+print("  EFFICIENT FRONTIER - PORTFOLIO SUMMARY")
 print("=" * 70)
 print(f"  {'Portfolio':<24} {'Ann Return':>12} {'Ann Vol':>10} {'Sharpe':>10}")
 print("  " + "-" * 58)

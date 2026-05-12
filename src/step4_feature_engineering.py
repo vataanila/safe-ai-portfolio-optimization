@@ -1,4 +1,4 @@
-﻿"""
+"""
 step4_feature_engineering.py
 =================
 PURPOSE : Build the leakage-free monthly ML panel with cross-sectionally
@@ -75,7 +75,7 @@ def load_data():
         index_col=0, parse_dates=True,
     )
 
-    # Ticker order is defined by baseline_weights.csv â€” all other files must conform.
+    # Ticker order is defined by baseline_weights.csv - all other files must conform.
     baseline_tickers = baseline_weights.columns.astype(str).tolist()
 
     for file_name, df in [("returns", returns), ("prices", prices), ("volume", volume)]:
@@ -101,7 +101,7 @@ def load_data():
     print(f"  First 3        : {baseline_tickers[:3]}")
     print(f"  Last 3         : {baseline_tickers[-3:]}")
 
-    # Market cap â€” optional; adds log_mktcap feature if the file exists.
+    # Market cap - optional; adds log_mktcap feature if the file exists.
     mkt_cap_path = os.path.join(CLEAN_DIR, "mkt_cap_clean.csv")
     if os.path.exists(mkt_cap_path):
         mkt_cap = pd.read_csv(mkt_cap_path, index_col=0, parse_dates=True).sort_index()
@@ -113,14 +113,14 @@ def load_data():
         print(f"  mkt_cap  shape : {mkt_cap.shape}")
         print(f"           range : {mkt_cap.index[0].date()} to {mkt_cap.index[-1].date()}")
     else:
-        print("  WARNING: mkt_cap_clean.csv not found â€” log_mktcap feature will not be used.")
+        print("  WARNING: mkt_cap_clean.csv not found - log_mktcap feature will not be used.")
         mkt_cap = None
 
     return returns, prices, volume, mkt_cap, baseline_tickers, baseline_weights
 
 
 # =============================================================================
-# 2. PANEL DATES â€” ALL MONTHLY FIRST TRADING DAYS
+# 2. PANEL DATES - ALL MONTHLY FIRST TRADING DAYS
 # =============================================================================
 
 def get_panel_dates(returns_index: pd.DatetimeIndex,
@@ -175,7 +175,7 @@ def compute_features_at(t: pd.Timestamp,
     vol_ratio = vol_1m / vol_3m.replace(0.0, np.nan)
 
     # Amihud illiquidity over last 21 days.
-    # dollar_volume = price Ã— volume on each trading day.
+    # dollar_volume = price x volume on each trading day.
     px_aligned  = prices.loc[prices.index < t].reindex(ret_hist.index)
     vol_aligned = volume.loc[volume.index < t].reindex(ret_hist.index)
     dollar_vol  = (px_aligned * vol_aligned).replace(0.0, np.nan)
@@ -219,7 +219,7 @@ def build_panel(returns: pd.DataFrame,
                 panel_dates: pd.DatetimeIndex,
                 mkt_cap: pd.DataFrame | None = None):
     """
-    Build long-format panel: (date, ticker) Ã— (features + targets).
+    Build long-format panel: (date, ticker) x (features + targets).
 
     For each panel date t:
       - features are computed using data strictly before t
@@ -295,7 +295,7 @@ def build_panel(returns: pd.DataFrame,
     panel = panel.dropna(subset=feature_cols, how="all")
     panel = panel.dropna(subset=feature_cols, how="any")
 
-    # Restrict to the model window; 2010â€“2015 rows served as warm-up only.
+    # Restrict to the model window; 2010-2015 rows served as warm-up only.
     panel = panel[
         (panel["date"] >= MODEL_START) &
         (panel["date"] <= MODEL_END)
@@ -361,7 +361,7 @@ def main():
     os.makedirs(STEP4_DIR, exist_ok=True)
 
     print("=" * 70)
-    print("  STEP 4 â€” ML PANEL FEATURE ENGINEERING")
+    print("  STEP 4 - ML PANEL FEATURE ENGINEERING")
     print("=" * 70)
 
     # 1. Load data.
@@ -382,7 +382,7 @@ def main():
 
     # 4. Quality checks.
     if panel.empty:
-        raise ValueError("ml_panel.csv would be empty â€” check feature computation.")
+        raise ValueError("ml_panel.csv would be empty - check feature computation.")
 
     for col in feature_cols:
         if col not in panel.columns:
@@ -409,13 +409,13 @@ def main():
     save_feature_diagnostics(panel, feature_cols, n_before, n_after, mkt_cap)
 
     print("\n" + "=" * 70)
-    print("  STEP 4 â€” COMPLETE")
+    print("  STEP 4 - COMPLETE")
     print("=" * 70)
     print(f"""
   Outputs saved to: {STEP4_DIR}
 
   Panel:
-    ml_panel.csv                ({panel.shape[0]:,} rows Ã— {panel.shape[1]} cols)
+    ml_panel.csv                ({panel.shape[0]:,} rows x {panel.shape[1]} cols)
     feature_diagnostics.csv
 
   Features used: {feature_cols}

@@ -1,4 +1,4 @@
-﻿"""
+"""
 step6e_visualize_comparison.py
 =========================================
 PURPOSE:
@@ -7,15 +7,15 @@ PURPOSE:
 
     This script does NOT rerun portfolio optimisation and does NOT recompute
     ML predictions.  It reads only the realised returns, weights, turnover,
-    and summary statistics already produced by Step 3 and Steps 6aâ€“6d.
+    and summary statistics already produced by Step 3 and Steps 6a-6d.
 
 PIPELINE:
-    Step 3  â†’ step3_baseline_portfolio.py              (Markowitz baseline)
-    Step 6a â†’ step6a_portfolio_ridge.py      (Ridge MIQP)
-    Step 6b â†’ step6b_portfolio_xgboost.py    (XGBoost MIQP)
-    Step 6c â†’ step6c_portfolio_mlp.py        (MLP MIQP)
-    Step 6d â†’ step6d_compare_portfolios.py   (numerical comparison)
-    Step 6e â†’ this script                    (visual comparison)
+    Step 3  -> step3_baseline_portfolio.py              (Markowitz baseline)
+    Step 6a -> step6a_portfolio_ridge.py      (Ridge MIQP)
+    Step 6b -> step6b_portfolio_xgboost.py    (XGBoost MIQP)
+    Step 6c -> step6c_portfolio_mlp.py        (MLP MIQP)
+    Step 6d -> step6d_compare_portfolios.py   (numerical comparison)
+    Step 6e -> this script                    (visual comparison)
 
 INPUTS (required):
     data/results/baseline_returns.csv
@@ -57,13 +57,13 @@ LOG:
 METHODOLOGY NOTES:
     - Daily portfolio returns are log-returns produced by the portfolio steps.
     - Cumulative wealth = exp(cumsum(log_returns)), indexed to 1.0 at start.
-    - Drawdown         = wealth / running_max_wealth âˆ’ 1  (plotted negative).
-    - Rolling Sharpe   = (roll_mean Ã— 252) / (roll_std Ã— âˆš252), 126-day window.
+    - Drawdown         = wealth / running_max_wealth ' 1  (plotted negative).
+    - Rolling Sharpe   = (roll_mean x 252) / (roll_std x sqrt(252)), 126-day window.
     - Turnover values are taken directly from the step-output files.
 
 Author  : Anila Vata
-Project : MSc Thesis â€” ML-Enhanced Portfolio Optimization with SAFE AI
-          Evaluation, University of Pavia Â· Supervisor: Prof. Paolo Giudici
+Project : MSc Thesis - ML-Enhanced Portfolio Optimization with SAFE AI
+          Evaluation, University of Pavia * Supervisor: Prof. Paolo Giudici
 """
 
 # =============================================================================
@@ -304,10 +304,10 @@ def _get_metric(summ: pd.Series, metric: str) -> float:
 
 def load_data():
     print("=" * 72)
-    print("  STEP 6e â€” ML PORTFOLIO COMPARISON VISUALISATIONS")
+    print("  STEP 6e - ML PORTFOLIO COMPARISON VISUALISATIONS")
     print("=" * 72)
     print()
-    print("[1] Loading and validating inputs â€¦")
+    print("[1] Loading and validating inputs -")
     print()
 
     # Validate all required files
@@ -322,7 +322,7 @@ def load_data():
         returns[key] = _load_returns(cfg["returns"], cfg["label"])
         s = returns[key]
         print(f"  returns [{cfg['label']:8s}]: {len(s)} days  "
-              f"({s.index[0].date()} â€“ {s.index[-1].date()})")
+              f"({s.index[0].date()} - {s.index[-1].date()})")
 
     # Turnover
     turnovers = {}
@@ -363,7 +363,7 @@ def load_data():
     for key, cfg in MODELS.items():
         df = pd.read_csv(cfg["weights"], index_col=0, parse_dates=True).sort_index()
         weights[key] = df
-        print(f"  weights [{cfg['label']:8s}]: {df.shape[0]} dates Ã— {df.shape[1]} tickers")
+        print(f"  weights [{cfg['label']:8s}]: {df.shape[0]} dates x {df.shape[1]} tickers")
 
     # Metadata
     meta = pd.read_csv(os.path.join(CLEAN_DIR, "meta_clean.csv"))
@@ -378,7 +378,7 @@ def load_data():
     if sector_col is None:
         raise ValueError(f"No sector column in meta_clean.csv. Columns: {list(meta.columns)}")
     ticker_sector = meta.set_index("ticker")[sector_col].to_dict()
-    print(f"  meta               : {len(meta)} tickers Â· sector col = '{sector_col}'")
+    print(f"  meta               : {len(meta)} tickers * sector col = '{sector_col}'")
 
     # Align returns on common index
     ret_frame = pd.DataFrame({cfg["label"]: returns[key]
@@ -391,11 +391,11 @@ def load_data():
 
 
 # =============================================================================
-# FIGURE 1 â€” CUMULATIVE WEALTH
+# FIGURE 1 - CUMULATIVE WEALTH
 # =============================================================================
 
 def fig_cumulative_wealth(wealth_frame):
-    print("[Fig 1] Cumulative Wealth Comparison â€¦")
+    print("[Fig 1] Cumulative Wealth Comparison -")
     try:
         setup_style()
         fig, ax = plt.subplots(figsize=(12, 5))
@@ -409,7 +409,7 @@ def fig_cumulative_wealth(wealth_frame):
 
         ax.axhline(1.0, color="black", linewidth=0.6, linestyle=":", zorder=2)
         ax.set_title(
-            "Out-of-Sample Cumulative Wealth â€” Baseline vs ML Portfolios",
+            "Out-of-Sample Cumulative Wealth - Baseline vs ML Portfolios",
             fontsize=13, fontweight="bold", pad=10,
         )
         ax.set_xlabel("Date", fontsize=11)
@@ -430,11 +430,11 @@ def fig_cumulative_wealth(wealth_frame):
 
 
 # =============================================================================
-# FIGURE 2 â€” DRAWDOWN
+# FIGURE 2 - DRAWDOWN
 # =============================================================================
 
 def fig_drawdown(wealth_frame):
-    print("\n[Fig 2] Drawdown Comparison â€¦")
+    print("\n[Fig 2] Drawdown Comparison -")
     try:
         setup_style()
         fig, ax = plt.subplots(figsize=(12, 5))
@@ -451,7 +451,7 @@ def fig_drawdown(wealth_frame):
 
         ax.axhline(0, color="black", linewidth=0.6, linestyle=":", zorder=2)
         ax.set_title(
-            "Out-of-Sample Drawdown â€” Baseline vs ML Portfolios",
+            "Out-of-Sample Drawdown - Baseline vs ML Portfolios",
             fontsize=13, fontweight="bold", pad=10,
         )
         ax.set_xlabel("Date", fontsize=11)
@@ -473,11 +473,11 @@ def fig_drawdown(wealth_frame):
 
 
 # =============================================================================
-# FIGURE 3 â€” ROLLING SHARPE (126-day)
+# FIGURE 3 - ROLLING SHARPE (126-day)
 # =============================================================================
 
 def fig_rolling_sharpe(returns):
-    print(f"\n[Fig 3] Rolling Sharpe Ratio ({ROLL_WIN}-day window) â€¦")
+    print(f"\n[Fig 3] Rolling Sharpe Ratio ({ROLL_WIN}-day window) -")
     try:
         setup_style()
         fig, ax = plt.subplots(figsize=(12, 5))
@@ -497,7 +497,7 @@ def fig_rolling_sharpe(returns):
                     label=cfg["label"], zorder=4)
 
         ax.set_title(
-            f"Rolling Sharpe Ratio ({ROLL_WIN}-Day Window) â€” Baseline vs ML Portfolios",
+            f"Rolling Sharpe Ratio ({ROLL_WIN}-Day Window) - Baseline vs ML Portfolios",
             fontsize=13, fontweight="bold", pad=10,
         )
         ax.set_xlabel("Date", fontsize=11)
@@ -521,11 +521,11 @@ def fig_rolling_sharpe(returns):
 
 
 # =============================================================================
-# FIGURE 4 â€” TURNOVER THROUGH TIME (time series)
+# FIGURE 4 - TURNOVER THROUGH TIME (time series)
 # =============================================================================
 
 def fig_turnover_timeseries(turnovers):
-    print("\n[Fig 4] Monthly Turnover Through Time â€¦")
+    print("\n[Fig 4] Monthly Turnover Through Time -")
     try:
         setup_style()
         fig, ax = plt.subplots(figsize=(12, 4.5))
@@ -541,7 +541,7 @@ def fig_turnover_timeseries(turnovers):
             )
 
         ax.set_title(
-            "Monthly Portfolio Turnover Through Time â€” Baseline vs ML Portfolios",
+            "Monthly Portfolio Turnover Through Time - Baseline vs ML Portfolios",
             fontsize=13, fontweight="bold", pad=10,
         )
         ax.set_xlabel("Rebalancing Date", fontsize=11)
@@ -557,11 +557,11 @@ def fig_turnover_timeseries(turnovers):
 
 
 # =============================================================================
-# FIGURE 5 â€” AVERAGE TURNOVER BAR CHART
+# FIGURE 5 - AVERAGE TURNOVER BAR CHART
 # =============================================================================
 
 def fig_average_turnover_bar(turnovers):
-    print("\n[Fig 5] Average Turnover Bar Chart â€¦")
+    print("\n[Fig 5] Average Turnover Bar Chart -")
     try:
         setup_style()
         fig, ax = plt.subplots(figsize=(8, 5))
@@ -627,7 +627,7 @@ def _build_sector_matrix(key, weights, ticker_sector):
 
 
 def _build_sector_time_matrix(key, weights, ticker_sector):
-    """Sector weights at each rebalancing date (sectors Ã— dates)."""
+    """Sector weights at each rebalancing date (sectors x dates)."""
     wdf         = weights[key]
     all_sectors = sorted(set(ticker_sector.values()))
     rows = []
@@ -651,11 +651,11 @@ def _build_sector_time_matrix(key, weights, ticker_sector):
 
 
 # =============================================================================
-# FIGURE 6 â€” AVERAGE SECTOR ALLOCATION COMPARISON (heatmap)
+# FIGURE 6 - AVERAGE SECTOR ALLOCATION COMPARISON (heatmap)
 # =============================================================================
 
 def fig_sector_allocation_comparison(weights, ticker_sector):
-    print("\n[Fig 6] Average Sector Allocation Comparison â€¦")
+    print("\n[Fig 6] Average Sector Allocation Comparison -")
     try:
         setup_style()
 
@@ -727,7 +727,7 @@ def fig_sector_allocation_comparison(weights, ticker_sector):
 
 
 # =============================================================================
-# FIGURE 7 â€” SECTOR HEATMAPS OVER TIME (Baseline and XGBoost)
+# FIGURE 7 - SECTOR HEATMAPS OVER TIME (Baseline and XGBoost)
 # =============================================================================
 
 def _plot_sector_heatmap(key, weights, ticker_sector, fname):
@@ -736,7 +736,7 @@ def _plot_sector_heatmap(key, weights, ticker_sector, fname):
     time_mat = _build_sector_time_matrix(key, weights, ticker_sector)
 
     if time_mat.empty:
-        print(f"      No sector data for {cfg['label']} â€” skipping heatmap.")
+        print(f"      No sector data for {cfg['label']} - skipping heatmap.")
         return
 
     sectors = list(time_mat.columns)
@@ -746,7 +746,7 @@ def _plot_sector_heatmap(key, weights, ticker_sector, fname):
     fig_h = max(5,  len(sectors) * 0.55)
     fig, ax = plt.subplots(figsize=(fig_w, fig_h))
 
-    mat_vals = time_mat.values.T   # sectors Ã— dates
+    mat_vals = time_mat.values.T   # sectors x dates
 
     if HAS_SEABORN:
         annot_mat = pd.DataFrame(
@@ -774,7 +774,7 @@ def _plot_sector_heatmap(key, weights, ticker_sector, fname):
         ax.set_yticklabels(sectors, fontsize=8)
 
     ax.set_title(
-        f"{cfg['label']} â€” Sector Allocation Over Time",
+        f"{cfg['label']} - Sector Allocation Over Time",
         fontsize=13, fontweight="bold", pad=12,
     )
     ax.set_xlabel("Rebalancing Date", fontsize=10)
@@ -787,7 +787,7 @@ def _plot_sector_heatmap(key, weights, ticker_sector, fname):
 
 
 def fig_sector_heatmaps(weights, ticker_sector):
-    print("\n[Fig 7] Sector Heatmaps (Baseline and XGBoost) â€¦")
+    print("\n[Fig 7] Sector Heatmaps (Baseline and XGBoost) -")
     try:
         setup_style()
         _plot_sector_heatmap("baseline_markowitz", weights, ticker_sector,
@@ -799,11 +799,11 @@ def fig_sector_heatmaps(weights, ticker_sector):
 
 
 # =============================================================================
-# FIGURE 8 â€” SHARPE vs AVERAGE TURNOVER SCATTER (SAFE trade-off)
+# FIGURE 8 - SHARPE vs AVERAGE TURNOVER SCATTER (SAFE trade-off)
 # =============================================================================
 
 def fig_sharpe_turnover_scatter(summaries, turnovers):
-    print("\n[Fig 8] Sharpe vs Average Turnover Scatter (SAFE Trade-off) â€¦")
+    print("\n[Fig 8] Sharpe vs Average Turnover Scatter (SAFE Trade-off) -")
     try:
         setup_style()
         fig, ax = plt.subplots(figsize=(8, 6))
@@ -835,9 +835,9 @@ def fig_sharpe_turnover_scatter(summaries, turnovers):
             "Sharpe Ratio (Accuracy) vs Average Turnover (Sustainability)",
             fontsize=12, fontweight="bold", pad=12,
         )
-        ax.set_xlabel("Average Monthly Turnover  â†  Lower = more Sustainable",
+        ax.set_xlabel("Average Monthly Turnover  v  Lower = more Sustainable",
                       fontsize=10)
-        ax.set_ylabel("Annualised Sharpe Ratio  â†‘  Higher = more Accurate",
+        ax.set_ylabel("Annualised Sharpe Ratio  '  Higher = more Accurate",
                       fontsize=10)
         ax.xaxis.set_major_formatter(mticker.PercentFormatter(xmax=1.0, decimals=0))
 
@@ -882,7 +882,7 @@ def fig_sharpe_turnover_scatter(summaries, turnovers):
 def print_final_summary():
     print()
     print("=" * 72)
-    print("  STEP 6e â€” PORTFOLIO COMPARISON VISUALISATIONS COMPLETE")
+    print("  STEP 6e - PORTFOLIO COMPARISON VISUALISATIONS COMPLETE")
     print("=" * 72)
     print(f"  Figures directory : {FIGURES_DIR}")
     print(f"  Log file          : {LOG_PATH}")

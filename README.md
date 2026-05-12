@@ -15,6 +15,16 @@ The empirical analysis uses a Bloomberg dataset of approximately 400 large-cap U
 
 ---
 
+## Motivation
+
+Mean-variance portfolio construction is well understood in theory, but its practical implementation involves a series of estimation and modelling choices that are easy to underestimate. Expected returns in particular are notoriously difficult to estimate: the classical trailing mean is noisy and slow to adapt, and the literature has long documented that small improvements in return forecasting can translate into meaningful improvements in portfolio efficiency.
+
+Machine learning offers a different approach. Rather than modelling expected returns directly, the models in this pipeline rank stocks cross-sectionally based on momentum, volatility, and liquidity signals -- signals that have known empirical support in the asset pricing literature. The question the thesis addresses is simple: does replacing the historical mean with ML-ranked expected returns produce better out-of-sample portfolios, after controlling for turnover and transaction costs?
+
+The SAFE AI layer adds a second angle. ML models are often evaluated only on predictive accuracy. In a portfolio context, accuracy alone is insufficient: a model that predicts well but produces fragile, concentrated, or unexplainable allocation decisions is not useful in practice. SAFE AI provides a more complete evaluation framework, and adapting it to portfolio systems is one of the methodological contributions of the thesis.
+
+---
+
 ## Project status
 
 This repository is a code sample from my ongoing MSc thesis project in Quantitative Finance at the University of Pavia.
@@ -171,10 +181,21 @@ Raw Bloomberg data (prices, total return index, volume, market cap, metadata) ar
 
 ---
 
+## Limitations
+
+- The out-of-sample test period (January 2023 to December 2025) is short and includes the post-COVID normalisation and the 2022 rate shock aftermath. Results should not be read as evidence that the models will generalise to other regimes.
+- ML models are trained on cross-sectional return ranks, not raw returns. This means they capture relative ordering across stocks but do not predict the overall market direction.
+- The MIQP solver (Gurobi) runs with a 60-second time limit and a 1% MIP gap. On some rebalancing dates the solver terminates at the gap tolerance rather than at the proven global optimum.
+- Feature engineering is kept intentionally simple (momentum, volatility, liquidity, market cap). More sophisticated signals or alternative data could change the results in either direction.
+- The SAFE AI evaluation is still being developed. The metrics and the `safeaipackage` integration described in `docs/safe_ai_framework.md` are part of the ongoing thesis work, not a completed validation module.
+- The pipeline depends on a proprietary Bloomberg dataset. It cannot be run without data access, and the results in the thesis are not independently reproducible without equivalent data.
+
+---
+
 ## Notes
 
 - Raw Bloomberg data and all derived datasets are not tracked in this repository (see `.gitignore`). Running the full pipeline requires access to Bloomberg and a valid Gurobi licence.
-- Pipeline outputs — portfolio weights, performance metrics, and figures — are generated locally in `data/results/` and `data/figures/` when the scripts are executed, and are not committed to the repository.
+- Pipeline outputs -- portfolio weights, performance metrics, and figures -- are generated locally in `data/results/` and `data/figures/` when the scripts are executed, and are not committed to the repository.
 - Reference PDFs used during the thesis research are excluded from version control.
 - Gurobi solver logs and licence files are also excluded.
 

@@ -1,7 +1,7 @@
-﻿"""
+"""
 step6a_portfolio_ridge.py
 =========================
-PURPOSE : Step 6a â€” Ridge ML-enhanced Markowitz MIQP portfolio construction
+PURPOSE : Step 6a - Ridge ML-enhanced Markowitz MIQP portfolio construction
           and backtest.
 
           This script loads precomputed Ridge mu_hat predictions from Step 5a
@@ -29,18 +29,18 @@ PURPOSE : Step 6a â€” Ridge ML-enhanced Markowitz MIQP portfolio constructi
           inside the backtest loop; those Step 2 files are not used here.
 
 PIPELINE:
-  Step 3  â†’ step3_baseline_portfolio.py              (Markowitz baseline, historical mu)
-  Step 5a â†’ step5a_train_ridge.py             (Ridge mu predictions)
-  Step 6a â†’ this script                    (Ridge MIQP portfolio, backtested)
-  Step 6b â†’ step6b_portfolio_xgboost.py    (XGBoost variant)
-  Step 6c â†’ step6c_portfolio_mlp.py        (MLP variant)
-  Step 6d â†’ step6d_compare_portfolios.py   (cross-model comparison)
+  Step 3  -> step3_baseline_portfolio.py              (Markowitz baseline, historical mu)
+  Step 5a -> step5a_train_ridge.py             (Ridge mu predictions)
+  Step 6a -> this script                    (Ridge MIQP portfolio, backtested)
+  Step 6b -> step6b_portfolio_xgboost.py    (XGBoost variant)
+  Step 6c -> step6c_portfolio_mlp.py        (MLP variant)
+  Step 6d -> step6d_compare_portfolios.py   (cross-model comparison)
 
 INPUTS  :
   data/clean/returns.csv
   data/clean/meta_clean.csv
   data/results/step3/baseline_weights.csv    -- universe order and rebal dates
-  data/results/step5/ml_mu_ridge.csv         -- Ridge mu_hat (rebal dates Ã— tickers)
+  data/results/step5/ml_mu_ridge.csv         -- Ridge mu_hat (rebal dates x tickers)
 
 OUTPUTS (data/results/step6/ridge/) :
   ridge_weights.csv
@@ -52,20 +52,20 @@ OUTPUTS (data/results/step6/ridge/) :
   ridge_portfolio_log.txt
 
 METHODOLOGY:
-  mu  : Ridge ML predictions loaded from step5a â€” NOT recomputed here.
-  Î£   : rolling Ledoit-Wolf, re-estimated at each rebalancing date using
+  mu  : Ridge ML predictions loaded from step5a - NOT recomputed here.
+  Sigma   : rolling Ledoit-Wolf, re-estimated at each rebalancing date using
         trailing ESTIM_WINDOW-day returns strictly before rebal_date.
   MIQP:
-    minimize  w'Î£w - Î»Â·Î¼'w          (Î» = 1)
-    s.t.      Î£ w_i  = 1            (fully invested)
-              z_i âˆˆ {0,1}, Î£ z_i = K = 10   (cardinality)
-              0.01Â·z_i â‰¤ w_i â‰¤ 0.20Â·z_i      (weight bounds, selected only)
-              Î£_{iâˆˆs} w_i â‰¤ 0.30              (sector concentration cap)
+    minimize  w'Sigmaw - lambda*mu'w          (lambda = 1)
+    s.t.      Sigma w_i  = 1            (fully invested)
+              z_i in {0,1}, Sigma z_i = K = 10   (cardinality)
+              0.01*z_i <= w_i <= 0.20*z_i      (weight bounds, selected only)
+              Sigma_{iins} w_i <= 0.30              (sector concentration cap)
   Solver: Gurobi via gurobipy (MVar API). TimeLimit=60s, MIPGap=0.01.
 
 Author  : Anila Vata
-Project : MSc Thesis â€” ML-Enhanced Portfolio Optimization with SAFE AI Evaluation
-          University of Pavia Â· Supervisor: Prof. Paolo Giudici
+Project : MSc Thesis - ML-Enhanced Portfolio Optimization with SAFE AI Evaluation
+          University of Pavia * Supervisor: Prof. Paolo Giudici
 """
 
 # =============================================================================
@@ -123,7 +123,7 @@ def log(msg=""):
     log_lines.append(str(msg))
 
 log("=" * 70)
-log(f"  STEP 6a â€” RIDGE ML-ENHANCED MARKOWITZ MIQP PORTFOLIO")
+log(f"  STEP 6a - RIDGE ML-ENHANCED MARKOWITZ MIQP PORTFOLIO")
 log("=" * 70)
 
 if not HAS_GUROBI:
@@ -166,16 +166,16 @@ baseline_weights = pd.read_csv(
     index_col=0, parse_dates=True
 )
 
-log(f"  returns_raw      : {returns_raw.shape[0]} days Ã— {returns_raw.shape[1]} stocks")
+log(f"  returns_raw      : {returns_raw.shape[0]} days x {returns_raw.shape[1]} stocks")
 log(f"  meta             : {meta.shape}")
 log(f"  Return range     : {returns_raw.index[0].date()} to {returns_raw.index[-1].date()}")
-log(f"  baseline_weights : {baseline_weights.shape[0]} rebal dates Ã— "
+log(f"  baseline_weights : {baseline_weights.shape[0]} rebal dates x "
     f"{baseline_weights.shape[1]} tickers")
 log(f"  ML mu file       : {MU_FILE}")
 
 # =============================================================================
 # 2. UNIVERSE ALIGNMENT
-#    Universe is taken directly from baseline_weights.columns â€” no resorting.
+#    Universe is taken directly from baseline_weights.columns - no resorting.
 #    This guarantees identical ticker order to the baseline.
 # =============================================================================
 log("\n-- 2. UNIVERSE ALIGNMENT --------------------------------------------")
@@ -192,7 +192,7 @@ if missing_in_returns:
         f"{len(missing_in_returns)} baseline tickers missing from returns.csv:\n"
         f"  {missing_in_returns[:10]}"
     )
-log(f"  returns coverage  : PASS â€” all {N} baseline tickers present in returns.csv")
+log(f"  returns coverage  : PASS - all {N} baseline tickers present in returns.csv")
 
 # Every baseline ticker must exist in meta_clean.csv
 meta_tickers = set(meta["ticker"])
@@ -202,7 +202,7 @@ if missing_in_meta:
         f"{len(missing_in_meta)} baseline tickers missing from meta_clean.csv:\n"
         f"  {missing_in_meta[:10]}"
     )
-log(f"  meta coverage     : PASS â€” all {N} baseline tickers present in meta_clean.csv")
+log(f"  meta coverage     : PASS - all {N} baseline tickers present in meta_clean.csv")
 
 if N < K:
     raise ValueError(
@@ -211,7 +211,7 @@ if N < K:
 universe   = baseline_tickers
 returns_df = returns_raw[universe]
 
-# Sector mapping â€” require an explicitly recognised column name
+# Sector mapping - require an explicitly recognised column name
 meta_idx          = meta.set_index("ticker")
 _SECTOR_CANDIDATES = ["sector", "gics_sector", "gics sector"]
 sector_col = next(
@@ -241,7 +241,7 @@ for s in sectors:
     log(f"    {s:<42} {len(sector_indices[s]):>3} stocks")
 
 # =============================================================================
-# 3. REBALANCING DATES â€” taken directly from baseline_weights.csv
+# 3. REBALANCING DATES - taken directly from baseline_weights.csv
 # =============================================================================
 log("\n-- 3. REBALANCING DATES (from baseline_weights.csv) -----------------")
 
@@ -267,9 +267,9 @@ if test_idx.empty:
 log("\n-- 4. QUALITY CHECKS ON ML MU MATRIX --------------------------------")
 
 mu_df = pd.read_csv(mu_path, index_col=0, parse_dates=True).sort_index()
-log(f"  [{MODEL_NAME}]  {mu_df.shape[0]} dates Ã— {mu_df.shape[1]} tickers")
+log(f"  [{MODEL_NAME}]  {mu_df.shape[0]} dates x {mu_df.shape[1]} tickers")
 
-# QC 1 â€” dates must exactly match baseline_weights.index
+# QC 1 - dates must exactly match baseline_weights.index
 if not mu_df.index.equals(rebal_dates):
     missing_in_mu = sorted(set(rebal_dates) - set(mu_df.index))
     extra_in_mu   = sorted(set(mu_df.index)  - set(rebal_dates))
@@ -278,9 +278,9 @@ if not mu_df.index.equals(rebal_dates):
         f"  Missing in ML mu : {missing_in_mu[:5]}\n"
         f"  Extra in ML mu   : {extra_in_mu[:5]}"
     )
-log(f"  QC1 dates      : PASS â€” {len(rebal_dates)} dates match baseline")
+log(f"  QC1 dates      : PASS - {len(rebal_dates)} dates match baseline")
 
-# QC 2 â€” columns must exactly match baseline_weights.columns (order included)
+# QC 2 - columns must exactly match baseline_weights.columns (order included)
 expected_cols = list(baseline_weights.columns)
 if list(mu_df.columns) != expected_cols:
     first_diff = next(
@@ -293,15 +293,15 @@ if list(mu_df.columns) != expected_cols:
         f"  Got first 5      : {list(mu_df.columns)[:5]}\n"
         f"  First diff at idx: {first_diff}"
     )
-log(f"  QC2 columns    : PASS â€” {len(expected_cols)} tickers, correct order")
+log(f"  QC2 columns    : PASS - {len(expected_cols)} tickers, correct order")
 
-# QC 3 â€” no NaN values
+# QC 3 - no NaN values
 n_nan = int(mu_df.isna().sum().sum())
 if n_nan > 0:
     raise ValueError(f"[{MODEL_NAME}] {n_nan} NaN values found in ml_mu matrix.")
 log(f"  QC3 no-NaN     : PASS")
 
-# QC 4 â€” no constant rows
+# QC 4 - no constant rows
 n_constant = int((mu_df.nunique(axis=1) == 1).sum())
 if n_constant > 0:
     bad_dates = mu_df.index[mu_df.nunique(axis=1) == 1].tolist()
@@ -319,7 +319,7 @@ log(f"\n  ML mu matrix passed all quality checks.")
 
 def compute_sigma(rebal_date: pd.Timestamp) -> np.ndarray:
     """Trailing ESTIM_WINDOW-day Ledoit-Wolf covariance, annualised.
-    Uses only returns strictly before rebal_date â€” identical to step3_baseline_portfolio.py."""
+    Uses only returns strictly before rebal_date - identical to step3_baseline_portfolio.py."""
     hist = returns_df.loc[returns_df.index < rebal_date].iloc[-ESTIM_WINDOW:]
     lw   = LedoitWolf().fit(hist.values)
     return lw.covariance_ * TRADING_DAYS
@@ -327,7 +327,7 @@ def compute_sigma(rebal_date: pd.Timestamp) -> np.ndarray:
 
 def solve_miqp(mu: np.ndarray, Sigma: np.ndarray) -> tuple:
     """
-    MIQP via gurobipy MVar API â€” identical formulation to step3_baseline_portfolio.py.
+    MIQP via gurobipy MVar API - identical formulation to step3_baseline_portfolio.py.
 
     minimize  w @ Sigma @ w  -  LAMBDA * mu @ w
     s.t.      sum(w) = 1
@@ -393,7 +393,7 @@ def solve_miqp(mu: np.ndarray, Sigma: np.ndarray) -> tuple:
 
 
 def compute_metrics(daily_ret_df: pd.DataFrame, turnover_df: pd.DataFrame) -> dict:
-    """Performance metrics â€” identical convention to step3_baseline_portfolio.py."""
+    """Performance metrics - identical convention to step3_baseline_portfolio.py."""
     r = daily_ret_df["portfolio_return"].dropna().values
 
     ann_ret = float(r.mean() * TRADING_DAYS)
@@ -430,7 +430,7 @@ def compute_metrics(daily_ret_df: pd.DataFrame, turnover_df: pd.DataFrame) -> di
 
 def compute_net_cost(daily_ret_df: pd.DataFrame,
                      turnover_df: pd.DataFrame) -> dict:
-    """Transaction-cost sensitivity at 10, 20, 30 bps â€” identical to baseline."""
+    """Transaction-cost sensitivity at 10, 20, 30 bps - identical to baseline."""
     cost_results = {}
     for cost_bps in [10, 20, 30]:
         r_net = daily_ret_df["portfolio_return"].copy()
@@ -468,10 +468,10 @@ def compute_net_cost(daily_ret_df: pd.DataFrame,
 # 6. OPTIMIZATION LOOP
 # =============================================================================
 log("\n-- 6. OPTIMIZATION LOOP ---------------------------------------------")
-log(f"  Objective  : minimize w'Î£w - Î»Â·Î¼'w  (Î»={LAMBDA})")
-log(f"  K={K}, wâˆˆ[{W_MIN:.0%},{W_MAX:.0%}], sector cap={SECTOR_CAP:.0%}")
-log(f"  Î¼ source   : {MODEL_NAME} ML predictions from step5 (not recomputed here)")
-log(f"  Î£ source   : rolling Ledoit-Wolf, trailing {ESTIM_WINDOW} daily returns "
+log(f"  Objective  : minimize w'Sigmaw - lambda*mu'w  (lambda={LAMBDA})")
+log(f"  K={K}, win[{W_MIN:.0%},{W_MAX:.0%}], sector cap={SECTOR_CAP:.0%}")
+log(f"  mu source   : {MODEL_NAME} ML predictions from step5 (not recomputed here)")
+log(f"  Sigma source   : rolling Ledoit-Wolf, trailing {ESTIM_WINDOW} daily returns "
     f"strictly before each rebal date")
 log(f"  Gurobi     : TimeLimit={TIME_LIMIT}s, MIPGap={MIP_GAP}")
 log("-" * 70)
@@ -483,7 +483,7 @@ total_solve_t = 0.0
 for rebal_date in rebal_dates:
     hist_available = returns_df.loc[returns_df.index < rebal_date]
     if len(hist_available) < ESTIM_WINDOW:
-        log(f"  {rebal_date.date()}  SKIP â€” {len(hist_available)} history rows "
+        log(f"  {rebal_date.date()}  SKIP - {len(hist_available)} history rows "
             f"< {ESTIM_WINDOW} required for Ledoit-Wolf")
         if prev_weights is not None:
             weights_all[rebal_date] = prev_weights.copy()
@@ -493,7 +493,7 @@ for rebal_date in rebal_dates:
     mu_row  = mu_df.loc[rebal_date].values.astype(float)
     Sigma_t = compute_sigma(rebal_date)
 
-    # PSD correction â€” identical to step3_baseline_portfolio.py
+    # PSD correction - identical to step3_baseline_portfolio.py
     eig_min = float(np.linalg.eigvalsh(Sigma_t).min())
     if eig_min < -1e-6:
         Sigma_t += (abs(eig_min) + 1e-6) * np.eye(N)
@@ -509,7 +509,7 @@ for rebal_date in rebal_dates:
                 f"portfolio to carry forward.  Check solver licence and data."
             )
         log(f"  {rebal_date.date()}  FAILED ({status_str}, {elapsed:.1f}s) "
-            "â€” carrying forward previous weights")
+            "- carrying forward previous weights")
         weights = prev_weights.copy()
 
     weights_all[rebal_date] = weights
@@ -548,16 +548,16 @@ rebal_list = sorted(weights_all.keys())
 # =============================================================================
 log("\n-- 7. QUALITY CHECKS ON OPTIMIZED WEIGHTS ---------------------------")
 
-# QC 5 â€” row count must match baseline_weights
+# QC 5 - row count must match baseline_weights
 expected_n_rebal = baseline_weights.shape[0]
 if len(rebal_list) != expected_n_rebal:
     raise ValueError(
         f"[{MODEL_NAME}] QC5 FAIL: expected {expected_n_rebal} rebalancing rows, "
         f"got {len(rebal_list)}."
     )
-log(f"  QC5 shape          : PASS â€” {len(rebal_list)} rows Ã— {N} cols")
+log(f"  QC5 shape          : PASS - {len(rebal_list)} rows x {N} cols")
 
-# QC 6 â€” per-date constraints
+# QC 6 - per-date constraints
 violations = []
 for rd in rebal_list:
     w = weights_all[rd]
@@ -582,13 +582,13 @@ for rd in rebal_list:
 if violations:
     msg = "\n  ".join(violations[:20])
     raise ValueError(
-        f"[{MODEL_NAME}] QC6 FAIL â€” {len(violations)} constraint violation(s):\n"
+        f"[{MODEL_NAME}] QC6 FAIL - {len(violations)} constraint violation(s):\n"
         f"  {msg}"
     )
-log(f"  QC6 constraints    : PASS â€” all {len(rebal_list)} dates satisfy "
+log(f"  QC6 constraints    : PASS - all {len(rebal_list)} dates satisfy "
     f"sum=1, K={K}, W_MIN/W_MAX, sector cap")
 
-# QC 7 â€” column order
+# QC 7 - column order
 if universe != list(baseline_weights.columns):
     raise ValueError(
         f"[{MODEL_NAME}] QC7 FAIL: output universe column order does not match "
@@ -596,10 +596,10 @@ if universe != list(baseline_weights.columns):
         f"  First 5 expected : {list(baseline_weights.columns)[:5]}\n"
         f"  First 5 actual   : {universe[:5]}"
     )
-log(f"  QC7 column order   : PASS â€” matches baseline_weights.columns exactly")
+log(f"  QC7 column order   : PASS - matches baseline_weights.columns exactly")
 
 # =============================================================================
-# 8. DAILY PORTFOLIO RETURNS (buy-and-hold drift â€” identical to baseline)
+# 8. DAILY PORTFOLIO RETURNS (buy-and-hold drift - identical to baseline)
 # =============================================================================
 log("\n-- 8. DAILY PORTFOLIO RETURNS (buy-and-hold drift) ------------------")
 log("  Weights set to optimised target at each rebal date.")
@@ -650,7 +650,7 @@ cum = float(daily_ret_df["portfolio_return"].cumsum().iloc[-1])
 log(f"  Cumulative log-ret : {cum:.4f}  ({np.expm1(cum):.2%} simple return)")
 
 # =============================================================================
-# 9. TURNOVER â€” 0.5 * sum|w_target - w_pre_trade|  (first rebal excluded)
+# 9. TURNOVER - 0.5 * sum|w_target - w_pre_trade|  (first rebal excluded)
 # =============================================================================
 log("\n-- 9. TURNOVER ------------------------------------------------------")
 log("  Turnover = 0.5 * sum|w_target_t - w_pre_trade_t|")
@@ -744,7 +744,7 @@ log(f"  Trough date        : {r_index[trough_idx].date()}  "
 # =============================================================================
 # 11. TRANSACTION-COST SENSITIVITY
 # =============================================================================
-log("\n-- 11. TRANSACTION-COST SENSITIVITY (gross â†’ net) -------------------")
+log("\n-- 11. TRANSACTION-COST SENSITIVITY (gross -> net) -------------------")
 log("  One-way cost applied to traded turnover on the first investable day")
 log("  after each rebalancing date, starting from the 2nd rebalance.")
 
@@ -764,7 +764,7 @@ for bps, res in cost_results.items():
 # =============================================================================
 log("\n-- 12. SAVING OUTPUTS -----------------------------------------------")
 
-# {MODEL_NAME}_weights.csv â€” column order matches baseline_weights.csv exactly
+# {MODEL_NAME}_weights.csv - column order matches baseline_weights.csv exactly
 rows_w = []
 for date, w in weights_all.items():
     row = {"date": date.date().isoformat()}
@@ -774,7 +774,7 @@ for date, w in weights_all.items():
 weights_out = pd.DataFrame(rows_w).set_index("date")
 weights_out.to_csv(os.path.join(MODEL_STEP6_DIR, f"{MODEL_NAME}_weights.csv"))
 log(f"  Saved: {MODEL_NAME}_weights.csv  "
-    f"({weights_out.shape[0]} dates Ã— {weights_out.shape[1]} tickers)")
+    f"({weights_out.shape[0]} dates x {weights_out.shape[1]} tickers)")
 
 # {MODEL_NAME}_returns.csv
 daily_ret_df.to_csv(os.path.join(MODEL_STEP6_DIR, f"{MODEL_NAME}_returns.csv"))
@@ -852,7 +852,7 @@ def _fmt(v: float, pct: bool = True) -> str:
     return f"{v:>8.2%}" if pct else f"{v:>8.4f}"
 
 print("\n" + "=" * 70)
-print(f"  STEP 6a â€” {MODEL_NAME.upper()} PORTFOLIO COMPLETE")
+print(f"  STEP 6a - {MODEL_NAME.upper()} PORTFOLIO COMPLETE")
 print("=" * 70)
 print(f"  {'Model':<22} {'Ann Ret':>9} {'Ann Vol':>9} {'Sharpe':>8} "
       f"{'Sortino':>9} {'Calmar':>8} {'MaxDD':>8} {'AvgTO':>8}")
