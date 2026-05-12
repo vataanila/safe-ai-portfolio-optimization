@@ -1,91 +1,84 @@
 # SAFE AI Framework — Application to Return Forecasting Evaluation
 
-This document explains how the SAFE AI framework (Giudici 2024; Babaei, Giudici & Raffinetti 2025) is adapted and applied in this thesis to evaluate the XGBoost return forecasting model.
+This document explains how the SAFE AI framework (Babaei, Giudici & Raffinetti 2024) is adapted and applied in this thesis to evaluate the XGBoost return forecasting model.
 
 ---
 
 ## Background
 
-The SAFE AI framework is a model evaluation framework that assesses AI systems along four dimensions: **Sustainability/Security**, **Accuracy**, **Fairness**, and **Explainability**. It was originally developed to evaluate machine learning models in financial applications.
+The SAFE AI framework is a model evaluation framework that assesses AI systems along four dimensions: **Sustainability/Security**, **Accuracy**, **Fairness**, and **Explainability**. The underlying methodology is the Rank Graduation Box (RGB), introduced by Babaei, Giudici & Raffinetti (2024), which provides a family of metrics built on a common statistical foundation derived from Lorenz curves and concordance curves. The four metrics of the framework — RGA, RGR, RGE, and fairness assessed through RGA parity — are unified by this shared foundation and are implemented in the `safeaipackage` Python library.
 
-In this thesis, the framework is applied to the XGBoost return forecasting model, which is the main machine learning component of the pipeline. The object of evaluation is the model's forecast quality, robustness, and interpretability — not the Markowitz portfolio optimizer or the resulting portfolio allocations directly.
+In this thesis, the framework is applied to the XGBoost return forecasting model, which is the main machine learning component of the pipeline. The object of evaluation is the model's forecast quality, robustness, and interpretability — not the Markowitz portfolio optimizer or the resulting portfolio allocations.
 
-Portfolio-level diagnostics form a separate evaluation layer. Metrics such as annualised return, Sharpe ratio, maximum drawdown, and turnover are used to assess the practical and economic consequences of using XGBoost forecasts within the constrained Markowitz optimizer. These portfolio metrics are compared across all four strategies — the classical baseline and the three ML-enhanced variants (Ridge, XGBoost, MLP) — to determine whether XGBoost improves on the benchmark and how it compares with the other forecasting approaches.
+Portfolio-level diagnostics form a separate evaluation layer. Metrics such as annualised return, Sharpe ratio, maximum drawdown, and turnover are used to assess the practical and economic consequences of using XGBoost forecasts within the constrained Markowitz optimizer. These portfolio metrics are compared across all four strategies — the classical baseline and the three ML-enhanced variants (Ridge, XGBoost, MLP) — but they are downstream economic diagnostics, not SAFE AI metrics.
 
-The SAFE metrics are computed using the `safeaipackage` Python library and supplemented with XGBoost explainability tools (SHAP values and feature importance).
+The SAFE AI component is the next planned stage of the thesis. The quantitative pipeline (data cleaning, feature engineering, ML forecasting, portfolio construction, and out-of-sample comparison) has been implemented. The empirical computation of SAFE metrics using `safeaipackage` is still under development. This document describes the intended evaluation framework.
 
 ---
 
 ## Dimensions
 
-### Sustainability / Security
+### Accuracy
 
-In the original SAFE framework, Sustainability refers to model robustness and stability. Applied to the XGBoost return forecasting model, this dimension covers:
+Accuracy is the central dimension of the Rank Graduation Box framework. The primary SAFE metric for this dimension is:
 
-- **Forecast stability**: the consistency of XGBoost predictions across rebalancing dates, assessed through the distribution and time-series behaviour of the information coefficient (IC).
-- **Robustness under perturbations**: how sensitive XGBoost forecasts are to changes in the training window or feature inputs. The RGA (Relative Gini Accuracy) metric from `safeaipackage` is used to evaluate this.
+**RGA — Rank Graduation Accuracy** (Giudici & Raffinetti 2024; Raffinetti 2023)  
+RGA measures the concordance between the ranks of predicted values and the ranks of actual values. It extends the logic of the AUC beyond binary classification to handle regression and ordinal outcomes, making it well suited to cross-sectional return forecasting where predictions are rank-ordered across stocks at each rebalancing date. An RGA of 1 indicates perfect rank concordance; values near 0.5 indicate performance no better than random. RGA is computed using the core module of `safeaipackage`.
 
-At the portfolio level — as a separate diagnostic — the economic implications of forecast stability are assessed through maximum drawdown, average turnover, and transaction cost sensitivity (net Sharpe ratios at 10, 20, and 30 basis points per unit of traded turnover). These portfolio diagnostics reflect how forecast instability propagates into allocation decisions, but they are not themselves part of the SAFE AI model evaluation.
+**Information Coefficient — complementary finance diagnostic**  
+The information coefficient (IC) measures the Spearman rank correlation between predicted and realised returns at each rebalancing date. It is a standard diagnostic in quantitative asset management and carries direct economic interpretability in a cross-sectional forecasting context. Summary statistics (mean IC, IC standard deviation, fraction of positive IC dates) are reported for the XGBoost model. The IC is a complementary metric specific to the financial application; it is not the SAFE-native accuracy measure, which is RGA.
 
 ---
 
-### Accuracy
+### Sustainability / Security
 
-Within the SAFE AI evaluation, Accuracy refers to the predictive quality of the XGBoost return forecasting model:
+In the Rank Graduation Box, Sustainability refers to model robustness to perturbations of the input variables. The primary SAFE metric for this dimension is:
 
-**Forecast accuracy (model-level SAFE evaluation)**  
-The information coefficient (IC) measures the Spearman rank correlation between predicted and realised returns at each rebalancing date. A positive IC indicates that the model ranks stocks in roughly the right order on average, though individual predictions may be noisy. Summary statistics (mean IC, IC standard deviation, fraction of positive IC dates) are reported for the XGBoost model. The RGR (Relative Gini Reliability) metric from `safeaipackage` is used to assess forecast reliability.
+**RGR — Rank Graduation Robustness** (Babaei, Giudici & Raffinetti 2024)  
+RGR assesses whether the XGBoost model's output rankings remain stable when the input features are modified or perturbed. It compares model predictions under the original inputs with predictions obtained after applying perturbations to the explanatory variables, using RGA as the underlying measure of concordance. Low RGR values indicate that the model's rank predictions are sensitive to changes in inputs — a concern in a financial setting where features such as momentum or liquidity can shift substantially across market regimes. RGR is computed using the `check_robustness` module of `safeaipackage`.
 
-**Portfolio performance (separate evaluation layer)**  
-Out-of-sample portfolio performance metrics are compared across all four portfolios (baseline, Ridge, XGBoost, MLP) as a distinct step from the SAFE AI model evaluation:
-- Annualised return, annualised volatility
-- Sharpe, Sortino, and Calmar ratios
-- Maximum drawdown
-- Average monthly turnover
-
-These metrics address the question of whether XGBoost forecasts translate into better risk-adjusted portfolio performance relative to the classical baseline and the other ML approaches, after accounting for transaction costs. They are not direct SAFE AI metrics but complement the model-level evaluation by connecting forecast quality to investment outcomes.
+**Portfolio-level diagnostics — separate economic layer**  
+Maximum drawdown, average turnover, and transaction cost sensitivity (net Sharpe ratios at 10, 20, and 30 basis points per unit of traded turnover) are used as downstream diagnostics to assess how any instability in XGBoost forecasts propagates into portfolio allocations. These are not SAFE AI metrics; they measure the economic consequences of forecast behaviour within the Markowitz optimizer.
 
 ---
 
 ### Fairness
 
-In a standard supervised learning context, fairness refers to avoiding systematic bias against protected groups. In a return forecasting setting, a direct analogy does not apply in the same way. The dimension is therefore reinterpreted to assess whether the XGBoost model produces systematically biased predictions across stocks or market segments:
+In the original SAFE framework, fairness is assessed by examining whether the model produces systematically different predictions across protected groups, using RGA parity as the measure of disparity. In a return forecasting setting, there are no human protected groups in the standard sense. The concept is therefore adapted to economically meaningful partitions of the stock universe:
 
-- **Prediction bias across segments**: does XGBoost systematically assign higher predicted returns to certain types of stocks — for example, by sector, size, or liquidity tier — regardless of actual signal quality? Such bias could reflect overfitting to specific historical patterns rather than genuine cross-sectional predictability.
-- **Over-representation in predictions**: the RGF (Relative Gini Fairness) metric from `safeaipackage` is applied to check for systematic over- or under-representation in the model's predicted return distribution.
+- **Sector groups** — is the XGBoost model systematically more accurate (higher RGA) for stocks in certain GICS sectors than in others? Persistent sector-level differences in RGA could indicate that the model's signal is concentrated in particular industries rather than reflecting broad cross-sectional predictability.
+- **Size buckets** — does forecast accuracy vary across large-cap, mid-cap, and small-cap stocks? Given that the training universe is large-cap US equities, this is a relevant robustness check within the sample.
+- **Liquidity buckets** — are predictions more reliable for liquid stocks (low Amihud ratio) than for less liquid names?
 
-At the portfolio level, sector allocation heatmaps and stock concentration statistics are used as a complementary diagnostic to examine whether any model-level bias propagates into the portfolio's composition — for instance, as persistent overweighting of specific GICS sectors or repeated selection of the same stocks across rebalancing dates. These portfolio diagnostics reflect the downstream consequences of model behaviour rather than being part of the SAFE AI evaluation proper.
+Fairness is assessed by comparing RGA values across these groups and examining whether imparity is systematic and persistent across the out-of-sample period. The `check_fairness` module of `safeaipackage` provides the statistical infrastructure for this comparison; the group definitions are adapted to the financial context.
+
+At the portfolio level, sector allocation heatmaps and stock concentration statistics serve as complementary diagnostics to examine whether any model-level prediction bias propagates into the portfolio's composition. These are interpreted as downstream consequences, not as fairness metrics in the SAFE AI sense.
 
 ---
 
 ### Explainability
 
-The XGBoost model provides two sources of explainability:
+The primary SAFE metric for this dimension is:
 
-- **Feature importance** — the gain-based feature importance computed by XGBoost at each training window, averaged across all rebalancing dates. This indicates which features the model relies on most across the out-of-sample period.
-- **SHAP values** — SHapley Additive exPlanations decompose individual predictions into contributions from each feature. This allows more granular inspection of why the model predicted high or low expected returns for specific stocks at specific dates.
+**RGE — Rank Graduation Explainability** (Babaei, Giudici & Raffinetti 2024)  
+RGE quantifies the relative contribution of each input feature to the XGBoost model's predictions. It compares the full-model RGA with the RGA obtained from reduced models that exclude individual variables, one at a time. A feature with high RGE contributes substantially to the model's rank concordance and can therefore be considered important for its predictive performance. RGE is computed using the `check_explainability` module of `safeaipackage`.
 
-Economic interpretation is given particular attention: features with high importance should, ideally, correspond to known return predictors from the empirical asset pricing literature (momentum, low volatility, liquidity effects). Discrepancies are discussed as limitations.
+**SHAP values and gain-based feature importance — complementary tools**  
+XGBoost provides two additional sources of interpretability that complement RGE:
 
-The Ridge regression model does not provide native feature importance in the same way as tree-based models. Feature importance for Ridge is based on standardised coefficients and interpreted alongside the XGBoost results.
+- **Gain-based feature importance** — the average gain contributed by each feature across all splits, computed at each training window and averaged over rebalancing dates.
+- **SHAP values** — SHapley Additive exPlanations decompose individual predictions into additive contributions from each feature, allowing inspection of why the model assigned high or low expected returns to specific stocks at specific dates.
 
-The RGE (Relative Gini Explainability) metric from `safeaipackage` is also applied.
+These tools add granularity beyond what RGE provides, particularly in tracing how economic signals (momentum, volatility, liquidity) enter individual predictions. Economic interpretation is given particular attention: features with high RGE and high SHAP contributions should, where possible, correspond to established return predictors from the empirical asset pricing literature. Discrepancies are treated as limitations.
 
----
-
-## Implementation status
-
-The quantitative portfolio optimization pipeline has already been implemented in the repository, including the Markowitz benchmark, the machine learning forecasting models, portfolio construction and out-of-sample comparison.
-
-The SAFE AI component is the next stage of the thesis work. At this stage, this document explains how the SAFE AI framework is intended to be adapted to a portfolio optimization setting.
-
-The empirical implementation of the SAFE dimensions is still being developed. For this reason, this section should be read as the evaluation framework guiding the next part of the thesis, rather than as a fully completed validation module.
+The Ridge regression and MLP models are not the focus of the SAFE AI explainability analysis. Feature importance for Ridge (based on standardised coefficients) is reported for reference in the broader comparative discussion.
 
 ---
 
 ## References
 
-- Giudici, P. (2024). SAFE AI. *Annals of Operations Research*, forthcoming.
-- Babaei, G., Giudici, P., & Raffinetti, E. (2025). SAFE AI for financial risk assessment.
+- Babaei, G., Giudici, P., & Raffinetti, E. (2024). A Rank Graduation Box for SAFE AI. *Expert Systems with Applications*. https://doi.org/10.1016/j.eswa.2024.125239
+- Giudici, P., & Raffinetti, E. (2024). RGA: a unified measure of predictive accuracy. *Annals of Operations Research*.
+- Raffinetti, E. (2023). A rank graduation accuracy measure to mitigate artificial intelligence risks. *Quality & Quantity*, 57, 2355–2374.
 - Markowitz, H. (1952). Portfolio selection. *Journal of Finance*, 7(1), 77–91.
 - Gu, S., Kelly, B., & Xiu, D. (2020). Empirical asset pricing via machine learning. *Review of Financial Studies*, 33(5), 2223–2273.

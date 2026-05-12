@@ -7,7 +7,7 @@ Supervisor: Prof. Paolo Giudici
 
 ## Overview
 
-This repository contains the code developed for my MSc thesis in Quantitative Finance at the University of Pavia. The project studies whether machine learning-based expected return forecasts can improve constrained Markowitz portfolio construction compared with a classical historical-mean benchmark. The main machine learning model is XGBoost; Ridge regression and a multi-layer perceptron are included as additional ML benchmarks. The XGBoost return forecasting model is evaluated using an adaptation of the SAFE AI framework (Giudici 2024): Sustainability/Security, Accuracy, Fairness, and Explainability. The resulting portfolios are assessed separately using standard performance and risk metrics.
+This repository contains the code developed for my MSc thesis in Quantitative Finance at the University of Pavia. The project studies whether machine learning-based expected return forecasts can improve constrained Markowitz portfolio construction compared with a classical historical-mean benchmark. The main machine learning model is XGBoost; Ridge regression and a multi-layer perceptron are included as additional ML benchmarks. The XGBoost return forecasting model is evaluated using an adaptation of the SAFE AI framework (Babaei, Giudici & Raffinetti 2024): Sustainability/Security, Accuracy, Fairness, and Explainability. The resulting portfolios are assessed separately using standard performance and risk metrics.
 
 The empirical analysis uses a Bloomberg dataset of approximately 400 large-cap US equities over the period 2010–2025, with out-of-sample portfolio evaluation from January 2023 to December 2025.
 
@@ -164,16 +164,16 @@ The covariance matrix Σ is estimated using rolling Ledoit-Wolf shrinkage on the
 
 ## SAFE AI evaluation
 
-The SAFE AI framework (Giudici 2024) is adapted to evaluate the XGBoost return forecasting model across four dimensions:
+The SAFE AI framework (Babaei, Giudici & Raffinetti 2024) is adapted to evaluate the XGBoost return forecasting model using the Rank Graduation Box (RGB) methodology. The four dimensions and their corresponding metrics from `safeaipackage` are:
 
-- **Sustainability/Security** — robustness and stability of XGBoost forecasts across the out-of-sample period
-- **Accuracy** — forecast accuracy measured by the information coefficient (IC) and reliability of cross-sectional return rank predictions
-- **Fairness** — whether XGBoost predictions exhibit systematic bias across stocks or market segments
-- **Explainability** — feature importance and SHAP analysis for the XGBoost model
+- **Accuracy** — measured by RGA (Rank Graduation Accuracy), which assesses the concordance between predicted and realised return ranks. The information coefficient (IC) is included as a complementary finance-specific diagnostic.
+- **Sustainability/Security** — measured by RGR (Rank Graduation Robustness), which assesses whether XGBoost predictions remain stable under perturbations of the input features.
+- **Fairness** — assessed through RGA parity across economically meaningful groups (GICS sector, size bucket, liquidity bucket), adapted from the standard protected-group approach since there are no human protected groups in this setting.
+- **Explainability** — measured by RGE (Rank Graduation Explainability), which quantifies each feature's contribution to model predictions. SHAP values and gain-based feature importance are included as complementary tools.
 
-Portfolio-level diagnostics — annualised return, volatility, Sharpe, Sortino, and Calmar ratios, maximum drawdown, turnover, and transaction cost sensitivity — are used as a separate evaluation layer to assess the practical and economic implications of using XGBoost forecasts within the Markowitz optimizer. These metrics are compared across all four portfolios (baseline, Ridge, XGBoost, MLP).
+Portfolio-level diagnostics — annualised return, volatility, Sharpe, Sortino, and Calmar ratios, maximum drawdown, turnover, and transaction cost sensitivity — are used as a separate downstream evaluation layer. They assess the economic consequences of using XGBoost forecasts within the Markowitz optimizer and are compared across all four portfolios (baseline, Ridge, XGBoost, MLP). These are not SAFE AI metrics.
 
-See `docs/safe_ai_framework.md` for details.
+The SAFE AI component is still under development; see `docs/safe_ai_framework.md` for the full methodological description.
 
 ---
 
