@@ -1,0 +1,675 @@
+======================================================================
+  STEP 6c — MLP ML-ENHANCED MARKOWITZ MIQP PORTFOLIO FRONTIER
+======================================================================
+  Gurobi version : (13, 0, 1)
+  Lambda grid    : [0.1, 0.2, 0.5, 1.0, 2.0, 5.0, 10.0]
+
+-- 1. LOAD STATIC INPUTS --------------------------------------------
+  returns_raw      : 4173 days x 407 stocks
+  meta             : (407, 10)
+  Return range     : 2010-01-04 to 2025-12-31
+  baseline_weights : 36 rebal dates x 407 tickers
+  ML mu file       : ml_mu_mlp.csv
+
+-- 2. UNIVERSE ALIGNMENT --------------------------------------------
+  Baseline tickers  : 407 (order preserved from baseline_weights.columns)
+  returns coverage  : PASS — all 407 baseline tickers present in returns.csv
+  meta coverage     : PASS — all 407 baseline tickers present in meta_clean.csv
+  Sector column     : 'sector'
+
+  Sectors (11):
+    Communication Services                      13 stocks
+    Consumer Discretionary                      41 stocks
+    Consumer Staples                            28 stocks
+    Energy                                      18 stocks
+    Financials                                  65 stocks
+    Health Care                                 54 stocks
+    Industrials                                 65 stocks
+    Information Technology                      56 stocks
+    Materials                                   21 stocks
+    Real Estate                                 26 stocks
+    Utilities                                   20 stocks
+
+-- 3. REBALANCING DATES (from baseline_weights.csv) -----------------
+  Test window    : 2023-01-01 to 2025-12-31
+  Rebalancing    : first trading day of each calendar month (from baseline)
+  Rebal periods  : 36  (2023-01-02 to 2025-12-01)
+
+-- 4. QUALITY CHECKS ON ML MU MATRIX --------------------------------
+  [mlp]  36 dates x 407 tickers
+  QC1 dates      : PASS — 36 dates match baseline
+  QC2 columns    : PASS — 407 tickers, correct order
+  QC3 no-NaN     : PASS
+  QC4 non-const  : PASS
+
+  ML mu matrix passed all quality checks.
+
+======================================================================
+  LAMBDA = 0.2  (tag: 0p2)
+======================================================================
+
+-- 6. OPTIMIZATION LOOP ---------------------------------------------
+  Objective  : minimize w'Sw - L*m'w  (L=0.2)
+  K=10, w in [1%,20%], sector cap=30%
+  mu source  : mlp ML predictions from step5 (not recomputed here)
+  Sigma src  : rolling Ledoit-Wolf, trailing 252 daily returns strictly before each rebal date
+  Gurobi     : TimeLimit=60s, MIPGap=0.01
+----------------------------------------------------------------------
+
+  2023-01-02  [OPTIMAL     ] n=10  obj=-0.046269  t=0.2s
+  Sectors : Consumer Stapl:30.0%  Financials:24.9%  Consumer Discr:20.0%  Information Te:12.4%
+  Ticker                           Weight
+  ----------------------------------------
+  GS UN EQUITY                     0.2000
+  PG UN EQUITY                     0.2000
+  YUM UN EQUITY                    0.2000
+  AKAM UW EQUITY                   0.1236
+  SNA UN EQUITY                    0.1174
+  PM UN EQUITY                     0.0682
+  ERIE UW EQUITY                   0.0390
+  CAG UN EQUITY                    0.0318
+  DGX UN EQUITY                    0.0100
+  TRV UN EQUITY                    0.0100
+
+  2023-02-01  [OPTIMAL     ] n=10  obj=-0.055375  t=0.2s
+  Sectors : Financials:30.0%  Utilities:21.1%  Consumer Stapl:20.0%  Industrials:19.5%
+  Ticker                           Weight
+  ----------------------------------------
+  PNW UN EQUITY                    0.2000
+  SJM UN EQUITY                    0.2000
+  L UN EQUITY                      0.1985
+  LDOS UN EQUITY                   0.1235
+  CBOE UF EQUITY                   0.0915
+  JBL UN EQUITY                    0.0844
+  SNA UN EQUITY                    0.0716
+  NRG UN EQUITY                    0.0106
+  AIZ UN EQUITY                    0.0100
+  EXPE UW EQUITY                   0.0100
+
+  2023-03-01  [OPTIMAL     ] n=10  obj=-0.044953  t=0.2s
+  Sectors : Industrials:30.0%  Communication :20.0%  Health Care:18.3%  Real Estate:16.2%
+  Ticker                           Weight
+  ----------------------------------------
+  TKO UN EQUITY                    0.2000
+  LMT UN EQUITY                    0.1914
+  ESS UN EQUITY                    0.1620
+  BAX UN EQUITY                    0.1293
+  UNP UN EQUITY                    0.1086
+  NEM UN EQUITY                    0.0794
+  UHS UN EQUITY                    0.0433
+  COP UN EQUITY                    0.0431
+  WYNN UW EQUITY                   0.0328
+  HCA UN EQUITY                    0.0100
+
+  2023-04-03  [OPTIMAL     ] n=10  obj=-0.052583  t=0.2s
+  Sectors : Industrials:30.0%  Communication :20.0%  Consumer Stapl:20.0%  Information Te:10.9%
+  Ticker                           Weight
+  ----------------------------------------
+  HRL UN EQUITY                    0.2000
+  TKO UN EQUITY                    0.2000
+  LHX UN EQUITY                    0.1752
+  VLO UN EQUITY                    0.1035
+  AOS UN EQUITY                    0.0961
+  CIEN UN EQUITY                   0.0731
+  AIZ UN EQUITY                    0.0663
+  GEN UW EQUITY                    0.0362
+  LDOS UN EQUITY                   0.0287
+  PHM UN EQUITY                    0.0209
+
+  2023-05-01  [OPTIMAL     ] n=10  obj=-0.076234  t=0.2s
+  Sectors : Communication :27.6%  Information Te:20.9%  Financials:20.0%  Utilities:20.0%
+  Ticker                           Weight
+  ----------------------------------------
+  EG UN EQUITY                     0.2000
+  PNW UN EQUITY                    0.2000
+  TKO UN EQUITY                    0.2000
+  JBL UN EQUITY                    0.0804
+  ADI UW EQUITY                    0.0801
+  EA UW EQUITY                     0.0757
+  FIX UN EQUITY                    0.0534
+  CDNS UW EQUITY                   0.0490
+  TPL UN EQUITY                    0.0325
+  HII UN EQUITY                    0.0289
+
+  2023-06-01  [OPTIMAL     ] n=10  obj=-0.103965  t=0.2s
+  Sectors : Consumer Stapl:30.0%  Industrials:20.0%  Materials:13.9%  Health Care:10.7%
+  Ticker                           Weight
+  ----------------------------------------
+  CHD UN EQUITY                    0.2000
+  LDOS UN EQUITY                   0.2000
+  IP UN EQUITY                     0.1194
+  CRL UN EQUITY                    0.1072
+  HSY UN EQUITY                    0.1000
+  TPL UN EQUITY                    0.0944
+  WYNN UW EQUITY                   0.0874
+  CFG UN EQUITY                    0.0371
+  AIZ UN EQUITY                    0.0348
+  CF UN EQUITY                     0.0198
+
+  2023-07-03  [OPTIMAL     ] n=10  obj=-0.121034  t=0.2s
+  Sectors : Consumer Stapl:26.6%  Financials:20.0%  Information Te:14.7%  Industrials:13.3%
+  Ticker                           Weight
+  ----------------------------------------
+  CME UW EQUITY                    0.2000
+  DG UN EQUITY                     0.1841
+  AKAM UW EQUITY                   0.1373
+  VRSK UW EQUITY                   0.1329
+  INCY UW EQUITY                   0.1202
+  CPT UN EQUITY                    0.1132
+  TAP UN EQUITY                    0.0823
+  CF UN EQUITY                     0.0100
+  MSFT UW EQUITY                   0.0100
+  NEM UN EQUITY                    0.0100
+
+  2023-08-01  [OPTIMAL     ] n=10  obj=-0.087373  t=0.2s
+  Sectors : Industrials:30.0%  Consumer Discr:22.3%  Health Care:20.0%  Communication :19.3%
+  Ticker                           Weight
+  ----------------------------------------
+  CAH UN EQUITY                    0.2000
+  TKO UN EQUITY                    0.1926
+  ULTA UW EQUITY                   0.1564
+  CPRT UW EQUITY                   0.1331
+  HUBB UN EQUITY                   0.1230
+  WYNN UW EQUITY                   0.0661
+  AXON UW EQUITY                   0.0439
+  GIS UN EQUITY                    0.0361
+  CPT UN EQUITY                    0.0347
+  CDNS UW EQUITY                   0.0141
+
+  2023-09-01  [OPTIMAL     ] n=10  obj=-0.089342  t=0.2s
+  Sectors : Information Te:22.0%  Consumer Stapl:21.6%  Health Care:19.5%  Energy:14.2%
+  Ticker                           Weight
+  ----------------------------------------
+  TAP UN EQUITY                    0.2000
+  COR UN EQUITY                    0.1953
+  MSI UN EQUITY                    0.1598
+  WMB UN EQUITY                    0.1417
+  CMG UN EQUITY                    0.1165
+  VRSN UW EQUITY                   0.0598
+  DOC UN EQUITY                    0.0534
+  AOS UN EQUITY                    0.0291
+  SHW UN EQUITY                    0.0289
+  CHD UN EQUITY                    0.0156
+
+  2023-10-02  [OPTIMAL     ] n=10  obj=-0.105084  t=0.2s
+  Sectors : Health Care:27.4%  Industrials:22.0%  Information Te:21.8%  Real Estate:13.6%
+  Ticker                           Weight
+  ----------------------------------------
+  AKAM UW EQUITY                   0.2000
+  UNH UN EQUITY                    0.1617
+  AOS UN EQUITY                    0.1315
+  VTR UN EQUITY                    0.1259
+  RMD UN EQUITY                    0.1123
+  DAL UN EQUITY                    0.0887
+  SO UN EQUITY                     0.0851
+  DG UN EQUITY                     0.0673
+  ADBE UW EQUITY                   0.0175
+  SBAC UW EQUITY                   0.0100
+
+  2023-11-01  [OPTIMAL     ] n=10  obj=-0.070830  t=0.2s
+  Sectors : Consumer Stapl:30.0%  Consumer Discr:26.9%  Industrials:22.5%  Information Te:19.5%
+  Ticker                           Weight
+  ----------------------------------------
+  PAYX UW EQUITY                   0.2000
+  SJM UN EQUITY                    0.2000
+  JBL UN EQUITY                    0.1239
+  NVR UN EQUITY                    0.1071
+  TSN UN EQUITY                    0.1000
+  ULTA UW EQUITY                   0.0906
+  RCL UN EQUITY                    0.0717
+  SWKS UW EQUITY                   0.0713
+  ADP UW EQUITY                    0.0253
+  CBRE UN EQUITY                   0.0100
+
+  2023-12-01  [OPTIMAL     ] n=10  obj=-0.106047  t=0.2s
+  Sectors : Health Care:30.0%  Communication :23.7%  Consumer Discr:15.8%  Materials:13.2%
+  Ticker                           Weight
+  ----------------------------------------
+  ABBV UN EQUITY                   0.1892
+  EA UW EQUITY                     0.1772
+  CF UN EQUITY                     0.1317
+  GILD UW EQUITY                   0.1108
+  LII UN EQUITY                    0.1005
+  DECK UN EQUITY                   0.0807
+  HAS UW EQUITY                    0.0768
+  FANG UW EQUITY                   0.0619
+  META UW EQUITY                   0.0596
+  ANET UN EQUITY                   0.0115
+
+  2024-01-01  [OPTIMAL     ] n=10  obj=-0.104464  t=0.2s
+  Sectors : Health Care:30.0%  Industrials:22.4%  Consumer Discr:20.0%  Information Te:15.1%
+  Ticker                           Weight
+  ----------------------------------------
+  J UN EQUITY                      0.2000
+  ULTA UW EQUITY                   0.2000
+  JNJ UN EQUITY                    0.1331
+  ED UN EQUITY                     0.1147
+  LH UN EQUITY                     0.0959
+  EPAM UN EQUITY                   0.0917
+  WAT UN EQUITY                    0.0709
+  CIEN UN EQUITY                   0.0592
+  FIX UN EQUITY                    0.0244
+  ALB UN EQUITY                    0.0100
+
+  2024-02-01  [OPTIMAL     ] n=10  obj=-0.098907  t=0.2s
+  Sectors : Health Care:30.0%  Utilities:30.0%  Communication :16.8%  Consumer Discr:13.8%
+  Ticker                           Weight
+  ----------------------------------------
+  DTE UN EQUITY                    0.2000
+  BMY UN EQUITY                    0.1965
+  LULU UW EQUITY                   0.1382
+  TKO UN EQUITY                    0.1133
+  PFE UN EQUITY                    0.1035
+  EPAM UN EQUITY                   0.0840
+  PEG UN EQUITY                    0.0730
+  EA UW EQUITY                     0.0545
+  AEE UN EQUITY                    0.0270
+  STX UW EQUITY                    0.0100
+
+  2024-03-01  [OPTIMAL     ] n=10  obj=-0.123829  t=0.2s
+  Sectors : Financials:29.7%  Consumer Discr:20.0%  Utilities:17.9%  Information Te:14.0%
+  Ticker                           Weight
+  ----------------------------------------
+  DRI UN EQUITY                    0.2000
+  GL UN EQUITY                     0.2000
+  NI UN EQUITY                     0.1790
+  NTAP UW EQUITY                   0.1284
+  AIZ UN EQUITY                    0.0968
+  BF/B UN EQUITY                   0.0960
+  IRM UN EQUITY                    0.0679
+  AKAM UW EQUITY                   0.0119
+  EA UW EQUITY                     0.0100
+  FIX UN EQUITY                    0.0100
+
+  2024-04-01  [OPTIMAL     ] n=10  obj=-0.123918  t=0.2s
+  Sectors : Health Care:20.0%  Financials:20.0%  Industrials:20.0%  Real Estate:19.0%
+  Ticker                           Weight
+  ----------------------------------------
+  CHRW UW EQUITY                   0.2000
+  MS UN EQUITY                     0.2000
+  UDR UN EQUITY                    0.1787
+  LLY UN EQUITY                    0.1146
+  DXCM UW EQUITY                   0.0854
+  NFLX UW EQUITY                   0.0736
+  META UW EQUITY                   0.0710
+  CRM UN EQUITY                    0.0549
+  DLR UN EQUITY                    0.0118
+  FSLR UW EQUITY                   0.0100
+
+  2024-05-01  [OPTIMAL     ] n=10  obj=-0.130307  t=0.3s
+  Sectors : Health Care:22.3%  Consumer Stapl:20.0%  Financials:20.0%  Industrials:14.0%
+  Ticker                           Weight
+  ----------------------------------------
+  CHD UN EQUITY                    0.2000
+  CME UW EQUITY                    0.2000
+  INCY UW EQUITY                   0.2000
+  WAB UN EQUITY                    0.1298
+  MU UW EQUITY                     0.1173
+  WSM UN EQUITY                    0.0802
+  CCL UN EQUITY                    0.0292
+  ALGN UW EQUITY                   0.0229
+  FANG UW EQUITY                   0.0105
+  JCI UN EQUITY                    0.0100
+
+  2024-06-03  [OPTIMAL     ] n=10  obj=-0.117171  t=0.2s
+  Sectors : Consumer Stapl:30.0%  Industrials:30.0%  Consumer Discr:20.0%  Health Care:10.2%
+  Ticker                           Weight
+  ----------------------------------------
+  DRI UN EQUITY                    0.2000
+  TAP UN EQUITY                    0.2000
+  HII UN EQUITY                    0.1867
+  MAS UN EQUITY                    0.1133
+  BAX UN EQUITY                    0.1024
+  SJM UN EQUITY                    0.1000
+  CIEN UN EQUITY                   0.0539
+  GL UN EQUITY                     0.0237
+  CPT UN EQUITY                    0.0100
+  L UN EQUITY                      0.0100
+
+  2024-07-01  [OPTIMAL     ] n=10  obj=-0.129171  t=0.2s
+  Sectors : Consumer Discr:30.0%  Industrials:30.0%  Utilities:20.0%  Health Care:16.4%
+  Ticker                           Weight
+  ----------------------------------------
+  NRG UN EQUITY                    0.2000
+  WAB UN EQUITY                    0.2000
+  RL UN EQUITY                     0.1669
+  DVA UN EQUITY                    0.1539
+  EME UN EQUITY                    0.1000
+  DECK UN EQUITY                   0.0975
+  HAS UW EQUITY                    0.0356
+  EPAM UN EQUITY                   0.0261
+  ALB UN EQUITY                    0.0100
+  CVS UN EQUITY                    0.0100
+
+  2024-08-01  [OPTIMAL     ] n=10  obj=-0.118820  t=0.2s
+  Sectors : Industrials:28.5%  Consumer Stapl:27.9%  Health Care:20.0%  Consumer Discr:14.5%
+  Ticker                           Weight
+  ----------------------------------------
+  HOLX UW EQUITY                   0.2000
+  NDSN UW EQUITY                   0.2000
+  TAP UN EQUITY                    0.2000
+  RL UN EQUITY                     0.1348
+  GD UN EQUITY                     0.0853
+  BF/B UN EQUITY                   0.0792
+  EPAM UN EQUITY                   0.0572
+  GL UN EQUITY                     0.0235
+  AIZ UN EQUITY                    0.0100
+  LULU UW EQUITY                   0.0100
+
+  2024-09-02  [OPTIMAL     ] n=10  obj=-0.123016  t=0.2s
+  Sectors : Consumer Discr:28.6%  Financials:20.0%  Utilities:20.0%  Real Estate:16.2%
+  Ticker                           Weight
+  ----------------------------------------
+  BRK/B UN EQUITY                  0.2000
+  PNW UN EQUITY                    0.2000
+  TJX UN EQUITY                    0.2000
+  FRT UN EQUITY                    0.1342
+  MU UW EQUITY                     0.0932
+  NKE UN EQUITY                    0.0757
+  PSX UN EQUITY                    0.0487
+  DOC UN EQUITY                    0.0281
+  MOS UN EQUITY                    0.0100
+  TSLA UW EQUITY                   0.0100
+
+  2024-10-01  [OPTIMAL     ] n=10  obj=-0.134415  t=0.2s
+  Sectors : Utilities:30.0%  Information Te:20.0%  Real Estate:18.9%  Health Care:13.0%
+  Ticker                           Weight
+  ----------------------------------------
+  PNW UN EQUITY                    0.2000
+  TYL UN EQUITY                    0.2000
+  MAA UN EQUITY                    0.1889
+  UHS UN EQUITY                    0.1015
+  AWK UN EQUITY                    0.1000
+  MGM UN EQUITY                    0.0894
+  CTRA UN EQUITY                   0.0697
+  BG UN EQUITY                     0.0215
+  GILD UW EQUITY                   0.0149
+  UNH UN EQUITY                    0.0140
+
+  2024-11-01  [OPTIMAL     ] n=10  obj=-0.138537  t=0.2s
+  Sectors : Consumer Stapl:30.0%  Health Care:23.7%  Consumer Discr:15.9%  Industrials:14.5%
+  Ticker                           Weight
+  ----------------------------------------
+  HRL UN EQUITY                    0.2000
+  BBY UN EQUITY                    0.1594
+  RVTY UN EQUITY                   0.1460
+  NDSN UW EQUITY                   0.1449
+  AVGO UW EQUITY                   0.1195
+  SJM UN EQUITY                    0.0900
+  MTD UN EQUITY                    0.0633
+  GL UN EQUITY                     0.0395
+  HSIC UW EQUITY                   0.0275
+  TSN UN EQUITY                    0.0100
+
+  2024-12-02  [OPTIMAL     ] n=10  obj=-0.128434  t=0.2s
+  Sectors : Materials:26.9%  Consumer Discr:25.3%  Health Care:25.1%  Utilities:10.4%
+  Ticker                           Weight
+  ----------------------------------------
+  IP UN EQUITY                     0.1462
+  UHS UN EQUITY                    0.1284
+  CF UN EQUITY                     0.1232
+  HUM UN EQUITY                    0.1224
+  NRG UN EQUITY                    0.1044
+  WYNN UW EQUITY                   0.1038
+  ULTA UW EQUITY                   0.0963
+  CPT UN EQUITY                    0.0722
+  HAS UW EQUITY                    0.0528
+  HII UN EQUITY                    0.0503
+
+  2025-01-01  [OPTIMAL     ] n=10  obj=-0.119408  t=0.2s
+  Sectors : Industrials:20.0%  Utilities:20.0%  Real Estate:16.9%  Consumer Discr:15.0%
+  Ticker                           Weight
+  ----------------------------------------
+  ALLE UN EQUITY                   0.2000
+  PNW UN EQUITY                    0.2000
+  CCI UN EQUITY                    0.1690
+  IP UN EQUITY                     0.1097
+  MGM UN EQUITY                    0.0961
+  SJM UN EQUITY                    0.0701
+  TPR UN EQUITY                    0.0535
+  STE UN EQUITY                    0.0508
+  BG UN EQUITY                     0.0334
+  IFF UN EQUITY                    0.0174
+
+  2025-02-03  [OPTIMAL     ] n=10  obj=-0.119993  t=0.2s
+  Sectors : Health Care:28.5%  Information Te:23.7%  Financials:14.8%  Industrials:14.5%
+  Ticker                           Weight
+  ----------------------------------------
+  CSCO UW EQUITY                   0.2000
+  MRK UN EQUITY                    0.2000
+  V UN EQUITY                      0.1476
+  TXT UN EQUITY                    0.1449
+  HAS UW EQUITY                    0.1393
+  COR UN EQUITY                    0.0853
+  DG UN EQUITY                     0.0356
+  AVGO UW EQUITY                   0.0272
+  CRM UN EQUITY                    0.0101
+  EA UW EQUITY                     0.0100
+
+  2025-03-03  [OPTIMAL     ] n=10  obj=-0.122127  t=0.2s
+  Sectors : Information Te:24.8%  Communication :20.0%  Industrials:20.0%  Materials:20.0%
+  Ticker                           Weight
+  ----------------------------------------
+  AOS UN EQUITY                    0.2000
+  AVY UN EQUITY                    0.2000
+  FFIV UW EQUITY                   0.2000
+  META UW EQUITY                   0.2000
+  DLTR UW EQUITY                   0.0679
+  CAH UN EQUITY                    0.0643
+  CIEN UN EQUITY                   0.0378
+  AVGO UW EQUITY                   0.0100
+  C UN EQUITY                      0.0100
+  CTRA UN EQUITY                   0.0100
+
+  2025-04-01  [OPTIMAL     ] n=10  obj=-0.096819  t=0.2s
+  Sectors : Industrials:20.1%  Utilities:20.0%  Financials:18.2%  Information Te:14.7%
+  Ticker                           Weight
+  ----------------------------------------
+  NI UN EQUITY                     0.2000
+  NTRS UW EQUITY                   0.1818
+  NDSN UW EQUITY                   0.1596
+  EA UW EQUITY                     0.1404
+  FFIV UW EQUITY                   0.1178
+  TPR UN EQUITY                    0.0598
+  SBUX UW EQUITY                   0.0598
+  AOS UN EQUITY                    0.0414
+  FSLR UW EQUITY                   0.0294
+  HOLX UW EQUITY                   0.0100
+
+  2025-05-01  [OPTIMAL     ] n=10  obj=-0.078737  t=0.3s
+  Sectors : Financials:30.0%  Health Care:29.9%  Energy:18.4%  Consumer Stapl:13.0%
+  Ticker                           Weight
+  ----------------------------------------
+  GL UN EQUITY                     0.1848
+  EQT UN EQUITY                    0.1837
+  STE UN EQUITY                    0.1704
+  DLTR UW EQUITY                   0.1296
+  EG UN EQUITY                     0.1152
+  BAX UN EQUITY                    0.0677
+  WST UN EQUITY                    0.0610
+  IEX UN EQUITY                    0.0374
+  DOC UN EQUITY                    0.0322
+  PTC UW EQUITY                    0.0180
+
+  2025-06-02  [OPTIMAL     ] n=10  obj=-0.090924  t=0.2s
+  Sectors : Health Care:30.0%  Materials:19.0%  Real Estate:18.6%  Utilities:12.6%
+  Ticker                           Weight
+  ----------------------------------------
+  AVY UN EQUITY                    0.1900
+  PFE UN EQUITY                    0.1348
+  AWK UN EQUITY                    0.1261
+  ZBH UN EQUITY                    0.1258
+  AOS UN EQUITY                    0.1065
+  MAA UN EQUITY                    0.0976
+  CBRE UN EQUITY                   0.0885
+  AZO UN EQUITY                    0.0473
+  ULTA UW EQUITY                   0.0440
+  BSX UN EQUITY                    0.0393
+
+  2025-07-01  [OPTIMAL     ] n=10  obj=-0.104198  t=0.2s
+  Sectors : Real Estate:27.6%  Consumer Stapl:26.6%  Materials:22.0%  Health Care:14.9%
+  Ticker                           Weight
+  ----------------------------------------
+  CPT UN EQUITY                    0.1649
+  PM UN EQUITY                     0.1577
+  ZBH UN EQUITY                    0.1487
+  CF UN EQUITY                     0.1158
+  WELL UN EQUITY                   0.1106
+  BG UN EQUITY                     0.1080
+  BALL UN EQUITY                   0.1039
+  LMT UN EQUITY                    0.0601
+  DECK UN EQUITY                   0.0172
+  ES UN EQUITY                     0.0130
+
+  2025-08-01  [OPTIMAL     ] n=10  obj=-0.092196  t=0.2s
+  Sectors : Health Care:23.8%  Consumer Stapl:21.4%  Financials:20.0%  Energy:16.8%
+  Ticker                           Weight
+  ----------------------------------------
+  AIZ UN EQUITY                    0.2000
+  CTRA UN EQUITY                   0.1683
+  BG UN EQUITY                     0.1631
+  UNH UN EQUITY                    0.1278
+  UHS UN EQUITY                    0.1099
+  VTR UN EQUITY                    0.0668
+  DG UN EQUITY                     0.0506
+  DECK UN EQUITY                   0.0468
+  WYNN UW EQUITY                   0.0374
+  FSLR UW EQUITY                   0.0293
+
+  2025-09-01  [OPTIMAL     ] n=10  obj=-0.106911  t=0.2s
+  Sectors : Consumer Stapl:30.0%  Information Te:30.0%  Industrials:25.5%  Consumer Discr:14.5%
+  Ticker                           Weight
+  ----------------------------------------
+  CAG UN EQUITY                    0.2000
+  IEX UN EQUITY                    0.1827
+  VRSN UW EQUITY                   0.1650
+  DLTR UW EQUITY                   0.1000
+  NVDA UW EQUITY                   0.0900
+  EBAY UW EQUITY                   0.0810
+  GNRC UN EQUITY                   0.0719
+  WYNN UW EQUITY                   0.0530
+  FSLR UW EQUITY                   0.0450
+  ULTA UW EQUITY                   0.0114
+
+  2025-10-01  [OPTIMAL     ] n=10  obj=-0.083800  t=0.2s
+  Sectors : Information Te:22.4%  Consumer Stapl:20.3%  Health Care:20.0%  Utilities:16.1%
+  Ticker                           Weight
+  ----------------------------------------
+  BSX UN EQUITY                    0.2000
+  ATO UN EQUITY                    0.1606
+  BF/B UN EQUITY                   0.1490
+  CHTR UW EQUITY                   0.1133
+  INTU UW EQUITY                   0.1102
+  FTNT UW EQUITY                   0.0742
+  LULU UW EQUITY                   0.0713
+  MDLZ UW EQUITY                   0.0535
+  ZBRA UW EQUITY                   0.0398
+  VTR UN EQUITY                    0.0281
+
+  2025-11-03  [OPTIMAL     ] n=10  obj=-0.095490  t=0.2s
+  Sectors : Real Estate:23.5%  Financials:20.0%  Health Care:20.0%  Industrials:12.2%
+  Ticker                           Weight
+  ----------------------------------------
+  GL UN EQUITY                     0.2000
+  HSIC UW EQUITY                   0.2000
+  UDR UN EQUITY                    0.2000
+  ALLE UN EQUITY                   0.1087
+  EA UW EQUITY                     0.0932
+  ORCL UN EQUITY                   0.0635
+  APTV UN EQUITY                   0.0450
+  BF/B UN EQUITY                   0.0415
+  DOC UN EQUITY                    0.0351
+  CHRW UW EQUITY                   0.0130
+
+  2025-12-01  [OPTIMAL     ] n=10  obj=-0.118698  t=0.2s
+  Sectors : Health Care:30.0%  Information Te:25.7%  Financials:20.0%  Consumer Stapl:9.9%
+  Ticker                           Weight
+  ----------------------------------------
+  GL UN EQUITY                     0.2000
+  VRSN UW EQUITY                   0.1924
+  HOLX UW EQUITY                   0.1903
+  HSIC UW EQUITY                   0.0997
+  HRL UN EQUITY                    0.0989
+  IFF UN EQUITY                    0.0828
+  NDSN UW EQUITY                   0.0616
+  KLAC UW EQUITY                   0.0543
+  CAH UN EQUITY                    0.0100
+  INTC UW EQUITY                   0.0100
+
+----------------------------------------------------------------------
+  Rebalancing periods solved : 36
+  Total Gurobi solve time    : 7.6s  (0.2s avg)
+
+-- 7. QUALITY CHECKS ON OPTIMIZED WEIGHTS ---------------------------
+  QC5 shape          : PASS — 36 rows x 407 cols
+  QC6 constraints    : PASS — all 36 dates satisfy sum=1, K=10, W_MIN/W_MAX, sector cap
+  QC7 column order   : PASS — matches baseline_weights.columns exactly
+
+-- 8. DAILY PORTFOLIO RETURNS (buy-and-hold drift) ------------------
+  Weights set to optimised target at each rebal date.
+  Rebal-date return excluded; weights drift with asset prices inside period.
+  Daily observations : 747
+  Date range         : 2023-01-03 to 2025-12-31
+  Cumulative log-ret : 0.2917  (33.87% simple return)
+
+-- 9. TURNOVER ------------------------------------------------------
+  Turnover = 0.5 * sum|w_target_t - w_pre_trade_t|
+  w_pre_trade_t = end-of-period drifted weight from previous holding period.
+  First rebalance excluded (no prior portfolio).
+  Average monthly turnover : 0.9438  (94.38%)
+  Min / Max                : 0.7025 / 1.0000
+
+-- 10. PERFORMANCE METRICS ------------------------------------------
+
+  Annualised Return    : 0.0984  (9.84%)
+  Annualised Vol       : 0.1544  (15.44%)
+  Sharpe Ratio         : 0.6372
+  Sortino Ratio        : 0.9006
+  Calmar Ratio         : 0.4757
+  Maximum Drawdown     : 0.2069  (20.69%)
+  Avg Monthly Turnover : 0.9438  (94.38%)
+
+  Per-year breakdown:
+  Year      Ann Ret    Ann Vol     Sharpe     Max DD   Days
+  -------------------------------------------------------
+  2023      19.39%     13.26%     1.4626      7.39%    248
+  2024      -4.57%     13.94%    -0.3281     10.54%    250
+  2025      14.80%     18.60%     0.7956     16.06%    249
+
+  Average sector weights (test period):
+  Sector                                       Avg Weight
+  --------------------------------------------------------
+  Communication Services                           5.51%
+  Consumer Discretionary                          11.28%
+  Consumer Staples                                12.61%
+  Energy                                           2.69%
+  Financials                                       9.25%
+  Health Care                                     15.53%
+  Industrials                                     14.57%
+  Information Technology                          11.04%
+  Materials                                        4.22%
+  Real Estate                                      6.09%
+  Utilities                                        7.20%
+
+  Final wealth index : 1.338729
+  Peak date          : 2024-10-24  (wealth = 1.271808)
+  Trough date        : 2025-04-08  (wealth = 1.008701)
+
+-- 11. TRANSACTION-COST SENSITIVITY (gross -> net) ------------------
+  One-way cost applied to traded turnover on the first investable day
+  after each rebalancing date, starting from the 2nd rebalance.
+
+  Scenario                 Ann Ret   Ann Vol    Sharpe    Max DD
+  ---------------------------------------------------------------
+  Gross (0 bps)             9.84%    15.44%    0.6372    20.69%
+  Net (10 bps)              8.73%    15.44%    0.5651    21.14%
+  Net (20 bps)              7.61%    15.45%    0.4928    21.82%
+  Net (30 bps)              6.50%    15.46%    0.4203    22.86%
+
+-- 12. SAVING OUTPUTS -----------------------------------------------
+  Saved: mlp_weights_lambda_0p2.csv  (36 dates x 407 tickers)
+  Saved: mlp_returns_lambda_0p2.csv  (747 rows)
+  Saved: mlp_turnover_lambda_0p2.csv  (35 rows)
+  Saved: mlp_summary_lambda_0p2.csv
+  Saved: mlp_wealth_drawdown_lambda_0p2.csv  (747 rows)
+  Saved: mlp_net_cost_summary_lambda_0p2.csv  (3 cost scenarios)

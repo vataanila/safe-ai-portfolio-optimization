@@ -1,0 +1,16 @@
+model,dimension,metric,value,detail
+ridge,Accuracy,RGA_accuracy,0.490373,mean RGA across rebalancing dates
+ridge,Robustness,RGR_group_robustness,0.737356,group RGR for all_features
+ridge,Explainability,max_RGE_explainability,0.480312,log_mktcap
+ridge,Group parity,sector_RGA_gap,0.384041,max sector RGA minus min sector RGA
+ridge,Group parity,sector_parity,0.6159589999999999,1 - sector_RGA_gap
+xgboost,Accuracy,RGA_accuracy,0.502642,mean RGA across rebalancing dates
+xgboost,Robustness,RGR_group_robustness,0.743877,group RGR for all_features
+xgboost,Explainability,max_RGE_explainability,0.219601,log_mktcap
+xgboost,Group parity,sector_RGA_gap,0.352683,max sector RGA minus min sector RGA
+xgboost,Group parity,sector_parity,0.6473169999999999,1 - sector_RGA_gap
+mlp,Accuracy,RGA_accuracy,0.499052,mean RGA across rebalancing dates
+mlp,Robustness,RGR_group_robustness,0.708164,group RGR for all_features
+mlp,Explainability,max_RGE_explainability,0.202106,vol_1m
+mlp,Group parity,sector_RGA_gap,0.339896,max sector RGA minus min sector RGA
+mlp,Group parity,sector_parity,0.660104,1 - sector_RGA_gap

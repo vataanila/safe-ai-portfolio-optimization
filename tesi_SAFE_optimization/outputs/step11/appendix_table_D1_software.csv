@@ -1,0 +1,8 @@
+Tool,Use
+Python 3.x,"Data processing, modelling, and visualization"
+pandas / NumPy,Data manipulation and numerical computation
+scikit-learn,Ridge Regression and Neural Network
+XGBoost,Gradient boosting return prediction
+Gurobi 13,Constrained MIQP portfolio optimization
+safeaipackage,SAFE AI framework evaluation
+Bloomberg Terminal,Primary financial data source (Jan 2010 – Dec 2025)

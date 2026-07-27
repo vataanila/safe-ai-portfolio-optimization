@@ -1,0 +1,2 @@
+model,lambda,mu_estimator,sigma_estimator,estimation_window,K,w_min,w_max,sector_cap,test_start,test_end,n_rebal,n_days,ann_return,ann_vol,sharpe,sortino,calmar,max_drawdown,avg_turnover
+ridge,0.2,ml_ridge,rolling_ledoit_wolf_252d,252,10,0.01,0.2,0.3,2023-01-01,2025-12-31,36,747,0.0827,0.1749,0.4731,0.674,0.4268,0.1938,0.78

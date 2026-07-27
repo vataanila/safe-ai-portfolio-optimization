@@ -1,0 +1,8 @@
+model,lambda,ann_return,ann_vol,sharpe,sortino,calmar,max_drawdown,avg_turnover
+baseline_markowitz,0.1,0.2155,0.1688,1.2767,1.8195,1.4006,0.1538,0.408
+baseline_markowitz,0.2,0.2338,0.1941,1.2042,1.7124,1.3841,0.1689,0.4269
+baseline_markowitz,0.5,0.234,0.2291,1.0214,1.4435,1.101,0.2126,0.4579
+baseline_markowitz,1.0,0.2093,0.2539,0.8243,1.1532,0.8156,0.2566,0.4646
+baseline_markowitz,2.0,0.2171,0.264,0.8225,1.1511,0.8053,0.2696,0.4475
+baseline_markowitz,5.0,0.2515,0.2677,0.9394,1.3157,0.9367,0.2685,0.4309
+baseline_markowitz,10.0,0.2571,0.2703,0.9512,1.3304,0.9593,0.268,0.4268

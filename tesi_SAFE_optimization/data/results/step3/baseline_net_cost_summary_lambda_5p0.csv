@@ -1,0 +1,4 @@
+model,lambda,cost_bps,ann_return,ann_vol,sharpe,sortino,calmar,max_drawdown,test_start,test_end
+baseline_markowitz,5.0,10,0.2464,0.2678,0.9202,1.2875,0.9131,0.2699,2023-01-01,2025-12-31
+baseline_markowitz,5.0,20,0.2413,0.2679,0.901,1.2593,0.8898,0.2712,2023-01-01,2025-12-31
+baseline_markowitz,5.0,30,0.2362,0.2679,0.8817,1.2312,0.8667,0.2726,2023-01-01,2025-12-31

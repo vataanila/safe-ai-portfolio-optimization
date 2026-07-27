@@ -1,0 +1,125 @@
+# Machine Learning in Portfolio Optimization under the SAFE AI Framework
+
+**An Empirical Study of Expected Return Estimation**
+
+Master's thesis in Finance — University of Pavia, Department of Economics and Management
+Author: Anila Vata · Supervisor: Prof. Paolo Giudici · A.Y. 2025–2026
+
+---
+
+## Overview
+
+This project asks two questions: can machine-learning-based expected return
+estimates beat a simple historical-mean benchmark in out-of-sample portfolio
+performance, and — if a model wins on performance — is it also the most
+*responsible* model, in the sense defined by the **SAFE AI** framework
+(Sustainable, Accurate, Fair, Explainable)?
+
+Four return-estimation methods are compared inside the identical constrained
+portfolio-optimization pipeline (same covariance estimator, constraints,
+rebalancing rule, and transaction-cost assumptions):
+
+- Historical Mean (benchmark)
+- Ridge Regression
+- Neural Network (MLP)
+- XGBoost
+
+Each model is scored on financial performance (Sharpe ratio, drawdown,
+turnover, net-of-cost returns) **and** on SAFE AI compliance (robustness,
+accuracy, fairness across GICS sectors, explainability), which are combined
+into an **Integrated Compliance Score** and related to performance through the
+**SAFE-Performance Frontier**.
+
+**Headline result:** XGBoost delivers the strongest out-of-sample
+risk-adjusted performance *and* the highest SAFE AI compliance score, though
+its edge over the historical-mean benchmark shrinks after transaction costs
+due to higher turnover.
+
+The empirical analysis uses a stock universe derived from the S&P 500
+(Bloomberg data, Jan 2010–Dec 2025), with an out-of-sample test period of
+2023–2025.
+
+## Repository structure
+
+```
+.
+├── Thesis_Anila_Vata.pdf                    # full thesis
+├── Anila_Vata_Thesis_Defense_21_July_2026.pdf  # defense slides
+└── tesi_SAFE_optimization/
+    ├── run_pipeline.py                      # runs the full pipeline end to end
+    ├── config.py                            # shared paths/constants
+    ├── 1a_load.py                           # load raw Bloomberg data
+    ├── 2a_preprocess.py                     # cleaning, universe construction
+    ├── 3a_baseline.py / 3b-d_*.py            # historical-mean baseline + viz
+    ├── 4a_features.py                       # feature engineering for ML models
+    ├── 5a/b/c_*.py                           # Ridge / XGBoost / MLP training
+    ├── 6a-f_*.py                             # portfolio construction & comparison
+    ├── 7a-f_*.py                             # SAFE AI scalar metrics (RGA, RGE, RGR, RGF)
+    ├── 8a-e_*.py                             # SAFE AI compliance vectors + Integrated Compliance Score
+    ├── 9a/b_*.py                             # SAFE-Performance Frontier
+    ├── 10a_appendix.py                       # appendix tables & figures
+    ├── build_report.py / generate_report.py  # automated report generation
+    ├── figures/                              # all generated charts, by pipeline step
+    ├── outputs/step11/                       # appendix tables & figures
+    └── data/
+        ├── raw/        # Bloomberg source files — NOT included (license)
+        ├── clean/      # cleaned/derived market data — NOT included (license)
+        └── results/    # model outputs, metrics, compliance scores (included)
+```
+
+> **Data availability.** The raw and cleaned market data (`data/raw/`,
+> `data/clean/`) are licensed from Bloomberg L.P. and are excluded from this
+> repository (see `.gitignore`). What's included is all analysis code, the
+> resulting metrics/figures, and the thesis documents themselves. To
+> reproduce the pipeline you would need your own Bloomberg data pull matching
+> the schema expected in `1a_load.py`.
+
+## Methodology pipeline
+
+1. **Data & preprocessing** — S&P 500-derived universe, prices/volume/market
+   cap/total-return index from Bloomberg, cleaned and aligned (2010–2025).
+2. **Baseline** — mean-variance optimization with historical mean returns,
+   Ledoit-Wolf / OAS covariance shrinkage, transaction costs, turnover
+   constraints.
+3. **ML return estimation** — Ridge, XGBoost, and a small MLP trained on
+   engineered features, walk-forward out-of-sample (2023–2025).
+4. **Portfolio construction** — same optimizer, constraints and rebalancing
+   rule applied to each model's return forecasts; performance compared on
+   Sharpe ratio, drawdown, turnover and net returns.
+5. **SAFE AI assessment** — robustness (RGA/RGR), accuracy (RGE), fairness
+   across GICS sectors (RGF), and explainability, aggregated into an
+   Integrated Compliance Score per model.
+6. **SAFE-Performance Frontier** — joint view of financial performance vs.
+   compliance score across models and risk-aversion levels (λ).
+
+## Selected results
+
+| | |
+|---|---|
+| ![Efficient frontier](tesi_SAFE_optimization/figures/step3/efficient_frontier.png) | ![Portfolio wealth comparison](tesi_SAFE_optimization/figures/step6/portfolio_cumulative_wealth_comparison.png) |
+| ![SAFE AI dimensions](tesi_SAFE_optimization/figures/step7/safe_dimensions_grouped_bar.png) | ![SAFE-Performance Frontier](tesi_SAFE_optimization/outputs/step11/figure_A2_safe_performance_frontier.png) |
+
+## Tech stack
+
+Python · pandas / numpy / scipy · scikit-learn · XGBoost · matplotlib ·
+[`safeaipackage`](https://pypi.org/project/safeaipackage/) (SAFE AI metrics,
+developed by Prof. Paolo Giudici's group) · python-docx / reportlab for
+automated report generation.
+
+## Reproducing the pipeline
+
+```bash
+cd tesi_SAFE_optimization
+pip install -r ../requirements.txt
+python run_pipeline.py
+```
+
+`run_pipeline.py` executes each step in order (data load → preprocessing →
+baseline → ML models → portfolios → SAFE AI metrics → SAFE-Performance
+Frontier) and logs timing for each stage. Note this requires the Bloomberg
+data described above.
+
+## Author
+
+**Anila Vata** — Master's in Finance, University of Pavia
+[anila.vata01@universitadipavia.it](mailto:anila.vata01@universitadipavia.it)

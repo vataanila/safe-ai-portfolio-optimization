@@ -1,0 +1,5 @@
+date,model,reason,n_assets,details
+2024-02-01,xgboost,constant_yhat,407,k=9
+2024-11-01,xgboost,constant_yhat,407,k=9
+2024-12-02,xgboost,constant_yhat,407,k=9
+2025-02-03,xgboost,constant_yhat,407,k=9

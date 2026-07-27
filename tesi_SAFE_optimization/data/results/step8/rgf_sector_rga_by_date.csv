@@ -1,0 +1,1189 @@
+date,model,sector,sector_RGA,sector_rank_by_RGA,n_assets_sector
+2023-01-02,ridge,Health Care,0.720599,3,54
+2023-01-02,ridge,Information Technology,0.67658,5,56
+2023-01-02,ridge,Financials,0.575539,7,65
+2023-01-02,ridge,Consumer Staples,0.659458,6,28
+2023-01-02,ridge,Industrials,0.736163,2,65
+2023-01-02,ridge,Utilities,0.715426,4,20
+2023-01-02,ridge,Materials,0.509301,9,21
+2023-01-02,ridge,Real Estate,0.441279,10,26
+2023-01-02,ridge,Consumer Discretionary,0.739814,1,41
+2023-01-02,ridge,Communication Services,0.513037,8,13
+2023-01-02,ridge,Energy,0.425453,11,18
+2023-02-01,ridge,Health Care,0.47822,9,54
+2023-02-01,ridge,Information Technology,0.369805,10,56
+2023-02-01,ridge,Financials,0.63148,4,65
+2023-02-01,ridge,Consumer Staples,0.695733,1,28
+2023-02-01,ridge,Industrials,0.354445,11,65
+2023-02-01,ridge,Utilities,0.652252,2,20
+2023-02-01,ridge,Materials,0.591542,6,21
+2023-02-01,ridge,Real Estate,0.629951,5,26
+2023-02-01,ridge,Consumer Discretionary,0.492005,8,41
+2023-02-01,ridge,Communication Services,0.646258,3,13
+2023-02-01,ridge,Energy,0.538013,7,18
+2023-03-01,ridge,Health Care,0.474778,3,54
+2023-03-01,ridge,Information Technology,0.295167,9,56
+2023-03-01,ridge,Financials,0.341551,8,65
+2023-03-01,ridge,Consumer Staples,0.431673,4,28
+2023-03-01,ridge,Industrials,0.361007,7,65
+2023-03-01,ridge,Utilities,0.242285,10,20
+2023-03-01,ridge,Materials,0.474782,2,21
+2023-03-01,ridge,Real Estate,0.204739,11,26
+2023-03-01,ridge,Consumer Discretionary,0.378066,6,41
+2023-03-01,ridge,Communication Services,0.513748,1,13
+2023-03-01,ridge,Energy,0.402363,5,18
+2023-04-03,ridge,Health Care,0.526854,4,54
+2023-04-03,ridge,Information Technology,0.432542,7,56
+2023-04-03,ridge,Financials,0.4151,8,65
+2023-04-03,ridge,Consumer Staples,0.498114,5,28
+2023-04-03,ridge,Industrials,0.551206,3,65
+2023-04-03,ridge,Utilities,0.369434,9,20
+2023-04-03,ridge,Materials,0.301901,11,21
+2023-04-03,ridge,Real Estate,0.640969,2,26
+2023-04-03,ridge,Consumer Discretionary,0.347896,10,41
+2023-04-03,ridge,Communication Services,0.464043,6,13
+2023-04-03,ridge,Energy,0.727422,1,18
+2023-05-01,ridge,Health Care,0.427695,7,54
+2023-05-01,ridge,Information Technology,0.380225,9,56
+2023-05-01,ridge,Financials,0.414103,8,65
+2023-05-01,ridge,Consumer Staples,0.510636,5,28
+2023-05-01,ridge,Industrials,0.491243,6,65
+2023-05-01,ridge,Utilities,0.658966,1,20
+2023-05-01,ridge,Materials,0.277629,10,21
+2023-05-01,ridge,Real Estate,0.244169,11,26
+2023-05-01,ridge,Consumer Discretionary,0.586323,4,41
+2023-05-01,ridge,Communication Services,0.611493,2,13
+2023-05-01,ridge,Energy,0.603626,3,18
+2023-06-01,ridge,Health Care,0.631306,3,54
+2023-06-01,ridge,Information Technology,0.476175,9,56
+2023-06-01,ridge,Financials,0.417452,10,65
+2023-06-01,ridge,Consumer Staples,0.569691,7,28
+2023-06-01,ridge,Industrials,0.631135,4,65
+2023-06-01,ridge,Utilities,0.738293,1,20
+2023-06-01,ridge,Materials,0.274795,11,21
+2023-06-01,ridge,Real Estate,0.623367,6,26
+2023-06-01,ridge,Consumer Discretionary,0.623594,5,41
+2023-06-01,ridge,Communication Services,0.665339,2,13
+2023-06-01,ridge,Energy,0.542943,8,18
+2023-07-03,ridge,Health Care,0.589206,3,54
+2023-07-03,ridge,Information Technology,0.518115,7,56
+2023-07-03,ridge,Financials,0.557005,4,65
+2023-07-03,ridge,Consumer Staples,0.555916,5,28
+2023-07-03,ridge,Industrials,0.510364,8,65
+2023-07-03,ridge,Utilities,0.683959,1,20
+2023-07-03,ridge,Materials,0.637243,2,21
+2023-07-03,ridge,Real Estate,0.482408,10,26
+2023-07-03,ridge,Consumer Discretionary,0.521301,6,41
+2023-07-03,ridge,Communication Services,0.49262,9,13
+2023-07-03,ridge,Energy,0.449672,11,18
+2023-08-01,ridge,Health Care,0.37643,10,54
+2023-08-01,ridge,Information Technology,0.589817,3,56
+2023-08-01,ridge,Financials,0.674688,1,65
+2023-08-01,ridge,Consumer Staples,0.42534,9,28
+2023-08-01,ridge,Industrials,0.517807,5,65
+2023-08-01,ridge,Utilities,0.502664,7,20
+2023-08-01,ridge,Materials,0.446368,8,21
+2023-08-01,ridge,Real Estate,0.529566,4,26
+2023-08-01,ridge,Consumer Discretionary,0.507883,6,41
+2023-08-01,ridge,Communication Services,0.258283,11,13
+2023-08-01,ridge,Energy,0.662612,2,18
+2023-09-01,ridge,Health Care,0.473048,7,54
+2023-09-01,ridge,Information Technology,0.619134,1,56
+2023-09-01,ridge,Financials,0.404845,9,65
+2023-09-01,ridge,Consumer Staples,0.410876,8,28
+2023-09-01,ridge,Industrials,0.510207,6,65
+2023-09-01,ridge,Utilities,0.59274,2,20
+2023-09-01,ridge,Materials,0.53927,3,21
+2023-09-01,ridge,Real Estate,0.324322,10,26
+2023-09-01,ridge,Consumer Discretionary,0.512559,5,41
+2023-09-01,ridge,Communication Services,0.516315,4,13
+2023-09-01,ridge,Energy,0.143189,11,18
+2023-10-02,ridge,Health Care,0.282621,11,54
+2023-10-02,ridge,Information Technology,0.29131,10,56
+2023-10-02,ridge,Financials,0.450076,4,65
+2023-10-02,ridge,Consumer Staples,0.474442,3,28
+2023-10-02,ridge,Industrials,0.449017,5,65
+2023-10-02,ridge,Utilities,0.366962,7,20
+2023-10-02,ridge,Materials,0.374426,6,21
+2023-10-02,ridge,Real Estate,0.321734,9,26
+2023-10-02,ridge,Consumer Discretionary,0.347928,8,41
+2023-10-02,ridge,Communication Services,0.524781,2,13
+2023-10-02,ridge,Energy,0.892743,1,18
+2023-11-01,ridge,Health Care,0.71128,3,54
+2023-11-01,ridge,Information Technology,0.590283,5,56
+2023-11-01,ridge,Financials,0.731111,2,65
+2023-11-01,ridge,Consumer Staples,0.534109,6,28
+2023-11-01,ridge,Industrials,0.532576,7,65
+2023-11-01,ridge,Utilities,0.829159,1,20
+2023-11-01,ridge,Materials,0.459761,8,21
+2023-11-01,ridge,Real Estate,0.440485,10,26
+2023-11-01,ridge,Consumer Discretionary,0.639283,4,41
+2023-11-01,ridge,Communication Services,0.444424,9,13
+2023-11-01,ridge,Energy,0.345,11,18
+2023-12-01,ridge,Health Care,0.669824,1,54
+2023-12-01,ridge,Information Technology,0.643311,2,56
+2023-12-01,ridge,Financials,0.365652,11,65
+2023-12-01,ridge,Consumer Staples,0.441113,6,28
+2023-12-01,ridge,Industrials,0.458503,5,65
+2023-12-01,ridge,Utilities,0.43567,7,20
+2023-12-01,ridge,Materials,0.367068,10,21
+2023-12-01,ridge,Real Estate,0.586155,3,26
+2023-12-01,ridge,Consumer Discretionary,0.40658,8,41
+2023-12-01,ridge,Communication Services,0.468381,4,13
+2023-12-01,ridge,Energy,0.397575,9,18
+2024-01-01,ridge,Health Care,0.2879,11,54
+2024-01-01,ridge,Information Technology,0.425204,7,56
+2024-01-01,ridge,Financials,0.555559,3,65
+2024-01-01,ridge,Consumer Staples,0.465156,6,28
+2024-01-01,ridge,Industrials,0.500803,5,65
+2024-01-01,ridge,Utilities,0.607405,1,20
+2024-01-01,ridge,Materials,0.360527,9,21
+2024-01-01,ridge,Real Estate,0.559283,2,26
+2024-01-01,ridge,Consumer Discretionary,0.540946,4,41
+2024-01-01,ridge,Communication Services,0.362037,8,13
+2024-01-01,ridge,Energy,0.311795,10,18
+2024-02-01,ridge,Health Care,0.468287,6,54
+2024-02-01,ridge,Information Technology,0.48314,5,56
+2024-02-01,ridge,Financials,0.429035,8,65
+2024-02-01,ridge,Consumer Staples,0.589126,4,28
+2024-02-01,ridge,Industrials,0.450987,7,65
+2024-02-01,ridge,Utilities,0.631617,2,20
+2024-02-01,ridge,Materials,0.398481,9,21
+2024-02-01,ridge,Real Estate,0.116977,11,26
+2024-02-01,ridge,Consumer Discretionary,0.592666,3,41
+2024-02-01,ridge,Communication Services,0.356861,10,13
+2024-02-01,ridge,Energy,0.871857,1,18
+2024-03-01,ridge,Health Care,0.582512,5,54
+2024-03-01,ridge,Information Technology,0.513093,8,56
+2024-03-01,ridge,Financials,0.670317,2,65
+2024-03-01,ridge,Consumer Staples,0.638532,4,28
+2024-03-01,ridge,Industrials,0.498969,9,65
+2024-03-01,ridge,Utilities,0.410796,11,20
+2024-03-01,ridge,Materials,0.732439,1,21
+2024-03-01,ridge,Real Estate,0.641049,3,26
+2024-03-01,ridge,Consumer Discretionary,0.51776,7,41
+2024-03-01,ridge,Communication Services,0.494837,10,13
+2024-03-01,ridge,Energy,0.556228,6,18
+2024-04-01,ridge,Health Care,0.458581,7,54
+2024-04-01,ridge,Information Technology,0.562288,3,56
+2024-04-01,ridge,Financials,0.363238,8,65
+2024-04-01,ridge,Consumer Staples,0.353025,9,28
+2024-04-01,ridge,Industrials,0.48476,6,65
+2024-04-01,ridge,Utilities,0.315911,11,20
+2024-04-01,ridge,Materials,0.551807,4,21
+2024-04-01,ridge,Real Estate,0.489621,5,26
+2024-04-01,ridge,Consumer Discretionary,0.346697,10,41
+2024-04-01,ridge,Communication Services,0.62529,2,13
+2024-04-01,ridge,Energy,0.762077,1,18
+2024-05-01,ridge,Health Care,0.451493,6,54
+2024-05-01,ridge,Information Technology,0.384938,9,56
+2024-05-01,ridge,Financials,0.421473,8,65
+2024-05-01,ridge,Consumer Staples,0.277192,11,28
+2024-05-01,ridge,Industrials,0.528553,4,65
+2024-05-01,ridge,Utilities,0.362811,10,20
+2024-05-01,ridge,Materials,0.562899,1,21
+2024-05-01,ridge,Real Estate,0.501895,5,26
+2024-05-01,ridge,Consumer Discretionary,0.542899,3,41
+2024-05-01,ridge,Communication Services,0.449367,7,13
+2024-05-01,ridge,Energy,0.556674,2,18
+2024-06-03,ridge,Health Care,0.315547,9,54
+2024-06-03,ridge,Information Technology,0.362976,6,56
+2024-06-03,ridge,Financials,0.472525,4,65
+2024-06-03,ridge,Consumer Staples,0.269239,11,28
+2024-06-03,ridge,Industrials,0.508551,2,65
+2024-06-03,ridge,Utilities,0.643848,1,20
+2024-06-03,ridge,Materials,0.318199,8,21
+2024-06-03,ridge,Real Estate,0.496218,3,26
+2024-06-03,ridge,Consumer Discretionary,0.390504,5,41
+2024-06-03,ridge,Communication Services,0.269918,10,13
+2024-06-03,ridge,Energy,0.356484,7,18
+2024-07-01,ridge,Health Care,0.596289,3,54
+2024-07-01,ridge,Information Technology,0.687652,1,56
+2024-07-01,ridge,Financials,0.452374,8,65
+2024-07-01,ridge,Consumer Staples,0.558034,6,28
+2024-07-01,ridge,Industrials,0.643604,2,65
+2024-07-01,ridge,Utilities,0.411744,9,20
+2024-07-01,ridge,Materials,0.399489,10,21
+2024-07-01,ridge,Real Estate,0.564405,5,26
+2024-07-01,ridge,Consumer Discretionary,0.494087,7,41
+2024-07-01,ridge,Communication Services,0.572778,4,13
+2024-07-01,ridge,Energy,0.18203,11,18
+2024-08-01,ridge,Health Care,0.469191,6,54
+2024-08-01,ridge,Information Technology,0.462854,8,56
+2024-08-01,ridge,Financials,0.52483,4,65
+2024-08-01,ridge,Consumer Staples,0.278198,11,28
+2024-08-01,ridge,Industrials,0.492434,5,65
+2024-08-01,ridge,Utilities,0.705517,2,20
+2024-08-01,ridge,Materials,0.292908,10,21
+2024-08-01,ridge,Real Estate,0.710021,1,26
+2024-08-01,ridge,Consumer Discretionary,0.464077,7,41
+2024-08-01,ridge,Communication Services,0.702147,3,13
+2024-08-01,ridge,Energy,0.372179,9,18
+2024-09-02,ridge,Health Care,0.564222,5,54
+2024-09-02,ridge,Information Technology,0.484012,9,56
+2024-09-02,ridge,Financials,0.484929,8,65
+2024-09-02,ridge,Consumer Staples,0.568943,4,28
+2024-09-02,ridge,Industrials,0.5357,6,65
+2024-09-02,ridge,Utilities,0.576856,3,20
+2024-09-02,ridge,Materials,0.590142,1,21
+2024-09-02,ridge,Real Estate,0.359075,10,26
+2024-09-02,ridge,Consumer Discretionary,0.578633,2,41
+2024-09-02,ridge,Communication Services,0.115064,11,13
+2024-09-02,ridge,Energy,0.503377,7,18
+2024-10-01,ridge,Health Care,0.611478,2,54
+2024-10-01,ridge,Information Technology,0.403176,9,56
+2024-10-01,ridge,Financials,0.472109,7,65
+2024-10-01,ridge,Consumer Staples,0.382403,10,28
+2024-10-01,ridge,Industrials,0.515147,5,65
+2024-10-01,ridge,Utilities,0.521912,4,20
+2024-10-01,ridge,Materials,0.625417,1,21
+2024-10-01,ridge,Real Estate,0.438765,8,26
+2024-10-01,ridge,Consumer Discretionary,0.504453,6,41
+2024-10-01,ridge,Communication Services,0.591216,3,13
+2024-10-01,ridge,Energy,0.370903,11,18
+2024-11-01,ridge,Health Care,0.576519,3,54
+2024-11-01,ridge,Information Technology,0.409303,8,56
+2024-11-01,ridge,Financials,0.327402,11,65
+2024-11-01,ridge,Consumer Staples,0.487897,4,28
+2024-11-01,ridge,Industrials,0.357994,10,65
+2024-11-01,ridge,Utilities,0.654199,1,20
+2024-11-01,ridge,Materials,0.41461,7,21
+2024-11-01,ridge,Real Estate,0.441681,5,26
+2024-11-01,ridge,Consumer Discretionary,0.397293,9,41
+2024-11-01,ridge,Communication Services,0.625776,2,13
+2024-11-01,ridge,Energy,0.439625,6,18
+2024-12-02,ridge,Health Care,0.476724,9,54
+2024-12-02,ridge,Information Technology,0.518236,5,56
+2024-12-02,ridge,Financials,0.505736,6,65
+2024-12-02,ridge,Consumer Staples,0.552694,3,28
+2024-12-02,ridge,Industrials,0.526789,4,65
+2024-12-02,ridge,Utilities,0.586581,2,20
+2024-12-02,ridge,Materials,0.698149,1,21
+2024-12-02,ridge,Real Estate,0.505067,7,26
+2024-12-02,ridge,Consumer Discretionary,0.323944,10,41
+2024-12-02,ridge,Communication Services,0.153785,11,13
+2024-12-02,ridge,Energy,0.487007,8,18
+2025-01-01,ridge,Health Care,0.527973,4,54
+2025-01-01,ridge,Information Technology,0.618046,3,56
+2025-01-01,ridge,Financials,0.385963,9,65
+2025-01-01,ridge,Consumer Staples,0.325134,10,28
+2025-01-01,ridge,Industrials,0.479403,7,65
+2025-01-01,ridge,Utilities,0.64337,2,20
+2025-01-01,ridge,Materials,0.496161,6,21
+2025-01-01,ridge,Real Estate,0.398332,8,26
+2025-01-01,ridge,Consumer Discretionary,0.50541,5,41
+2025-01-01,ridge,Communication Services,0.27238,11,13
+2025-01-01,ridge,Energy,0.654796,1,18
+2025-02-03,ridge,Health Care,0.386863,10,54
+2025-02-03,ridge,Information Technology,0.49068,6,56
+2025-02-03,ridge,Financials,0.401868,8,65
+2025-02-03,ridge,Consumer Staples,0.473952,7,28
+2025-02-03,ridge,Industrials,0.34339,11,65
+2025-02-03,ridge,Utilities,0.608264,3,20
+2025-02-03,ridge,Materials,0.493664,5,21
+2025-02-03,ridge,Real Estate,0.388052,9,26
+2025-02-03,ridge,Consumer Discretionary,0.656558,1,41
+2025-02-03,ridge,Communication Services,0.651781,2,13
+2025-02-03,ridge,Energy,0.53563,4,18
+2025-03-03,ridge,Health Care,0.440812,8,54
+2025-03-03,ridge,Information Technology,0.461063,5,56
+2025-03-03,ridge,Financials,0.381112,11,65
+2025-03-03,ridge,Consumer Staples,0.693996,1,28
+2025-03-03,ridge,Industrials,0.459216,6,65
+2025-03-03,ridge,Utilities,0.385391,10,20
+2025-03-03,ridge,Materials,0.645661,2,21
+2025-03-03,ridge,Real Estate,0.408219,9,26
+2025-03-03,ridge,Consumer Discretionary,0.445249,7,41
+2025-03-03,ridge,Communication Services,0.574825,3,13
+2025-03-03,ridge,Energy,0.473593,4,18
+2025-04-01,ridge,Health Care,0.449221,6,54
+2025-04-01,ridge,Information Technology,0.515308,3,56
+2025-04-01,ridge,Financials,0.337412,9,65
+2025-04-01,ridge,Consumer Staples,0.286153,11,28
+2025-04-01,ridge,Industrials,0.46095,5,65
+2025-04-01,ridge,Utilities,0.541809,1,20
+2025-04-01,ridge,Materials,0.510087,4,21
+2025-04-01,ridge,Real Estate,0.294038,10,26
+2025-04-01,ridge,Consumer Discretionary,0.41067,7,41
+2025-04-01,ridge,Communication Services,0.539515,2,13
+2025-04-01,ridge,Energy,0.342622,8,18
+2025-05-01,ridge,Health Care,0.627196,4,54
+2025-05-01,ridge,Information Technology,0.624109,5,56
+2025-05-01,ridge,Financials,0.553588,6,65
+2025-05-01,ridge,Consumer Staples,0.544678,7,28
+2025-05-01,ridge,Industrials,0.513914,8,65
+2025-05-01,ridge,Utilities,0.343683,10,20
+2025-05-01,ridge,Materials,0.643285,1,21
+2025-05-01,ridge,Real Estate,0.281513,11,26
+2025-05-01,ridge,Consumer Discretionary,0.639145,2,41
+2025-05-01,ridge,Communication Services,0.428148,9,13
+2025-05-01,ridge,Energy,0.63743,3,18
+2025-06-02,ridge,Health Care,0.651143,2,54
+2025-06-02,ridge,Information Technology,0.53922,4,56
+2025-06-02,ridge,Financials,0.405317,9,65
+2025-06-02,ridge,Consumer Staples,0.560818,3,28
+2025-06-02,ridge,Industrials,0.443724,7,65
+2025-06-02,ridge,Utilities,0.36897,11,20
+2025-06-02,ridge,Materials,0.676779,1,21
+2025-06-02,ridge,Real Estate,0.532801,5,26
+2025-06-02,ridge,Consumer Discretionary,0.503099,6,41
+2025-06-02,ridge,Communication Services,0.440395,8,13
+2025-06-02,ridge,Energy,0.391287,10,18
+2025-07-01,ridge,Health Care,0.480482,3,54
+2025-07-01,ridge,Information Technology,0.374399,7,56
+2025-07-01,ridge,Financials,0.333875,10,65
+2025-07-01,ridge,Consumer Staples,0.529075,1,28
+2025-07-01,ridge,Industrials,0.33983,8,65
+2025-07-01,ridge,Utilities,0.382111,6,20
+2025-07-01,ridge,Materials,0.338255,9,21
+2025-07-01,ridge,Real Estate,0.431374,4,26
+2025-07-01,ridge,Consumer Discretionary,0.518414,2,41
+2025-07-01,ridge,Communication Services,0.317763,11,13
+2025-07-01,ridge,Energy,0.423301,5,18
+2025-08-01,ridge,Health Care,0.558753,6,54
+2025-08-01,ridge,Information Technology,0.601687,3,56
+2025-08-01,ridge,Financials,0.518181,9,65
+2025-08-01,ridge,Consumer Staples,0.512609,10,28
+2025-08-01,ridge,Industrials,0.631031,2,65
+2025-08-01,ridge,Utilities,0.592428,4,20
+2025-08-01,ridge,Materials,0.233636,11,21
+2025-08-01,ridge,Real Estate,0.572149,5,26
+2025-08-01,ridge,Consumer Discretionary,0.55619,7,41
+2025-08-01,ridge,Communication Services,0.656763,1,13
+2025-08-01,ridge,Energy,0.547464,8,18
+2025-09-01,ridge,Health Care,0.43993,7,54
+2025-09-01,ridge,Information Technology,0.421917,8,56
+2025-09-01,ridge,Financials,0.407905,9,65
+2025-09-01,ridge,Consumer Staples,0.376605,11,28
+2025-09-01,ridge,Industrials,0.485754,4,65
+2025-09-01,ridge,Utilities,0.477955,5,20
+2025-09-01,ridge,Materials,0.464943,6,21
+2025-09-01,ridge,Real Estate,0.400157,10,26
+2025-09-01,ridge,Consumer Discretionary,0.538,3,41
+2025-09-01,ridge,Communication Services,0.64682,2,13
+2025-09-01,ridge,Energy,0.667885,1,18
+2025-10-01,ridge,Health Care,0.56448,3,54
+2025-10-01,ridge,Information Technology,0.375282,10,56
+2025-10-01,ridge,Financials,0.47784,7,65
+2025-10-01,ridge,Consumer Staples,0.655715,1,28
+2025-10-01,ridge,Industrials,0.53983,5,65
+2025-10-01,ridge,Utilities,0.525573,6,20
+2025-10-01,ridge,Materials,0.546749,4,21
+2025-10-01,ridge,Real Estate,0.19491,11,26
+2025-10-01,ridge,Consumer Discretionary,0.386396,9,41
+2025-10-01,ridge,Communication Services,0.415312,8,13
+2025-10-01,ridge,Energy,0.584603,2,18
+2025-11-03,ridge,Health Care,0.464227,8,54
+2025-11-03,ridge,Information Technology,0.460227,9,56
+2025-11-03,ridge,Financials,0.568556,3,65
+2025-11-03,ridge,Consumer Staples,0.573446,2,28
+2025-11-03,ridge,Industrials,0.487287,7,65
+2025-11-03,ridge,Utilities,0.532995,4,20
+2025-11-03,ridge,Materials,0.429726,10,21
+2025-11-03,ridge,Real Estate,0.489977,6,26
+2025-11-03,ridge,Consumer Discretionary,0.517251,5,41
+2025-11-03,ridge,Communication Services,0.295553,11,13
+2025-11-03,ridge,Energy,0.628236,1,18
+2025-12-01,ridge,Health Care,0.525912,5,54
+2025-12-01,ridge,Information Technology,0.525174,6,56
+2025-12-01,ridge,Financials,0.624332,3,65
+2025-12-01,ridge,Consumer Staples,0.478836,11,28
+2025-12-01,ridge,Industrials,0.508093,9,65
+2025-12-01,ridge,Utilities,0.677115,2,20
+2025-12-01,ridge,Materials,0.524961,7,21
+2025-12-01,ridge,Real Estate,0.517785,8,26
+2025-12-01,ridge,Consumer Discretionary,0.491651,10,41
+2025-12-01,ridge,Communication Services,0.817121,1,13
+2025-12-01,ridge,Energy,0.597864,4,18
+2023-01-02,xgboost,Health Care,0.76769,1,54
+2023-01-02,xgboost,Information Technology,0.642289,6,56
+2023-01-02,xgboost,Financials,0.596621,9,65
+2023-01-02,xgboost,Consumer Staples,0.677621,5,28
+2023-01-02,xgboost,Industrials,0.639882,7,65
+2023-01-02,xgboost,Utilities,0.707924,4,20
+2023-01-02,xgboost,Materials,0.620486,8,21
+2023-01-02,xgboost,Real Estate,0.489189,10,26
+2023-01-02,xgboost,Consumer Discretionary,0.719194,3,41
+2023-01-02,xgboost,Communication Services,0.751704,2,13
+2023-01-02,xgboost,Energy,0.345056,11,18
+2023-02-01,xgboost,Health Care,0.493025,9,54
+2023-02-01,xgboost,Information Technology,0.408132,10,56
+2023-02-01,xgboost,Financials,0.601034,2,65
+2023-02-01,xgboost,Consumer Staples,0.591334,3,28
+2023-02-01,xgboost,Industrials,0.385061,11,65
+2023-02-01,xgboost,Utilities,0.57514,6,20
+2023-02-01,xgboost,Materials,0.580931,5,21
+2023-02-01,xgboost,Real Estate,0.612029,1,26
+2023-02-01,xgboost,Consumer Discretionary,0.505174,8,41
+2023-02-01,xgboost,Communication Services,0.527495,7,13
+2023-02-01,xgboost,Energy,0.581221,4,18
+2023-03-01,xgboost,Health Care,0.443811,5,54
+2023-03-01,xgboost,Information Technology,0.298045,10,56
+2023-03-01,xgboost,Financials,0.499393,1,65
+2023-03-01,xgboost,Consumer Staples,0.3624,8,28
+2023-03-01,xgboost,Industrials,0.390922,6,65
+2023-03-01,xgboost,Utilities,0.383911,7,20
+2023-03-01,xgboost,Materials,0.496331,2,21
+2023-03-01,xgboost,Real Estate,0.236983,11,26
+2023-03-01,xgboost,Consumer Discretionary,0.473017,3,41
+2023-03-01,xgboost,Communication Services,0.33227,9,13
+2023-03-01,xgboost,Energy,0.459843,4,18
+2023-04-03,xgboost,Health Care,0.470511,5,54
+2023-04-03,xgboost,Information Technology,0.45254,6,56
+2023-04-03,xgboost,Financials,0.375084,9,65
+2023-04-03,xgboost,Consumer Staples,0.436737,7,28
+2023-04-03,xgboost,Industrials,0.598396,2,65
+2023-04-03,xgboost,Utilities,0.274422,11,20
+2023-04-03,xgboost,Materials,0.420617,8,21
+2023-04-03,xgboost,Real Estate,0.557985,4,26
+2023-04-03,xgboost,Consumer Discretionary,0.367104,10,41
+2023-04-03,xgboost,Communication Services,0.647484,1,13
+2023-04-03,xgboost,Energy,0.573306,3,18
+2023-05-01,xgboost,Health Care,0.433978,7,54
+2023-05-01,xgboost,Information Technology,0.407535,9,56
+2023-05-01,xgboost,Financials,0.409735,8,65
+2023-05-01,xgboost,Consumer Staples,0.576595,5,28
+2023-05-01,xgboost,Industrials,0.517221,6,65
+2023-05-01,xgboost,Utilities,0.694245,1,20
+2023-05-01,xgboost,Materials,0.283225,10,21
+2023-05-01,xgboost,Real Estate,0.263038,11,26
+2023-05-01,xgboost,Consumer Discretionary,0.645471,2,41
+2023-05-01,xgboost,Communication Services,0.600161,3,13
+2023-05-01,xgboost,Energy,0.592447,4,18
+2023-06-01,xgboost,Health Care,0.526727,7,54
+2023-06-01,xgboost,Information Technology,0.460369,9,56
+2023-06-01,xgboost,Financials,0.458903,10,65
+2023-06-01,xgboost,Consumer Staples,0.59347,4,28
+2023-06-01,xgboost,Industrials,0.617902,3,65
+2023-06-01,xgboost,Utilities,0.719454,1,20
+2023-06-01,xgboost,Materials,0.507015,8,21
+2023-06-01,xgboost,Real Estate,0.593318,5,26
+2023-06-01,xgboost,Consumer Discretionary,0.627697,2,41
+2023-06-01,xgboost,Communication Services,0.427083,11,13
+2023-06-01,xgboost,Energy,0.589803,6,18
+2023-07-03,xgboost,Health Care,0.59435,3,54
+2023-07-03,xgboost,Information Technology,0.470959,10,56
+2023-07-03,xgboost,Financials,0.545003,6,65
+2023-07-03,xgboost,Consumer Staples,0.605571,2,28
+2023-07-03,xgboost,Industrials,0.524097,8,65
+2023-07-03,xgboost,Utilities,0.588516,5,20
+2023-07-03,xgboost,Materials,0.660002,1,21
+2023-07-03,xgboost,Real Estate,0.592626,4,26
+2023-07-03,xgboost,Consumer Discretionary,0.46758,11,41
+2023-07-03,xgboost,Communication Services,0.538799,7,13
+2023-07-03,xgboost,Energy,0.505385,9,18
+2023-08-01,xgboost,Health Care,0.494271,6,54
+2023-08-01,xgboost,Information Technology,0.655951,1,56
+2023-08-01,xgboost,Financials,0.535095,5,65
+2023-08-01,xgboost,Consumer Staples,0.647827,2,28
+2023-08-01,xgboost,Industrials,0.556151,3,65
+2023-08-01,xgboost,Utilities,0.547901,4,20
+2023-08-01,xgboost,Materials,0.433294,9,21
+2023-08-01,xgboost,Real Estate,0.389705,11,26
+2023-08-01,xgboost,Consumer Discretionary,0.470152,8,41
+2023-08-01,xgboost,Communication Services,0.490666,7,13
+2023-08-01,xgboost,Energy,0.42491,10,18
+2023-09-01,xgboost,Health Care,0.442215,7,54
+2023-09-01,xgboost,Information Technology,0.627484,2,56
+2023-09-01,xgboost,Financials,0.474574,4,65
+2023-09-01,xgboost,Consumer Staples,0.430111,8,28
+2023-09-01,xgboost,Industrials,0.465234,6,65
+2023-09-01,xgboost,Utilities,0.419391,9,20
+2023-09-01,xgboost,Materials,0.560155,3,21
+2023-09-01,xgboost,Real Estate,0.318416,10,26
+2023-09-01,xgboost,Consumer Discretionary,0.470466,5,41
+2023-09-01,xgboost,Communication Services,0.672884,1,13
+2023-09-01,xgboost,Energy,0.261238,11,18
+2023-10-02,xgboost,Health Care,0.186615,11,54
+2023-10-02,xgboost,Information Technology,0.393828,9,56
+2023-10-02,xgboost,Financials,0.420216,7,65
+2023-10-02,xgboost,Consumer Staples,0.528275,3,28
+2023-10-02,xgboost,Industrials,0.502937,4,65
+2023-10-02,xgboost,Utilities,0.498535,5,20
+2023-10-02,xgboost,Materials,0.418313,8,21
+2023-10-02,xgboost,Real Estate,0.38134,10,26
+2023-10-02,xgboost,Consumer Discretionary,0.464599,6,41
+2023-10-02,xgboost,Communication Services,0.602679,2,13
+2023-10-02,xgboost,Energy,0.772091,1,18
+2023-11-01,xgboost,Health Care,0.682317,3,54
+2023-11-01,xgboost,Information Technology,0.50905,7,56
+2023-11-01,xgboost,Financials,0.68876,2,65
+2023-11-01,xgboost,Consumer Staples,0.580172,5,28
+2023-11-01,xgboost,Industrials,0.526753,6,65
+2023-11-01,xgboost,Utilities,0.724894,1,20
+2023-11-01,xgboost,Materials,0.481756,8,21
+2023-11-01,xgboost,Real Estate,0.382205,9,26
+2023-11-01,xgboost,Consumer Discretionary,0.61477,4,41
+2023-11-01,xgboost,Communication Services,0.312535,11,13
+2023-11-01,xgboost,Energy,0.3608,10,18
+2023-12-01,xgboost,Health Care,0.641128,1,54
+2023-12-01,xgboost,Information Technology,0.591362,4,56
+2023-12-01,xgboost,Financials,0.403341,10,65
+2023-12-01,xgboost,Consumer Staples,0.44386,8,28
+2023-12-01,xgboost,Industrials,0.503532,5,65
+2023-12-01,xgboost,Utilities,0.447851,7,20
+2023-12-01,xgboost,Materials,0.471264,6,21
+2023-12-01,xgboost,Real Estate,0.615432,3,26
+2023-12-01,xgboost,Consumer Discretionary,0.427932,9,41
+2023-12-01,xgboost,Communication Services,0.638543,2,13
+2023-12-01,xgboost,Energy,0.3605,11,18
+2024-01-01,xgboost,Health Care,0.305144,9,54
+2024-01-01,xgboost,Information Technology,0.548486,2,56
+2024-01-01,xgboost,Financials,0.493899,4,65
+2024-01-01,xgboost,Consumer Staples,0.371886,8,28
+2024-01-01,xgboost,Industrials,0.491982,5,65
+2024-01-01,xgboost,Utilities,0.651926,1,20
+2024-01-01,xgboost,Materials,0.273407,10,21
+2024-01-01,xgboost,Real Estate,0.413454,7,26
+2024-01-01,xgboost,Consumer Discretionary,0.514799,3,41
+2024-01-01,xgboost,Communication Services,0.470473,6,13
+2024-01-01,xgboost,Energy,0.188256,11,18
+2024-02-01,xgboost,Health Care,0.508619,3,54
+2024-02-01,xgboost,Information Technology,0.473697,4,56
+2024-02-01,xgboost,Financials,0.457814,7,65
+2024-02-01,xgboost,Consumer Staples,0.473047,5,28
+2024-02-01,xgboost,Industrials,0.439303,8,65
+2024-02-01,xgboost,Utilities,0.42557,10,20
+2024-02-01,xgboost,Materials,0.465289,6,21
+2024-02-01,xgboost,Real Estate,0.194939,11,26
+2024-02-01,xgboost,Consumer Discretionary,0.526898,2,41
+2024-02-01,xgboost,Communication Services,0.432487,9,13
+2024-02-01,xgboost,Energy,0.754113,1,18
+2024-03-01,xgboost,Health Care,0.515848,7,54
+2024-03-01,xgboost,Information Technology,0.472254,8,56
+2024-03-01,xgboost,Financials,0.547224,5,65
+2024-03-01,xgboost,Consumer Staples,0.586497,3,28
+2024-03-01,xgboost,Industrials,0.467753,10,65
+2024-03-01,xgboost,Utilities,0.64561,1,20
+2024-03-01,xgboost,Materials,0.469958,9,21
+2024-03-01,xgboost,Real Estate,0.575326,4,26
+2024-03-01,xgboost,Consumer Discretionary,0.525623,6,41
+2024-03-01,xgboost,Communication Services,0.589107,2,13
+2024-03-01,xgboost,Energy,0.46205,11,18
+2024-04-01,xgboost,Health Care,0.531115,4,54
+2024-04-01,xgboost,Information Technology,0.556058,3,56
+2024-04-01,xgboost,Financials,0.313995,11,65
+2024-04-01,xgboost,Consumer Staples,0.451672,6,28
+2024-04-01,xgboost,Industrials,0.408977,8,65
+2024-04-01,xgboost,Utilities,0.362779,10,20
+2024-04-01,xgboost,Materials,0.380204,9,21
+2024-04-01,xgboost,Real Estate,0.699285,2,26
+2024-04-01,xgboost,Consumer Discretionary,0.422486,7,41
+2024-04-01,xgboost,Communication Services,0.507307,5,13
+2024-04-01,xgboost,Energy,0.831788,1,18
+2024-05-01,xgboost,Health Care,0.52401,4,54
+2024-05-01,xgboost,Information Technology,0.402817,11,56
+2024-05-01,xgboost,Financials,0.481266,9,65
+2024-05-01,xgboost,Consumer Staples,0.414493,10,28
+2024-05-01,xgboost,Industrials,0.496502,8,65
+2024-05-01,xgboost,Utilities,0.503767,6,20
+2024-05-01,xgboost,Materials,0.621055,1,21
+2024-05-01,xgboost,Real Estate,0.531806,3,26
+2024-05-01,xgboost,Consumer Discretionary,0.515192,5,41
+2024-05-01,xgboost,Communication Services,0.497962,7,13
+2024-05-01,xgboost,Energy,0.57863,2,18
+2024-06-03,xgboost,Health Care,0.330316,9,54
+2024-06-03,xgboost,Information Technology,0.463878,5,56
+2024-06-03,xgboost,Financials,0.491093,3,65
+2024-06-03,xgboost,Consumer Staples,0.300292,11,28
+2024-06-03,xgboost,Industrials,0.474337,4,65
+2024-06-03,xgboost,Utilities,0.630907,1,20
+2024-06-03,xgboost,Materials,0.378643,8,21
+2024-06-03,xgboost,Real Estate,0.580518,2,26
+2024-06-03,xgboost,Consumer Discretionary,0.329536,10,41
+2024-06-03,xgboost,Communication Services,0.426181,7,13
+2024-06-03,xgboost,Energy,0.438575,6,18
+2024-07-01,xgboost,Health Care,0.597077,4,54
+2024-07-01,xgboost,Information Technology,0.524623,6,56
+2024-07-01,xgboost,Financials,0.516738,8,65
+2024-07-01,xgboost,Consumer Staples,0.608486,2,28
+2024-07-01,xgboost,Industrials,0.577754,5,65
+2024-07-01,xgboost,Utilities,0.465895,9,20
+2024-07-01,xgboost,Materials,0.523042,7,21
+2024-07-01,xgboost,Real Estate,0.398974,10,26
+2024-07-01,xgboost,Consumer Discretionary,0.635184,1,41
+2024-07-01,xgboost,Communication Services,0.600589,3,13
+2024-07-01,xgboost,Energy,0.260216,11,18
+2024-08-01,xgboost,Health Care,0.477649,8,54
+2024-08-01,xgboost,Information Technology,0.549503,4,56
+2024-08-01,xgboost,Financials,0.529545,5,65
+2024-08-01,xgboost,Consumer Staples,0.371917,11,28
+2024-08-01,xgboost,Industrials,0.519169,6,65
+2024-08-01,xgboost,Utilities,0.605742,3,20
+2024-08-01,xgboost,Materials,0.423074,9,21
+2024-08-01,xgboost,Real Estate,0.672965,2,26
+2024-08-01,xgboost,Consumer Discretionary,0.412069,10,41
+2024-08-01,xgboost,Communication Services,0.800211,1,13
+2024-08-01,xgboost,Energy,0.495575,7,18
+2024-09-02,xgboost,Health Care,0.643952,2,54
+2024-09-02,xgboost,Information Technology,0.578051,6,56
+2024-09-02,xgboost,Financials,0.549623,9,65
+2024-09-02,xgboost,Consumer Staples,0.614841,3,28
+2024-09-02,xgboost,Industrials,0.550818,8,65
+2024-09-02,xgboost,Utilities,0.602291,5,20
+2024-09-02,xgboost,Materials,0.465142,10,21
+2024-09-02,xgboost,Real Estate,0.417674,11,26
+2024-09-02,xgboost,Consumer Discretionary,0.644813,1,41
+2024-09-02,xgboost,Communication Services,0.613061,4,13
+2024-09-02,xgboost,Energy,0.571314,7,18
+2024-10-01,xgboost,Health Care,0.580108,3,54
+2024-10-01,xgboost,Information Technology,0.513592,4,56
+2024-10-01,xgboost,Financials,0.463838,6,65
+2024-10-01,xgboost,Consumer Staples,0.376885,9,28
+2024-10-01,xgboost,Industrials,0.428691,7,65
+2024-10-01,xgboost,Utilities,0.364903,10,20
+2024-10-01,xgboost,Materials,0.663401,1,21
+2024-10-01,xgboost,Real Estate,0.414701,8,26
+2024-10-01,xgboost,Consumer Discretionary,0.488419,5,41
+2024-10-01,xgboost,Communication Services,0.651544,2,13
+2024-10-01,xgboost,Energy,0.299468,11,18
+2024-11-01,xgboost,Health Care,0.472344,5,54
+2024-11-01,xgboost,Information Technology,0.48924,4,56
+2024-11-01,xgboost,Financials,0.338538,11,65
+2024-11-01,xgboost,Consumer Staples,0.526434,3,28
+2024-11-01,xgboost,Industrials,0.371966,9,65
+2024-11-01,xgboost,Utilities,0.704135,1,20
+2024-11-01,xgboost,Materials,0.384404,8,21
+2024-11-01,xgboost,Real Estate,0.574989,2,26
+2024-11-01,xgboost,Consumer Discretionary,0.405813,6,41
+2024-11-01,xgboost,Communication Services,0.400388,7,13
+2024-11-01,xgboost,Energy,0.354354,10,18
+2024-12-02,xgboost,Health Care,0.480206,9,54
+2024-12-02,xgboost,Information Technology,0.629741,3,56
+2024-12-02,xgboost,Financials,0.643423,1,65
+2024-12-02,xgboost,Consumer Staples,0.491983,8,28
+2024-12-02,xgboost,Industrials,0.532817,7,65
+2024-12-02,xgboost,Utilities,0.561952,6,20
+2024-12-02,xgboost,Materials,0.635109,2,21
+2024-12-02,xgboost,Real Estate,0.619541,4,26
+2024-12-02,xgboost,Consumer Discretionary,0.372741,10,41
+2024-12-02,xgboost,Communication Services,0.331966,11,13
+2024-12-02,xgboost,Energy,0.602815,5,18
+2025-01-01,xgboost,Health Care,0.563945,4,54
+2025-01-01,xgboost,Information Technology,0.535598,5,56
+2025-01-01,xgboost,Financials,0.479412,8,65
+2025-01-01,xgboost,Consumer Staples,0.336983,10,28
+2025-01-01,xgboost,Industrials,0.490578,6,65
+2025-01-01,xgboost,Utilities,0.566475,3,20
+2025-01-01,xgboost,Materials,0.485066,7,21
+2025-01-01,xgboost,Real Estate,0.426698,9,26
+2025-01-01,xgboost,Consumer Discretionary,0.573457,2,41
+2025-01-01,xgboost,Communication Services,0.24892,11,13
+2025-01-01,xgboost,Energy,0.621028,1,18
+2025-02-03,xgboost,Health Care,0.470144,10,54
+2025-02-03,xgboost,Information Technology,0.527526,7,56
+2025-02-03,xgboost,Financials,0.530829,6,65
+2025-02-03,xgboost,Consumer Staples,0.473056,9,28
+2025-02-03,xgboost,Industrials,0.408947,11,65
+2025-02-03,xgboost,Utilities,0.584723,5,20
+2025-02-03,xgboost,Materials,0.488302,8,21
+2025-02-03,xgboost,Real Estate,0.586276,4,26
+2025-02-03,xgboost,Consumer Discretionary,0.738093,1,41
+2025-02-03,xgboost,Communication Services,0.734631,2,13
+2025-02-03,xgboost,Energy,0.621894,3,18
+2025-03-03,xgboost,Health Care,0.433343,8,54
+2025-03-03,xgboost,Information Technology,0.534972,4,56
+2025-03-03,xgboost,Financials,0.403889,10,65
+2025-03-03,xgboost,Consumer Staples,0.513733,7,28
+2025-03-03,xgboost,Industrials,0.568538,3,65
+2025-03-03,xgboost,Utilities,0.635643,1,20
+2025-03-03,xgboost,Materials,0.613194,2,21
+2025-03-03,xgboost,Real Estate,0.527817,5,26
+2025-03-03,xgboost,Consumer Discretionary,0.405259,9,41
+2025-03-03,xgboost,Communication Services,0.514799,6,13
+2025-03-03,xgboost,Energy,0.349372,11,18
+2025-04-01,xgboost,Health Care,0.445721,5,54
+2025-04-01,xgboost,Information Technology,0.556473,2,56
+2025-04-01,xgboost,Financials,0.351355,9,65
+2025-04-01,xgboost,Consumer Staples,0.357786,8,28
+2025-04-01,xgboost,Industrials,0.495224,4,65
+2025-04-01,xgboost,Utilities,0.3797,7,20
+2025-04-01,xgboost,Materials,0.580185,1,21
+2025-04-01,xgboost,Real Estate,0.313682,11,26
+2025-04-01,xgboost,Consumer Discretionary,0.515838,3,41
+2025-04-01,xgboost,Communication Services,0.402729,6,13
+2025-04-01,xgboost,Energy,0.341082,10,18
+2025-05-01,xgboost,Health Care,0.530375,6,54
+2025-05-01,xgboost,Information Technology,0.589382,3,56
+2025-05-01,xgboost,Financials,0.52808,8,65
+2025-05-01,xgboost,Consumer Staples,0.427916,10,28
+2025-05-01,xgboost,Industrials,0.567702,5,65
+2025-05-01,xgboost,Utilities,0.530078,7,20
+2025-05-01,xgboost,Materials,0.680389,1,21
+2025-05-01,xgboost,Real Estate,0.423409,11,26
+2025-05-01,xgboost,Consumer Discretionary,0.652911,2,41
+2025-05-01,xgboost,Communication Services,0.451175,9,13
+2025-05-01,xgboost,Energy,0.583184,4,18
+2025-06-02,xgboost,Health Care,0.619288,2,54
+2025-06-02,xgboost,Information Technology,0.461816,8,56
+2025-06-02,xgboost,Financials,0.351974,10,65
+2025-06-02,xgboost,Consumer Staples,0.323815,11,28
+2025-06-02,xgboost,Industrials,0.518932,6,65
+2025-06-02,xgboost,Utilities,0.508847,7,20
+2025-06-02,xgboost,Materials,0.578166,4,21
+2025-06-02,xgboost,Real Estate,0.454867,9,26
+2025-06-02,xgboost,Consumer Discretionary,0.606673,3,41
+2025-06-02,xgboost,Communication Services,0.619463,1,13
+2025-06-02,xgboost,Energy,0.55359,5,18
+2025-07-01,xgboost,Health Care,0.446858,7,54
+2025-07-01,xgboost,Information Technology,0.61331,3,56
+2025-07-01,xgboost,Financials,0.351517,10,65
+2025-07-01,xgboost,Consumer Staples,0.298037,11,28
+2025-07-01,xgboost,Industrials,0.385711,9,65
+2025-07-01,xgboost,Utilities,0.496681,6,20
+2025-07-01,xgboost,Materials,0.532542,5,21
+2025-07-01,xgboost,Real Estate,0.435255,8,26
+2025-07-01,xgboost,Consumer Discretionary,0.53675,4,41
+2025-07-01,xgboost,Communication Services,0.822581,1,13
+2025-07-01,xgboost,Energy,0.684145,2,18
+2025-08-01,xgboost,Health Care,0.450192,10,54
+2025-08-01,xgboost,Information Technology,0.619237,5,56
+2025-08-01,xgboost,Financials,0.534298,9,65
+2025-08-01,xgboost,Consumer Staples,0.573228,8,28
+2025-08-01,xgboost,Industrials,0.625585,4,65
+2025-08-01,xgboost,Utilities,0.592906,7,20
+2025-08-01,xgboost,Materials,0.135869,11,21
+2025-08-01,xgboost,Real Estate,0.675709,2,26
+2025-08-01,xgboost,Consumer Discretionary,0.64571,3,41
+2025-08-01,xgboost,Communication Services,0.769271,1,13
+2025-08-01,xgboost,Energy,0.605388,6,18
+2025-09-01,xgboost,Health Care,0.509422,6,54
+2025-09-01,xgboost,Information Technology,0.49041,8,56
+2025-09-01,xgboost,Financials,0.520217,5,65
+2025-09-01,xgboost,Consumer Staples,0.378547,11,28
+2025-09-01,xgboost,Industrials,0.46753,10,65
+2025-09-01,xgboost,Utilities,0.587947,1,20
+2025-09-01,xgboost,Materials,0.487036,9,21
+2025-09-01,xgboost,Real Estate,0.505868,7,26
+2025-09-01,xgboost,Consumer Discretionary,0.546432,2,41
+2025-09-01,xgboost,Communication Services,0.527382,4,13
+2025-09-01,xgboost,Energy,0.540991,3,18
+2025-10-01,xgboost,Health Care,0.513775,1,54
+2025-10-01,xgboost,Information Technology,0.374689,9,56
+2025-10-01,xgboost,Financials,0.422344,3,65
+2025-10-01,xgboost,Consumer Staples,0.465602,2,28
+2025-10-01,xgboost,Industrials,0.39073,8,65
+2025-10-01,xgboost,Utilities,0.401891,6,20
+2025-10-01,xgboost,Materials,0.408115,5,21
+2025-10-01,xgboost,Real Estate,0.24901,11,26
+2025-10-01,xgboost,Consumer Discretionary,0.392791,7,41
+2025-10-01,xgboost,Communication Services,0.360625,10,13
+2025-10-01,xgboost,Energy,0.414641,4,18
+2025-11-03,xgboost,Health Care,0.394363,10,54
+2025-11-03,xgboost,Information Technology,0.564592,4,56
+2025-11-03,xgboost,Financials,0.618727,2,65
+2025-11-03,xgboost,Consumer Staples,0.578941,3,28
+2025-11-03,xgboost,Industrials,0.509008,5,65
+2025-11-03,xgboost,Utilities,0.447152,8,20
+2025-11-03,xgboost,Materials,0.371278,11,21
+2025-11-03,xgboost,Real Estate,0.501121,6,26
+2025-11-03,xgboost,Consumer Discretionary,0.416653,9,41
+2025-11-03,xgboost,Communication Services,0.500296,7,13
+2025-11-03,xgboost,Energy,0.797156,1,18
+2025-12-01,xgboost,Health Care,0.56456,3,54
+2025-12-01,xgboost,Information Technology,0.532569,5,56
+2025-12-01,xgboost,Financials,0.662483,1,65
+2025-12-01,xgboost,Consumer Staples,0.420543,8,28
+2025-12-01,xgboost,Industrials,0.476419,6,65
+2025-12-01,xgboost,Utilities,0.332415,11,20
+2025-12-01,xgboost,Materials,0.35134,10,21
+2025-12-01,xgboost,Real Estate,0.469664,7,26
+2025-12-01,xgboost,Consumer Discretionary,0.357072,9,41
+2025-12-01,xgboost,Communication Services,0.650336,2,13
+2025-12-01,xgboost,Energy,0.551147,4,18
+2023-01-02,mlp,Health Care,0.545912,5,54
+2023-01-02,mlp,Information Technology,0.495056,8,56
+2023-01-02,mlp,Financials,0.521481,7,65
+2023-01-02,mlp,Consumer Staples,0.390449,10,28
+2023-01-02,mlp,Industrials,0.606819,4,65
+2023-01-02,mlp,Utilities,0.529381,6,20
+2023-01-02,mlp,Materials,0.636052,2,21
+2023-01-02,mlp,Real Estate,0.611782,3,26
+2023-01-02,mlp,Consumer Discretionary,0.693058,1,41
+2023-01-02,mlp,Communication Services,0.468889,9,13
+2023-01-02,mlp,Energy,0.249501,11,18
+2023-02-01,mlp,Health Care,0.469871,8,54
+2023-02-01,mlp,Information Technology,0.440803,9,56
+2023-02-01,mlp,Financials,0.704492,1,65
+2023-02-01,mlp,Consumer Staples,0.60873,2,28
+2023-02-01,mlp,Industrials,0.490747,7,65
+2023-02-01,mlp,Utilities,0.52425,6,20
+2023-02-01,mlp,Materials,0.551408,5,21
+2023-02-01,mlp,Real Estate,0.350773,10,26
+2023-02-01,mlp,Consumer Discretionary,0.576866,3,41
+2023-02-01,mlp,Communication Services,0.277934,11,13
+2023-02-01,mlp,Energy,0.575182,4,18
+2023-03-01,mlp,Health Care,0.512827,5,54
+2023-03-01,mlp,Information Technology,0.28805,11,56
+2023-03-01,mlp,Financials,0.474339,8,65
+2023-03-01,mlp,Consumer Staples,0.506766,6,28
+2023-03-01,mlp,Industrials,0.426425,9,65
+2023-03-01,mlp,Utilities,0.568399,3,20
+2023-03-01,mlp,Materials,0.503167,7,21
+2023-03-01,mlp,Real Estate,0.56369,4,26
+2023-03-01,mlp,Consumer Discretionary,0.375259,10,41
+2023-03-01,mlp,Communication Services,0.650352,1,13
+2023-03-01,mlp,Energy,0.614888,2,18
+2023-04-03,mlp,Health Care,0.378212,10,54
+2023-04-03,mlp,Information Technology,0.414537,9,56
+2023-04-03,mlp,Financials,0.538942,3,65
+2023-04-03,mlp,Consumer Staples,0.448829,7,28
+2023-04-03,mlp,Industrials,0.561209,1,65
+2023-04-03,mlp,Utilities,0.416245,8,20
+2023-04-03,mlp,Materials,0.45395,6,21
+2023-04-03,mlp,Real Estate,0.52368,4,26
+2023-04-03,mlp,Consumer Discretionary,0.306803,11,41
+2023-04-03,mlp,Communication Services,0.558794,2,13
+2023-04-03,mlp,Energy,0.49833,5,18
+2023-05-01,mlp,Health Care,0.364324,10,54
+2023-05-01,mlp,Information Technology,0.526165,6,56
+2023-05-01,mlp,Financials,0.428235,9,65
+2023-05-01,mlp,Consumer Staples,0.585025,2,28
+2023-05-01,mlp,Industrials,0.538687,5,65
+2023-05-01,mlp,Utilities,0.634561,1,20
+2023-05-01,mlp,Materials,0.502142,7,21
+2023-05-01,mlp,Real Estate,0.345389,11,26
+2023-05-01,mlp,Consumer Discretionary,0.544717,4,41
+2023-05-01,mlp,Communication Services,0.574645,3,13
+2023-05-01,mlp,Energy,0.484306,8,18
+2023-06-01,mlp,Health Care,0.422057,10,54
+2023-06-01,mlp,Information Technology,0.481462,6,56
+2023-06-01,mlp,Financials,0.546871,4,65
+2023-06-01,mlp,Consumer Staples,0.426011,9,28
+2023-06-01,mlp,Industrials,0.613566,2,65
+2023-06-01,mlp,Utilities,0.415622,11,20
+2023-06-01,mlp,Materials,0.46478,7,21
+2023-06-01,mlp,Real Estate,0.435551,8,26
+2023-06-01,mlp,Consumer Discretionary,0.573079,3,41
+2023-06-01,mlp,Communication Services,0.545445,5,13
+2023-06-01,mlp,Energy,0.615682,1,18
+2023-07-03,mlp,Health Care,0.603911,2,54
+2023-07-03,mlp,Information Technology,0.508938,9,56
+2023-07-03,mlp,Financials,0.530156,8,65
+2023-07-03,mlp,Consumer Staples,0.572503,5,28
+2023-07-03,mlp,Industrials,0.600483,3,65
+2023-07-03,mlp,Utilities,0.546193,6,20
+2023-07-03,mlp,Materials,0.701089,1,21
+2023-07-03,mlp,Real Estate,0.482939,10,26
+2023-07-03,mlp,Consumer Discretionary,0.533029,7,41
+2023-07-03,mlp,Communication Services,0.467777,11,13
+2023-07-03,mlp,Energy,0.580938,4,18
+2023-08-01,mlp,Health Care,0.440401,8,54
+2023-08-01,mlp,Information Technology,0.571142,4,56
+2023-08-01,mlp,Financials,0.577997,3,65
+2023-08-01,mlp,Consumer Staples,0.520798,7,28
+2023-08-01,mlp,Industrials,0.550111,5,65
+2023-08-01,mlp,Utilities,0.371919,10,20
+2023-08-01,mlp,Materials,0.525583,6,21
+2023-08-01,mlp,Real Estate,0.642357,2,26
+2023-08-01,mlp,Consumer Discretionary,0.409479,9,41
+2023-08-01,mlp,Communication Services,0.246242,11,13
+2023-08-01,mlp,Energy,0.702632,1,18
+2023-09-01,mlp,Health Care,0.412813,10,54
+2023-09-01,mlp,Information Technology,0.559166,5,56
+2023-09-01,mlp,Financials,0.414903,9,65
+2023-09-01,mlp,Consumer Staples,0.721103,1,28
+2023-09-01,mlp,Industrials,0.560589,4,65
+2023-09-01,mlp,Utilities,0.484824,6,20
+2023-09-01,mlp,Materials,0.411268,11,21
+2023-09-01,mlp,Real Estate,0.458268,7,26
+2023-09-01,mlp,Consumer Discretionary,0.437167,8,41
+2023-09-01,mlp,Communication Services,0.58863,3,13
+2023-09-01,mlp,Energy,0.642718,2,18
+2023-10-02,mlp,Health Care,0.345213,10,54
+2023-10-02,mlp,Information Technology,0.405359,9,56
+2023-10-02,mlp,Financials,0.571626,3,65
+2023-10-02,mlp,Consumer Staples,0.411416,8,28
+2023-10-02,mlp,Industrials,0.459651,6,65
+2023-10-02,mlp,Utilities,0.653202,1,20
+2023-10-02,mlp,Materials,0.441622,7,21
+2023-10-02,mlp,Real Estate,0.631014,2,26
+2023-10-02,mlp,Consumer Discretionary,0.341821,11,41
+2023-10-02,mlp,Communication Services,0.544552,4,13
+2023-10-02,mlp,Energy,0.54273,5,18
+2023-11-01,mlp,Health Care,0.613271,5,54
+2023-11-01,mlp,Information Technology,0.645681,3,56
+2023-11-01,mlp,Financials,0.605471,6,65
+2023-11-01,mlp,Consumer Staples,0.479915,9,28
+2023-11-01,mlp,Industrials,0.513948,8,65
+2023-11-01,mlp,Utilities,0.825437,1,20
+2023-11-01,mlp,Materials,0.585966,7,21
+2023-11-01,mlp,Real Estate,0.66028,2,26
+2023-11-01,mlp,Consumer Discretionary,0.62783,4,41
+2023-11-01,mlp,Communication Services,0.247852,11,13
+2023-11-01,mlp,Energy,0.475965,10,18
+2023-12-01,mlp,Health Care,0.468161,7,54
+2023-12-01,mlp,Information Technology,0.575243,5,56
+2023-12-01,mlp,Financials,0.348888,11,65
+2023-12-01,mlp,Consumer Staples,0.648452,2,28
+2023-12-01,mlp,Industrials,0.463771,8,65
+2023-12-01,mlp,Utilities,0.694398,1,20
+2023-12-01,mlp,Materials,0.535979,6,21
+2023-12-01,mlp,Real Estate,0.597538,4,26
+2023-12-01,mlp,Consumer Discretionary,0.420277,9,41
+2023-12-01,mlp,Communication Services,0.389018,10,13
+2023-12-01,mlp,Energy,0.603391,3,18
+2024-01-01,mlp,Health Care,0.340873,10,54
+2024-01-01,mlp,Information Technology,0.467646,5,56
+2024-01-01,mlp,Financials,0.402164,9,65
+2024-01-01,mlp,Consumer Staples,0.569163,2,28
+2024-01-01,mlp,Industrials,0.45552,7,65
+2024-01-01,mlp,Utilities,0.454205,8,20
+2024-01-01,mlp,Materials,0.228907,11,21
+2024-01-01,mlp,Real Estate,0.560016,3,26
+2024-01-01,mlp,Consumer Discretionary,0.464645,6,41
+2024-01-01,mlp,Communication Services,0.605453,1,13
+2024-01-01,mlp,Energy,0.498832,4,18
+2024-02-01,mlp,Health Care,0.454271,10,54
+2024-02-01,mlp,Information Technology,0.461779,9,56
+2024-02-01,mlp,Financials,0.508795,6,65
+2024-02-01,mlp,Consumer Staples,0.524815,4,28
+2024-02-01,mlp,Industrials,0.462679,8,65
+2024-02-01,mlp,Utilities,0.709099,1,20
+2024-02-01,mlp,Materials,0.545902,3,21
+2024-02-01,mlp,Real Estate,0.517398,5,26
+2024-02-01,mlp,Consumer Discretionary,0.467498,7,41
+2024-02-01,mlp,Communication Services,0.391812,11,13
+2024-02-01,mlp,Energy,0.690599,2,18
+2024-03-01,mlp,Health Care,0.450053,8,54
+2024-03-01,mlp,Information Technology,0.483014,6,56
+2024-03-01,mlp,Financials,0.516876,5,65
+2024-03-01,mlp,Consumer Staples,0.543898,3,28
+2024-03-01,mlp,Industrials,0.425177,10,65
+2024-03-01,mlp,Utilities,0.527161,4,20
+2024-03-01,mlp,Materials,0.456147,7,21
+2024-03-01,mlp,Real Estate,0.617272,1,26
+2024-03-01,mlp,Consumer Discretionary,0.59669,2,41
+2024-03-01,mlp,Communication Services,0.446536,9,13
+2024-03-01,mlp,Energy,0.286317,11,18
+2024-04-01,mlp,Health Care,0.552812,6,54
+2024-04-01,mlp,Information Technology,0.61549,3,56
+2024-04-01,mlp,Financials,0.602174,4,65
+2024-04-01,mlp,Consumer Staples,0.394784,9,28
+2024-04-01,mlp,Industrials,0.557355,5,65
+2024-04-01,mlp,Utilities,0.538373,7,20
+2024-04-01,mlp,Materials,0.697049,2,21
+2024-04-01,mlp,Real Estate,0.536483,8,26
+2024-04-01,mlp,Consumer Discretionary,0.362716,10,41
+2024-04-01,mlp,Communication Services,0.361522,11,13
+2024-04-01,mlp,Energy,0.725642,1,18
+2024-05-01,mlp,Health Care,0.50955,6,54
+2024-05-01,mlp,Information Technology,0.6097,1,56
+2024-05-01,mlp,Financials,0.531352,3,65
+2024-05-01,mlp,Consumer Staples,0.465299,7,28
+2024-05-01,mlp,Industrials,0.581928,2,65
+2024-05-01,mlp,Utilities,0.354249,9,20
+2024-05-01,mlp,Materials,0.459131,8,21
+2024-05-01,mlp,Real Estate,0.512607,4,26
+2024-05-01,mlp,Consumer Discretionary,0.512293,5,41
+2024-05-01,mlp,Communication Services,0.31903,11,13
+2024-05-01,mlp,Energy,0.325767,10,18
+2024-06-03,mlp,Health Care,0.405996,8,54
+2024-06-03,mlp,Information Technology,0.496452,5,56
+2024-06-03,mlp,Financials,0.439287,7,65
+2024-06-03,mlp,Consumer Staples,0.389988,9,28
+2024-06-03,mlp,Industrials,0.544804,4,65
+2024-06-03,mlp,Utilities,0.70738,1,20
+2024-06-03,mlp,Materials,0.450942,6,21
+2024-06-03,mlp,Real Estate,0.592792,3,26
+2024-06-03,mlp,Consumer Discretionary,0.246915,11,41
+2024-06-03,mlp,Communication Services,0.659138,2,13
+2024-06-03,mlp,Energy,0.297908,10,18
+2024-07-01,mlp,Health Care,0.523527,6,54
+2024-07-01,mlp,Information Technology,0.650415,1,56
+2024-07-01,mlp,Financials,0.521816,8,65
+2024-07-01,mlp,Consumer Staples,0.464751,9,28
+2024-07-01,mlp,Industrials,0.557645,5,65
+2024-07-01,mlp,Utilities,0.233369,11,20
+2024-07-01,mlp,Materials,0.565178,4,21
+2024-07-01,mlp,Real Estate,0.632927,2,26
+2024-07-01,mlp,Consumer Discretionary,0.522288,7,41
+2024-07-01,mlp,Communication Services,0.623289,3,13
+2024-07-01,mlp,Energy,0.317063,10,18
+2024-08-01,mlp,Health Care,0.449432,8,54
+2024-08-01,mlp,Information Technology,0.465103,7,56
+2024-08-01,mlp,Financials,0.483789,6,65
+2024-08-01,mlp,Consumer Staples,0.379804,10,28
+2024-08-01,mlp,Industrials,0.546441,3,65
+2024-08-01,mlp,Utilities,0.516422,4,20
+2024-08-01,mlp,Materials,0.228316,11,21
+2024-08-01,mlp,Real Estate,0.574484,2,26
+2024-08-01,mlp,Consumer Discretionary,0.380322,9,41
+2024-08-01,mlp,Communication Services,0.727191,1,13
+2024-08-01,mlp,Energy,0.512173,5,18
+2024-09-02,mlp,Health Care,0.491657,3,54
+2024-09-02,mlp,Information Technology,0.495807,2,56
+2024-09-02,mlp,Financials,0.463995,6,65
+2024-09-02,mlp,Consumer Staples,0.474395,5,28
+2024-09-02,mlp,Industrials,0.442624,7,65
+2024-09-02,mlp,Utilities,0.421656,8,20
+2024-09-02,mlp,Materials,0.352486,10,21
+2024-09-02,mlp,Real Estate,0.399182,9,26
+2024-09-02,mlp,Consumer Discretionary,0.549711,1,41
+2024-09-02,mlp,Communication Services,0.301122,11,13
+2024-09-02,mlp,Energy,0.488198,4,18
+2024-10-01,mlp,Health Care,0.511113,4,54
+2024-10-01,mlp,Information Technology,0.528753,3,56
+2024-10-01,mlp,Financials,0.342306,11,65
+2024-10-01,mlp,Consumer Staples,0.447832,8,28
+2024-10-01,mlp,Industrials,0.441764,9,65
+2024-10-01,mlp,Utilities,0.491519,6,20
+2024-10-01,mlp,Materials,0.570991,2,21
+2024-10-01,mlp,Real Estate,0.451721,7,26
+2024-10-01,mlp,Consumer Discretionary,0.506618,5,41
+2024-10-01,mlp,Communication Services,0.393098,10,13
+2024-10-01,mlp,Energy,0.64147,1,18
+2024-11-01,mlp,Health Care,0.558421,2,54
+2024-11-01,mlp,Information Technology,0.538159,4,56
+2024-11-01,mlp,Financials,0.397102,11,65
+2024-11-01,mlp,Consumer Staples,0.542421,3,28
+2024-11-01,mlp,Industrials,0.441045,8,65
+2024-11-01,mlp,Utilities,0.40354,10,20
+2024-11-01,mlp,Materials,0.448937,7,21
+2024-11-01,mlp,Real Estate,0.514998,6,26
+2024-11-01,mlp,Consumer Discretionary,0.424449,9,41
+2024-11-01,mlp,Communication Services,0.516121,5,13
+2024-11-01,mlp,Energy,0.561326,1,18
+2024-12-02,mlp,Health Care,0.441661,9,54
+2024-12-02,mlp,Information Technology,0.467867,6,56
+2024-12-02,mlp,Financials,0.519942,5,65
+2024-12-02,mlp,Consumer Staples,0.63951,3,28
+2024-12-02,mlp,Industrials,0.430245,10,65
+2024-12-02,mlp,Utilities,0.537586,4,20
+2024-12-02,mlp,Materials,0.450307,8,21
+2024-12-02,mlp,Real Estate,0.65779,2,26
+2024-12-02,mlp,Consumer Discretionary,0.363254,11,41
+2024-12-02,mlp,Communication Services,0.450561,7,13
+2024-12-02,mlp,Energy,0.782789,1,18
+2025-01-01,mlp,Health Care,0.549232,5,54
+2025-01-01,mlp,Information Technology,0.693106,2,56
+2025-01-01,mlp,Financials,0.44498,9,65
+2025-01-01,mlp,Consumer Staples,0.511603,6,28
+2025-01-01,mlp,Industrials,0.479076,7,65
+2025-01-01,mlp,Utilities,0.616337,4,20
+2025-01-01,mlp,Materials,0.626269,3,21
+2025-01-01,mlp,Real Estate,0.439153,10,26
+2025-01-01,mlp,Consumer Discretionary,0.415533,11,41
+2025-01-01,mlp,Communication Services,0.71998,1,13
+2025-01-01,mlp,Energy,0.461792,8,18
+2025-02-03,mlp,Health Care,0.423736,8,54
+2025-02-03,mlp,Information Technology,0.557657,5,56
+2025-02-03,mlp,Financials,0.518336,6,65
+2025-02-03,mlp,Consumer Staples,0.727352,1,28
+2025-02-03,mlp,Industrials,0.572513,4,65
+2025-02-03,mlp,Utilities,0.622723,3,20
+2025-02-03,mlp,Materials,0.418604,9,21
+2025-02-03,mlp,Real Estate,0.404141,10,26
+2025-02-03,mlp,Consumer Discretionary,0.475766,7,41
+2025-02-03,mlp,Communication Services,0.337862,11,13
+2025-02-03,mlp,Energy,0.687747,2,18
+2025-03-03,mlp,Health Care,0.386912,9,54
+2025-03-03,mlp,Information Technology,0.475433,7,56
+2025-03-03,mlp,Financials,0.330263,10,65
+2025-03-03,mlp,Consumer Staples,0.679724,2,28
+2025-03-03,mlp,Industrials,0.596846,3,65
+2025-03-03,mlp,Utilities,0.531552,5,20
+2025-03-03,mlp,Materials,0.403518,8,21
+2025-03-03,mlp,Real Estate,0.50169,6,26
+2025-03-03,mlp,Consumer Discretionary,0.578005,4,41
+2025-03-03,mlp,Communication Services,0.322248,11,13
+2025-03-03,mlp,Energy,0.703443,1,18
+2025-04-01,mlp,Health Care,0.53869,2,54
+2025-04-01,mlp,Information Technology,0.377144,9,56
+2025-04-01,mlp,Financials,0.492384,3,65
+2025-04-01,mlp,Consumer Staples,0.392062,8,28
+2025-04-01,mlp,Industrials,0.441538,7,65
+2025-04-01,mlp,Utilities,0.285751,10,20
+2025-04-01,mlp,Materials,0.455775,5,21
+2025-04-01,mlp,Real Estate,0.446631,6,26
+2025-04-01,mlp,Consumer Discretionary,0.485822,4,41
+2025-04-01,mlp,Communication Services,0.80215,1,13
+2025-04-01,mlp,Energy,0.284981,11,18
+2025-05-01,mlp,Health Care,0.571514,6,54
+2025-05-01,mlp,Information Technology,0.669803,1,56
+2025-05-01,mlp,Financials,0.571339,7,65
+2025-05-01,mlp,Consumer Staples,0.586185,3,28
+2025-05-01,mlp,Industrials,0.57835,4,65
+2025-05-01,mlp,Utilities,0.437172,9,20
+2025-05-01,mlp,Materials,0.317708,11,21
+2025-05-01,mlp,Real Estate,0.466983,8,26
+2025-05-01,mlp,Consumer Discretionary,0.628332,2,41
+2025-05-01,mlp,Communication Services,0.352952,10,13
+2025-05-01,mlp,Energy,0.578063,5,18
+2025-06-02,mlp,Health Care,0.522974,7,54
+2025-06-02,mlp,Information Technology,0.543364,6,56
+2025-06-02,mlp,Financials,0.512347,8,65
+2025-06-02,mlp,Consumer Staples,0.633944,2,28
+2025-06-02,mlp,Industrials,0.499399,9,65
+2025-06-02,mlp,Utilities,0.64323,1,20
+2025-06-02,mlp,Materials,0.563864,5,21
+2025-06-02,mlp,Real Estate,0.62191,3,26
+2025-06-02,mlp,Consumer Discretionary,0.396435,10,41
+2025-06-02,mlp,Communication Services,0.38813,11,13
+2025-06-02,mlp,Energy,0.609892,4,18
+2025-07-01,mlp,Health Care,0.457354,7,54
+2025-07-01,mlp,Information Technology,0.459965,6,56
+2025-07-01,mlp,Financials,0.308768,11,65
+2025-07-01,mlp,Consumer Staples,0.409758,8,28
+2025-07-01,mlp,Industrials,0.366869,10,65
+2025-07-01,mlp,Utilities,0.60019,1,20
+2025-07-01,mlp,Materials,0.390358,9,21
+2025-07-01,mlp,Real Estate,0.502381,5,26
+2025-07-01,mlp,Consumer Discretionary,0.560004,3,41
+2025-07-01,mlp,Communication Services,0.581064,2,13
+2025-07-01,mlp,Energy,0.556742,4,18
+2025-08-01,mlp,Health Care,0.532491,6,54
+2025-08-01,mlp,Information Technology,0.591046,2,56
+2025-08-01,mlp,Financials,0.490627,8,65
+2025-08-01,mlp,Consumer Staples,0.542631,5,28
+2025-08-01,mlp,Industrials,0.593909,1,65
+2025-08-01,mlp,Utilities,0.378172,9,20
+2025-08-01,mlp,Materials,0.344439,10,21
+2025-08-01,mlp,Real Estate,0.5075,7,26
+2025-08-01,mlp,Consumer Discretionary,0.577358,3,41
+2025-08-01,mlp,Communication Services,0.561604,4,13
+2025-08-01,mlp,Energy,0.312943,11,18
+2025-09-01,mlp,Health Care,0.492243,6,54
+2025-09-01,mlp,Information Technology,0.475923,9,56
+2025-09-01,mlp,Financials,0.564681,4,65
+2025-09-01,mlp,Consumer Staples,0.326742,10,28
+2025-09-01,mlp,Industrials,0.480411,8,65
+2025-09-01,mlp,Utilities,0.290128,11,20
+2025-09-01,mlp,Materials,0.610227,1,21
+2025-09-01,mlp,Real Estate,0.491665,7,26
+2025-09-01,mlp,Consumer Discretionary,0.570529,3,41
+2025-09-01,mlp,Communication Services,0.559359,5,13
+2025-09-01,mlp,Energy,0.592922,2,18
+2025-10-01,mlp,Health Care,0.526966,4,54
+2025-10-01,mlp,Information Technology,0.407555,10,56
+2025-10-01,mlp,Financials,0.537591,2,65
+2025-10-01,mlp,Consumer Staples,0.572445,1,28
+2025-10-01,mlp,Industrials,0.533081,3,65
+2025-10-01,mlp,Utilities,0.4542,8,20
+2025-10-01,mlp,Materials,0.474128,5,21
+2025-10-01,mlp,Real Estate,0.467534,6,26
+2025-10-01,mlp,Consumer Discretionary,0.455979,7,41
+2025-10-01,mlp,Communication Services,0.365833,11,13
+2025-10-01,mlp,Energy,0.423501,9,18
+2025-11-03,mlp,Health Care,0.421945,11,54
+2025-11-03,mlp,Information Technology,0.573365,5,56
+2025-11-03,mlp,Financials,0.576515,4,65
+2025-11-03,mlp,Consumer Staples,0.662555,1,28
+2025-11-03,mlp,Industrials,0.474504,9,65
+2025-11-03,mlp,Utilities,0.579695,3,20
+2025-11-03,mlp,Materials,0.610379,2,21
+2025-11-03,mlp,Real Estate,0.538857,6,26
+2025-11-03,mlp,Consumer Discretionary,0.496738,8,41
+2025-11-03,mlp,Communication Services,0.452668,10,13
+2025-11-03,mlp,Energy,0.499001,7,18
+2025-12-01,mlp,Health Care,0.487434,5,54
+2025-12-01,mlp,Information Technology,0.473475,7,56
+2025-12-01,mlp,Financials,0.484093,6,65
+2025-12-01,mlp,Consumer Staples,0.360838,11,28
+2025-12-01,mlp,Industrials,0.446771,8,65
+2025-12-01,mlp,Utilities,0.621121,3,20
+2025-12-01,mlp,Materials,0.443157,9,21
+2025-12-01,mlp,Real Estate,0.660362,1,26
+2025-12-01,mlp,Consumer Discretionary,0.514886,4,41
+2025-12-01,mlp,Communication Services,0.424036,10,13
+2025-12-01,mlp,Energy,0.631683,2,18

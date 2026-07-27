@@ -1,0 +1,20 @@
+# Bloomberg-licensed raw and derived market data (cannot be redistributed)
+tesi_SAFE_optimization/data/raw/
+tesi_SAFE_optimization/data/clean/
+
+# Large derived panels reconstructable from the (excluded) raw data
+tesi_SAFE_optimization/data/results/step4/ml_panel.csv
+tesi_SAFE_optimization/data/results/step7/train_panel.csv
+tesi_SAFE_optimization/data/results/step7/test_panel.csv
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

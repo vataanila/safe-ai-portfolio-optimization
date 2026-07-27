@@ -1,0 +1,5 @@
+model,mu_estimator,sigma_estimator,estimation_window,K,lambda,w_min,w_max,sector_cap,test_start,test_end,n_rebal,n_days,ann_return,ann_vol,sharpe,sortino,calmar,max_drawdown,avg_turnover,rank_sharpe,rank_sortino,rank_calmar,rank_max_drawdown,rank_avg_turnover,overall_rank_score,overall_rank
+baseline_markowitz,trailing_252d_mean_winsorized,rolling_ledoit_wolf_252d,252,10,1.0,0.01,0.2,0.3,2023-01-01,2025-12-31,36,747,20.93%,25.39%,0.8243,1.1532,0.8156,25.66%,46.46%,2,2,2,4,1,2.2000,2
+ridge,ml_ridge,rolling_ledoit_wolf_252d,252,10,1.0,0.01,0.2,0.3,2023-01-01,2025-12-31,36,747,13.39%,21.76%,0.6151,0.8759,0.5927,22.58%,79.86%,3,3,3,1,3,2.6000,3
+xgboost,ml_xgboost,rolling_ledoit_wolf_252d,252,10,1.0,0.01,0.2,0.3,2023-01-01,2025-12-31,36,747,21.60%,23.98%,0.9007,1.3578,0.9225,23.41%,78.15%,1,1,1,2,2,1.4000,1
+mlp,ml_mlp,rolling_ledoit_wolf_252d,252,10,1.0,0.01,0.2,0.3,2023-01-01,2025-12-31,36,747,5.45%,18.04%,0.3021,0.4178,0.2131,25.57%,93.15%,4,4,4,3,4,3.8000,4

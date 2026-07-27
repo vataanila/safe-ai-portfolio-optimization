@@ -1,0 +1,1 @@
+Figure A2. SAFE-Performance Frontier across 150 model configurations. Each point represents one configuration. The dashed line shows the LOWESS smoothing curve. The red star marks the Pareto-dominant configuration (XGBoost, config 47).

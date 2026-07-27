@@ -1,0 +1,2 @@
+model,lambda,mu_estimator,sigma_estimator,estimation_window,K,w_min,w_max,sector_cap,test_start,test_end,n_rebal,n_days,ann_return,ann_vol,sharpe,sortino,calmar,max_drawdown,avg_turnover
+xgboost,0.1,ml_xgboost,rolling_ledoit_wolf_252d,252,10,0.01,0.2,0.3,2023-01-01,2025-12-31,36,747,0.2016,0.1746,1.1544,1.7218,1.2597,0.16,0.7533

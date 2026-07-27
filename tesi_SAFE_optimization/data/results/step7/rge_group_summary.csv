@@ -1,0 +1,4 @@
+model,group,mean_RGE,std_RGE,min_RGE,max_RGE,n_dates,mean_n_assets
+mlp,all_features,0.499984,0.001657,0.494551,0.50403,36,407.0
+ridge,all_features,0.5,0.0,0.5,0.5,36,407.0
+xgboost,all_features,0.5,0.0,0.5,0.5,36,407.0

@@ -1,0 +1,4 @@
+model,RGA_accuracy,RGR_group_robustness,max_RGE_explainability,max_RGE_variable,sector_RGA_gap,sector_parity,RGA_n_dates,RGR_n_dates,RGE_n_dates_for_max_variable,RGF_n_dates
+ridge,0.490373,0.737356,0.480312,log_mktcap,0.384041,0.6159589999999999,36,36,36,36
+xgboost,0.502642,0.743877,0.219601,log_mktcap,0.352683,0.6473169999999999,36,36,36,36
+mlp,0.499052,0.708164,0.202106,vol_1m,0.339896,0.660104,36,36,36,36

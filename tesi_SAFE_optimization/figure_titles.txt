@@ -1,0 +1,586 @@
+FIGURE TITLE INVENTORY
+======================
+Collected before any plotting changes. Titles are the exact strings passed to
+ax.set_title() / fig.suptitle() / plt.title() in each script.
+"Suggested Word caption" uses placeholder numbering (replace X.X with the
+actual chapter/figure numbers in your thesis).
+
+================================================================================
+STEP 2 — step2_preprocess.py
+================================================================================
+
+Script: step2_preprocess.py
+Figure file: vol_distribution.png
+Original title: "Annualised Volatility Distribution — Clean Universe (model window)"
+Suggested Word caption: "Figure X.X: Annualised volatility distribution across the clean S&P 500 universe over the model estimation window."
+
+---
+
+Script: step2_preprocess.py
+Figure file: return_distribution.png
+Original title: "Annualised Mean Return Distribution — Clean Universe (model window)"
+Suggested Word caption: "Figure X.X: Annualised mean return distribution across the clean S&P 500 universe over the model estimation window."
+
+---
+
+Script: step2_preprocess.py
+Figure file: corr_distribution.png
+Original title: "Pairwise Correlation Distribution — Sample Estimator (model window)"
+Suggested Word caption: "Figure X.X: Pairwise correlation distribution using the sample estimator over the model estimation window."
+
+---
+
+Script: step2_preprocess.py
+Figure file: sector_breakdown.png
+Original title: "Sector Breakdown — Clean Universe (n={n_stocks})"
+Suggested Word caption: "Figure X.X: GICS sector breakdown of the clean S&P 500 universe used for model estimation."
+
+---
+
+================================================================================
+STEP 6 — step6e_visualize_portfolio_comparison.py
+================================================================================
+
+Script: step6e_visualize_portfolio_comparison.py
+Figure file: portfolio_cumulative_wealth_comparison.png
+Original title: "Out-of-Sample Cumulative Wealth — Baseline vs ML Portfolios"
+Suggested Word caption: "Figure X.X: Out-of-sample cumulative wealth of the Baseline (Markowitz) and ML portfolios (Ridge, XGBoost, MLP), indexed to 1.0 at the start of the evaluation period."
+
+---
+
+Script: step6e_visualize_portfolio_comparison.py
+Figure file: portfolio_drawdown_comparison.png
+Original title: "Out-of-Sample Drawdown — Baseline vs ML Portfolios"
+Suggested Word caption: "Figure X.X: Out-of-sample drawdown paths of the Baseline and ML portfolios over the evaluation period."
+
+---
+
+Script: step6e_visualize_portfolio_comparison.py
+Figure file: portfolio_rolling_sharpe_comparison.png
+Original title: "Rolling Sharpe Ratio ({ROLL_WIN}-Day Window) — Baseline vs ML Portfolios"
+Suggested Word caption: "Figure X.X: Rolling annualised Sharpe ratio (126-day window) for the Baseline and ML portfolios over the out-of-sample period."
+
+---
+
+Script: step6e_visualize_portfolio_comparison.py
+Figure file: portfolio_turnover_comparison.png
+Original title: "Monthly Portfolio Turnover Through Time — Baseline vs ML Portfolios"
+Suggested Word caption: "Figure X.X: One-way portfolio turnover at each monthly rebalancing date for the Baseline and ML portfolios."
+
+---
+
+Script: step6e_visualize_portfolio_comparison.py
+Figure file: portfolio_average_turnover_barplot.png
+Original title: "Average Monthly Turnover by Model"
+Suggested Word caption: "Figure X.X: Average monthly one-way turnover by portfolio strategy."
+
+---
+
+Script: step6e_visualize_portfolio_comparison.py
+Figure file: portfolio_average_sector_allocation_comparison.png
+Original title: "Average Sector Allocation by Model"
+Suggested Word caption: "Figure X.X: Average GICS sector allocation across the out-of-sample period for each portfolio strategy."
+
+---
+
+Script: step6e_visualize_portfolio_comparison.py
+Figure file: baseline_sector_heatmap.png
+Original title: "Baseline (Markowitz) — Sector Allocation Over Time"
+Suggested Word caption: "Figure X.X: Baseline (Markowitz) portfolio sector allocation at each rebalancing date over the out-of-sample period."
+
+---
+
+Script: step6e_visualize_portfolio_comparison.py
+Figure file: xgboost_sector_heatmap.png
+Original title: "XGBoost — Sector Allocation Over Time"
+Suggested Word caption: "Figure X.X: XGBoost portfolio sector allocation at each rebalancing date over the out-of-sample period."
+
+---
+
+Script: step6e_visualize_portfolio_comparison.py
+Figure file: portfolio_sharpe_turnover_scatter.png
+Original title: "SAFE AI Trade-off: Accuracy vs Sustainability\nSharpe Ratio (Accuracy) vs Average Turnover (Sustainability)"
+Suggested Word caption: "Figure X.X: SAFE AI accuracy–sustainability trade-off: annualised Sharpe ratio versus average monthly one-way turnover for all portfolio strategies."
+
+---
+
+================================================================================
+STEP 7A — step7a_model_sustainability.py
+================================================================================
+
+Script: step7a_model_sustainability.py
+Figure file: model_sustainability_rank_stability.png
+Original title (suptitle): "A. Temporal Rank Stability — Spearman Correlation of Consecutive μ̂ Rankings"
+Suggested Word caption: "Figure X.X: Temporal rank stability of model predictions — Spearman correlation between consecutive monthly μ̂ rankings for each model."
+
+---
+
+Script: step7a_model_sustainability.py
+Figure file: model_sustainability_topk_overlap.png
+Original title (suptitle): "B. Top-k Ranking Overlap Across Consecutive Rebalancing Dates"
+Suggested Word caption: "Figure X.X: Top-k ranking overlap between consecutive rebalancing dates for each model (k = 10, 20, 30)."
+
+---
+
+Script: step7a_model_sustainability.py
+Figure file: model_sustainability_mu_dispersion.png
+Original title (suptitle): "C. Prediction Dispersion / Extremeness of μ̂"
+Suggested Word caption: "Figure X.X: Cross-sectional dispersion and extremeness of predicted expected returns (μ̂) by model."
+
+---
+
+Script: step7a_model_sustainability.py
+Figure file: model_sustainability_winsorization_robustness.png
+Original title (suptitle): "D. Robustness to Winsorization of Extreme Predictions"
+Suggested Word caption: "Figure X.X: Sensitivity of model rankings to winsorization of extreme predicted returns."
+
+---
+
+Script: step7a_model_sustainability.py
+Figure file: model_sustainability_noise_robustness.png
+Original title (suptitle): "E. Robustness to Small Prediction-Level Perturbations"
+Suggested Word caption: "Figure X.X: Stability of model rankings under small random perturbations to predicted returns."
+
+---
+
+Script: step7a_model_sustainability.py
+Figure file: model_sustainability_rank_summary.png
+Original title (suptitle): "F. Model-Level Sustainability — Summary Dashboard"
+Suggested Word caption: "Figure X.X: Model-level SAFE AI Sustainability summary dashboard — composite view of rank stability, overlap, dispersion, and robustness metrics."
+
+---
+
+================================================================================
+STEP 7B — step7b_model_accuracy.py
+================================================================================
+
+Script: step7b_model_accuracy.py
+Figure file: model_accuracy_rga_timeseries.png
+Original title: "Model-Level SAFE AI Accuracy: RGA over Time"
+Suggested Word caption: "Figure X.X: Model-level SAFE AI Accuracy measured by the Rank-Grading Accuracy (RGA) metric over the out-of-sample period."
+
+---
+
+Script: step7b_model_accuracy.py
+Figure file: model_accuracy_ic_timeseries.png
+Original title: "Model-Level Accuracy: Spearman Information Coefficient over Time"
+Suggested Word caption: "Figure X.X: Spearman Information Coefficient (IC) between predicted and realised returns over the out-of-sample period."
+
+---
+
+Script: step7b_model_accuracy.py
+Figure file: model_accuracy_ic_boxplot.png
+Original title: "Distribution of Spearman IC by Model"
+Suggested Word caption: "Figure X.X: Distribution of monthly Spearman IC values by model over the out-of-sample period."
+
+---
+
+Script: step7b_model_accuracy.py
+Figure file: model_accuracy_top_bottom_spread.png
+Original title: "Top-minus-Bottom Predicted Decile Realised Return Spread"
+Suggested Word caption: "Figure X.X: Realised return spread between the top and bottom predicted-return deciles for each model."
+
+---
+
+Script: step7b_model_accuracy.py
+Figure file: model_accuracy_decile_returns.png
+Original title: "Average Realised Forward Return by Predicted μ̂ Decile"
+Suggested Word caption: "Figure X.X: Average realised one-month forward return by predicted μ̂ decile for each model."
+
+---
+
+Script: step7b_model_accuracy.py
+Figure file: model_accuracy_rank_summary.png
+Original title: "Descriptive Model-Level Accuracy Ranking"
+Suggested Word caption: "Figure X.X: Descriptive model-level SAFE AI Accuracy ranking across all accuracy metrics."
+
+---
+
+================================================================================
+STEP 7C — step7c_model_fairness.py
+================================================================================
+
+Script: step7c_model_fairness.py
+Figure file: model_fairness_rga_parity_sector.png
+Original title: "SAFE AI Fairness: Average Sector RGA Parity Gap by Model"
+Suggested Word caption: "Figure X.X: Average RGA parity gap across GICS sectors by model — lower values indicate fairer predictions."
+
+---
+
+Script: step7c_model_fairness.py
+Figure file: model_fairness_rga_parity_size.png
+Original title: "SAFE AI Fairness: Average Size-Group RGA Parity Gap by Model"
+Suggested Word caption: "Figure X.X: Average RGA parity gap across market-capitalisation size groups by model."
+
+---
+
+Script: step7c_model_fairness.py
+Figure file: model_fairness_rank_error_sector.png
+Original title: "Model-Level Fairness: Mean Rank Error by Sector and Model"
+Suggested Word caption: "Figure X.X: Mean rank prediction error by GICS sector and model — positive values indicate systematic over-ranking."
+
+---
+
+Script: step7c_model_fairness.py
+Figure file: model_fairness_rank_error_size.png
+Original title: "Model-Level Fairness: Mean Rank Error by Size Group and Model"
+Suggested Word caption: "Figure X.X: Mean rank prediction error by market-capitalisation size group and model."
+
+---
+
+Script: step7c_model_fairness.py
+Figure file: model_fairness_top10_sector_deviation.png
+Original title: "Top-10 Representation Parity: Avg |Deviation| by Sector and Model"
+Suggested Word caption: "Figure X.X: Average absolute deviation from proportional sector representation in the top-10 predicted stocks, by model."
+
+---
+
+Script: step7c_model_fairness.py
+Figure file: model_fairness_top10_size_deviation.png
+Original title: "Top-10 Representation Parity: Avg |Deviation| by Size Group and Model"
+Suggested Word caption: "Figure X.X: Average absolute deviation from proportional size-group representation in the top-10 predicted stocks, by model."
+
+---
+
+Script: step7c_model_fairness.py
+Figure file: model_fairness_rank_summary.png
+Original title: "Descriptive Model-Level Fairness Ranking"
+Suggested Word caption: "Figure X.X: Descriptive model-level SAFE AI Fairness ranking across all fairness metrics."
+
+---
+
+================================================================================
+STEP 7D — step7d_model_explainability.py
+================================================================================
+
+Script: step7d_model_explainability.py
+Figure file: xgboost_shap_global_importance_bar.png
+Original title: "XGBoost — Global SHAP Feature Importance\n(mean absolute SHAP, normalized to sum = 1)"
+Suggested Word caption: "Figure X.X: XGBoost global SHAP feature importance — mean absolute SHAP values normalised to sum to one."
+
+---
+
+Script: step7d_model_explainability.py
+Figure file: xgboost_shap_summary.png
+Original title (suptitle): "XGBoost SHAP Summary Plot (beeswarm)\nColour = feature value; x-axis = SHAP value"
+Suggested Word caption: "Figure X.X: XGBoost SHAP beeswarm summary plot — each point is a stock-date observation; colour encodes standardised feature value."
+
+---
+
+Script: step7d_model_explainability.py
+Figure file: xgboost_shap_group_importance_bar.png
+Original title: "XGBoost — SHAP Feature Group Importance\n(economic categories)"
+Suggested Word caption: "Figure X.X: XGBoost SHAP feature-group importance aggregated by economic category."
+
+---
+
+Script: step7d_model_explainability.py
+Figure file: shap_dependence_{feature}.png  [one per top-5 feature]
+Original title: "SHAP Dependence Plot — {feat}\n(group: {assign_group(feat)})"
+Suggested Word caption: "Figure X.X: SHAP dependence plot for feature {feat} — SHAP value versus feature value, coloured by the most interactive feature."
+
+---
+
+================================================================================
+STEP 7E — step7e_model_safe_summary.py
+================================================================================
+
+Script: step7e_model_safe_summary.py
+Figure file: model_safe_dimension_ranks.png
+Original title: "Model-Level SAFE AI Dimension Ranks\n(Sustainability, Accuracy, Fairness — lower is better)"
+Suggested Word caption: "Figure X.X: Model-level SAFE AI dimension ranks across Sustainability, Accuracy, and Fairness (lower rank = better)."
+
+---
+
+Script: step7e_model_safe_summary.py
+Figure file: model_safe_composite_score.png
+Original title: "Model-Level SAFE Composite Score (S, A, F)\nComposite = mean(sustainability_rank, accuracy_rank, fairness_rank)"
+Suggested Word caption: "Figure X.X: Model-level SAFE composite score computed as the mean of the three dimension ranks (Sustainability, Accuracy, Fairness)."
+
+---
+
+Script: step7e_model_safe_summary.py
+Figure file: xgboost_safe_profile.png
+Original title: "XGBoost — SAFE AI Dimension Profile\nS/A/F: (4 - rank) / 3  |  Explainability: 1 - HHI"
+Suggested Word caption: "Figure X.X: XGBoost SAFE AI radar profile showing normalised scores across Sustainability, Accuracy, Fairness, and Explainability dimensions."
+
+---
+
+================================================================================
+STEP 8A — step8a_portfolio_performance_summary.py
+================================================================================
+
+Script: step8a_portfolio_performance_summary.py
+Figure file: portfolio_cumulative_wealth.png
+Original title: "Cumulative Wealth — S&P 500 Out-of-Sample Portfolios"
+Suggested Word caption: "Figure X.X: Cumulative wealth of S&P 500 portfolio strategies over the out-of-sample evaluation period, indexed to 1.0."
+
+---
+
+Script: step8a_portfolio_performance_summary.py
+Figure file: portfolio_drawdowns.png
+Original title: "Portfolio Drawdowns — S&P 500 Out-of-Sample"
+Suggested Word caption: "Figure X.X: Drawdown paths of S&P 500 portfolio strategies over the out-of-sample evaluation period."
+
+---
+
+Script: step8a_portfolio_performance_summary.py
+Figure file: portfolio_risk_return_scatter.png
+Original title: "Risk–Return (Annualised) — S&P 500 Out-of-Sample Portfolios"
+Suggested Word caption: "Figure X.X: Annualised risk–return scatter of S&P 500 portfolio strategies over the out-of-sample period."
+
+---
+
+Script: step8a_portfolio_performance_summary.py
+Figure file: portfolio_performance_bars.png
+Original title: "Portfolio Performance Metrics — S&P 500 (Out-of-Sample)"
+Suggested Word caption: "Figure X.X: Grouped bar chart of key performance metrics (Sharpe, Sortino, Calmar, and terminal wealth) for each S&P 500 portfolio strategy."
+
+---
+
+Script: step8a_portfolio_performance_summary.py
+Figure file: portfolio_turnover_bars.png
+Original title: "Average Portfolio Turnover — S&P 500 Universe"
+Suggested Word caption: "Figure X.X: Average one-way portfolio turnover per rebalancing date for each S&P 500 portfolio strategy."
+
+---
+
+Script: step8a_portfolio_performance_summary.py
+Figure file: portfolio_sharpe_drawdown_tradeoff.png
+Original title: "Sharpe Ratio vs Max Drawdown — S&P 500 (Out-of-Sample)"
+Suggested Word caption: "Figure X.X: Sharpe ratio versus maximum drawdown scatter for S&P 500 portfolio strategies — preferred region is upper-left."
+
+---
+
+================================================================================
+STEP 8B — step8b_portfolio_sustainability.py
+================================================================================
+
+Script: step8b_portfolio_sustainability.py
+Figure file: portfolio_turnover_timeseries.png
+Original title: "Portfolio Turnover at Each Rebalancing Date — S&P 500 Universe"
+Suggested Word caption: "Figure X.X: One-way portfolio turnover at each rebalancing date for S&P 500 portfolio strategies."
+
+---
+
+Script: step8b_portfolio_sustainability.py
+Figure file: portfolio_average_turnover.png
+Original title: "Average Portfolio Turnover — S&P 500 Universe"
+Suggested Word caption: "Figure X.X: Average one-way turnover per rebalancing date for each S&P 500 portfolio strategy."
+
+---
+
+Script: step8b_portfolio_sustainability.py
+Figure file: net_sharpe_by_cost.png
+Original title: "Net Sharpe Ratio by Transaction Cost Level — S&P 500 Universe"
+Suggested Word caption: "Figure X.X: Net Sharpe ratio of S&P 500 portfolio strategies at transaction cost levels of 0, 10, 20, and 30 basis points."
+
+---
+
+Script: step8b_portfolio_sustainability.py
+Figure file: sharpe_decay_30bps.png
+Original title: "Sharpe Decay at 30 bps Transaction Cost — S&P 500 Universe"
+Suggested Word caption: "Figure X.X: Sharpe ratio decay (gross minus net) at 30 basis points transaction cost for each S&P 500 portfolio strategy."
+
+---
+
+Script: step8b_portfolio_sustainability.py
+Figure file: holding_overlap_ratio.png
+Original title: "Holding Overlap Ratio at Each Rebalancing Date — S&P 500 Universe"
+Suggested Word caption: "Figure X.X: Holding overlap ratio between consecutive rebalancing dates for S&P 500 portfolio strategies."
+
+---
+
+Script: step8b_portfolio_sustainability.py
+Figure file: average_holding_persistence.png
+Original title: "Average Holding Persistence (Overlap Ratio) — S&P 500 Universe"
+Suggested Word caption: "Figure X.X: Average holding persistence (overlap ratio) across rebalancing dates for each S&P 500 portfolio strategy."
+
+---
+
+Script: step8b_portfolio_sustainability.py
+Figure file: weight_stability_l1_change.png
+Original title: "Average L1 Weight Change per Rebalancing — S&P 500 Universe"
+Suggested Word caption: "Figure X.X: Average L1 norm of portfolio weight changes per rebalancing date — lower values indicate greater weight stability."
+
+---
+
+Script: step8b_portfolio_sustainability.py
+Figure file: sustainability_score_bar.png
+Original title: "Portfolio Sustainability Score — S&P 500 Universe (lower = more sustainable)"
+Suggested Word caption: "Figure X.X: Portfolio-level SAFE AI Sustainability score for each S&P 500 strategy (composite of turnover, overlap, and weight-change ranks; lower = more sustainable)."
+
+---
+
+Script: step8b_portfolio_sustainability.py
+Figure file: performance_vs_sustainability_tradeoff.png
+Original title: "Sharpe Ratio vs Sustainability Score — S&P 500 Universe"
+Suggested Word caption: "Figure X.X: Performance–sustainability trade-off scatter for S&P 500 portfolio strategies — Sharpe ratio versus sustainability score."
+
+---
+
+================================================================================
+STEP 8C — step8c_portfolio_fairness.py
+================================================================================
+
+Script: step8c_portfolio_fairness.py
+Figure file: weight_hhi_by_model.png
+Original title: "Average Weight HHI by Portfolio — S&P 500 Universe"
+Suggested Word caption: "Figure X.X: Average Herfindahl–Hirschman Index of portfolio weights for each S&P 500 strategy (lower = less concentrated)."
+
+---
+
+Script: step8c_portfolio_fairness.py
+Figure file: effective_holdings_by_model.png
+Original title: "Average Effective Number of Holdings by Portfolio — S&P 500 Universe"
+Suggested Word caption: "Figure X.X: Average effective number of holdings for each S&P 500 portfolio strategy (higher = more diversified)."
+
+---
+
+Script: step8c_portfolio_fairness.py
+Figure file: top3_weight_share_by_model.png
+Original title: "Average Top-3 Weight Share by Portfolio — S&P 500 Universe"
+Suggested Word caption: "Figure X.X: Average weight share of the three largest holdings for each S&P 500 portfolio strategy."
+
+---
+
+Script: step8c_portfolio_fairness.py
+Figure file: top5_weight_share_by_model.png
+Original title: "Average Top-5 Weight Share by Portfolio — S&P 500 Universe"
+Suggested Word caption: "Figure X.X: Average weight share of the five largest holdings for each S&P 500 portfolio strategy."
+
+---
+
+Script: step8c_portfolio_fairness.py
+Figure file: average_sector_allocation_heatmap.png
+Original title: "Average Sector Allocation by Portfolio — S&P 500 Universe"
+Suggested Word caption: "Figure X.X: Average GICS sector allocation heatmap across the out-of-sample period for each S&P 500 portfolio strategy."
+
+---
+
+Script: step8c_portfolio_fairness.py
+Figure file: active_sector_deviation_by_model.png
+Original title: "Average Active Sector Deviation by Portfolio — S&P 500 Universe"
+Suggested Word caption: "Figure X.X: Average active sector deviation from the S&P 500 benchmark allocation for each portfolio strategy."
+
+---
+
+Script: step8c_portfolio_fairness.py
+Figure file: sector_hhi_by_model.png
+Original title: "Average Sector HHI by Portfolio — S&P 500 Universe"
+Suggested Word caption: "Figure X.X: Average sector-weight HHI for each S&P 500 portfolio strategy (lower = less sector-concentrated)."
+
+---
+
+Script: step8c_portfolio_fairness.py
+Figure file: average_size_allocation_heatmap.png
+Original title: "Average Size-Group Allocation by Portfolio — S&P 500 Universe"
+Suggested Word caption: "Figure X.X: Average market-capitalisation size-group allocation heatmap for each S&P 500 portfolio strategy."
+
+---
+
+Script: step8c_portfolio_fairness.py
+Figure file: portfolio_fairness_score_bar.png
+Original title: "Portfolio Fairness Score — S&P 500 Universe (lower = fairer)"
+Suggested Word caption: "Figure X.X: Portfolio-level SAFE AI Fairness score for each S&P 500 strategy (composite of concentration and allocation-parity ranks; lower = fairer)."
+
+---
+
+Script: step8c_portfolio_fairness.py
+Figure file: performance_sustainability_fairness_tradeoff.png
+Original title: "Sharpe vs Sustainability Score — S&P 500 Universe\n(bubble annotation = Fairness Rank)"
+Suggested Word caption: "Figure X.X: Performance–sustainability scatter annotated with fairness rank for each S&P 500 portfolio strategy."
+
+---
+
+================================================================================
+STEP 8D — step8d_final_portfolio_safe_summary.py
+================================================================================
+
+Script: step8d_final_portfolio_safe_summary.py
+Figure file: portfolio_dimension_ranks.png
+Original title: "Portfolio-Level SAFE Dimension Ranks — S&P 500 Universe\nPerformance · Sustainability · Fairness"
+Suggested Word caption: "Figure X.X: Portfolio-level SAFE AI dimension ranks across Performance, Sustainability, and Fairness for S&P 500 strategies (lower rank = better)."
+
+---
+
+Script: step8d_final_portfolio_safe_summary.py
+Figure file: final_portfolio_safe_composite.png
+Original title: "Final Portfolio-Level SAFE Composite Score — S&P 500 Universe"
+Suggested Word caption: "Figure X.X: Final portfolio-level SAFE composite score for each S&P 500 strategy — average of the three dimension ranks."
+
+---
+
+Script: step8d_final_portfolio_safe_summary.py
+Figure file: model_vs_portfolio_rank_comparison.png
+Original title: "Model-Level SAFE Rank vs Portfolio-Level Composite Rank\n(ML models only) — S&P 500 Universe"
+Suggested Word caption: "Figure X.X: Comparison of model-level SAFE rank (Step 7E) and portfolio-level composite rank (Step 8D) for ML strategies."
+
+---
+
+Script: step8d_final_portfolio_safe_summary.py
+Figure file: xgboost_baseline_tradeoff_profile.png
+Original title: "XGBoost vs Baseline: Trade-Off Profile — S&P 500 Universe\n(all metrics normalized to [0, 1] with higher = better)"
+Suggested Word caption: "Figure X.X: Normalised SAFE trade-off profile comparing XGBoost and Baseline portfolios across six performance and sustainability dimensions."
+
+---
+
+Script: step8d_final_portfolio_safe_summary.py
+Figure file: performance_sustainability_fairness_map.png
+Original title: "Performance vs Sustainability Map — S&P 500 Universe\n(marker size ∝ fairness, bolder edge = fairness rank 1)"
+Suggested Word caption: "Figure X.X: Joint performance–sustainability map for S&P 500 strategies; marker size is proportional to fairness score and a bold edge marks the fairness rank-1 strategy."
+
+---
+
+Script: step8d_final_portfolio_safe_summary.py
+Figure file: xgboost_safe_transfer_summary.png
+Original title: "XGBoost SAFE Transfer Summary — S&P 500 Universe:\nModel-Level vs Portfolio-Level Rankings"
+Suggested Word caption: "Figure X.X: XGBoost SAFE transfer summary — model-level versus portfolio-level ranks across Performance, Sustainability, Fairness, and the composite SAFE score."
+
+---
+
+================================================================================
+STEP 3 — step3.1_step_viz_baseline.py / step3.2_step_viz_frontier.py
+================================================================================
+
+Script: step3.1_step_viz_baseline.py
+Figure file: baseline_cumulative_returns.png
+Original title: "Baseline Portfolio — Cumulative Returns (2023–2025)"
+Suggested Word caption: "Figure X.X: Cumulative log return of the Markowitz MIQP baseline portfolio over the out-of-sample evaluation period (2023–2025), with the maximum drawdown episode shaded."
+
+---
+
+Script: step3.1_step_viz_baseline.py
+Figure file: baseline_rolling_sharpe.png
+Original title: "Baseline Portfolio — Rolling Sharpe Ratio (126-day window)"
+Suggested Word caption: "Figure X.X: Rolling 126-day annualised Sharpe ratio of the Markowitz MIQP baseline portfolio over the out-of-sample evaluation period."
+
+---
+
+Script: step3.1_step_viz_baseline.py
+Figure file: baseline_drawdown.png
+Original title: "Baseline Portfolio — Drawdown (2023–2025)"
+Suggested Word caption: "Figure X.X: Drawdown path of the Markowitz MIQP baseline portfolio over the out-of-sample evaluation period, annotated with the maximum drawdown event."
+
+---
+
+Script: step3.1_step_viz_baseline.py
+Figure file: baseline_turnover.png
+Original title: "Baseline Portfolio — Monthly Turnover"
+Suggested Word caption: "Figure X.X: One-way portfolio turnover at each monthly rebalancing date for the Markowitz MIQP baseline portfolio."
+
+---
+
+Script: step3.1_step_viz_baseline.py
+Figure file: baseline_sector_heatmap.png
+Original title: "Baseline Portfolio — Sector Allocation Over Time"
+Suggested Word caption: "Figure X.X: GICS sector allocation of the Markowitz MIQP baseline portfolio at each rebalancing date over the out-of-sample period."
+
+---
+
+Script: step3.2_step_viz_frontier.py
+Figure file: efficient_frontier.png
+Original title: "Efficient Frontier — S&P 500 Universe (2016–2022)"
+Suggested Word caption: "Figure X.X: Efficient frontier of the S&P 500 universe estimated on the in-sample period (2016–2022) using Ledoit-Wolf covariance shrinkage, with minimum variance, maximum Sharpe, and equal-weight portfolios highlighted."
+
+---

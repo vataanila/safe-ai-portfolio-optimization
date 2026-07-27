@@ -1,0 +1,2 @@
+model,mu_estimator,sigma_estimator,estimation_window,K,lambda,w_min,w_max,sector_cap,test_start,test_end,n_rebal,n_days,ann_return,ann_vol,sharpe,sortino,calmar,max_drawdown,avg_turnover
+baseline_markowitz,trailing_252d_mean_winsorized,rolling_ledoit_wolf_252d,252,10,0.2,0.01,0.2,0.3,2023-01-01,2025-12-31,36,747,0.2338,0.1941,1.2042,1.7124,1.3841,0.1689,0.4269

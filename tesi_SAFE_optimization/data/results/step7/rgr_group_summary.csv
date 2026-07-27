@@ -1,0 +1,4 @@
+model,group,mean_RGR,std_RGR,min_RGR,max_RGR,n_dates,mean_n_assets
+mlp,all_features,0.708164,0.033576,0.654807,0.774743,36,407.0
+ridge,all_features,0.737356,0.015887,0.709914,0.779574,36,407.0
+xgboost,all_features,0.743877,0.059216,0.637453,0.846445,36,407.0

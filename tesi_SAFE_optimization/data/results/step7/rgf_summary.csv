@@ -1,0 +1,4 @@
+model,group_variable,mean_RGA_gap,std_RGA_gap,min_RGA_gap,max_RGA_gap,n_dates,mean_valid_groups
+ridge,sector,0.384041,0.11142,0.211312,0.754879,36,11.0
+xgboost,sector,0.352683,0.114598,0.18356,0.633402,36,11.0
+mlp,sector,0.339896,0.09395,0.164224,0.577585,36,11.0

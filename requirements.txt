@@ -1,0 +1,11 @@
+numpy
+pandas
+scipy
+scikit-learn
+xgboost
+matplotlib
+joblib
+openpyxl
+python-docx
+reportlab
+safeaipackage

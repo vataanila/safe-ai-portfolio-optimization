@@ -1,0 +1,1 @@
+Figure A1. Empirical pipeline from raw financial data to the SAFE-Performance Frontier.
