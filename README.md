@@ -13,7 +13,8 @@ This project asks two questions: can machine-learning-based expected return
 estimates beat a simple historical-mean benchmark in out-of-sample portfolio
 performance, and — if a model wins on performance — is it also the most
 *responsible* model, in the sense defined by the **SAFE AI** framework
-(Sustainable, Accurate, Fair, Explainable)?
+(Giudici & Raffinetti, 2023), which evaluates models on robustness, accuracy,
+fairness, and explainability?
 
 Four return-estimation methods are compared inside the identical constrained
 portfolio-optimization pipeline (same covariance estimator, constraints,
@@ -24,17 +25,22 @@ rebalancing rule, and transaction-cost assumptions):
 - Neural Network (MLP)
 - XGBoost
 
-Each model is scored on financial performance (Sharpe ratio, drawdown,
-turnover, net-of-cost returns) **and** on SAFE AI compliance (robustness,
-accuracy, fairness across GICS sectors, explainability), which are combined
-into an **Integrated Compliance Score** and related to performance through the
-**SAFE-Performance Frontier**.
+The empirical analysis uses a stock universe derived from the S&P 500
+(Bloomberg data, 407 stocks after cleaning, Jan 2010–Dec 2025): a 2010–2015
+warm-up, 2016–2022 in-sample training window, and a 2023–2025 out-of-sample
+test period with 36 monthly expanding-window rebalances.
 
-**Headline result:** at the base risk-aversion level (λ = 1), XGBoost delivers
-the highest gross and net Sharpe ratio and the highest SAFE AI compliance
-score of the four estimators — but the edge is conditional: XGBoost only
-leads at λ = 1 and 2, the Historical Mean is more competitive at other risk
-tolerances, and higher turnover erodes most of the net-of-cost advantage.
+The results are organized in three layers, mirroring the thesis itself:
+portfolio-level financial performance, model-level SAFE AI evaluation, and
+the SAFE-Performance Frontier that connects the two — the thesis's core
+contribution.
+
+## Key results
+
+### 1. Portfolio performance
+
+At the base risk-aversion level (λ = 1), XGBoost delivers the highest gross
+and net Sharpe ratio among all four estimators:
 
 | Estimator | Ann. Return | Volatility | Sharpe (gross) | Sharpe (net, 30bps) | Max DD | Avg. turnover |
 |---|---|---|---|---|---|---|
@@ -43,19 +49,54 @@ tolerances, and higher turnover erodes most of the net-of-cost advantage.
 | Ridge | 13.39% | 21.76% | 0.62 | 0.48 | 22.58% | 79.9% |
 | Neural Network | 5.45% | 18.04% | 0.30 | 0.12 | 25.57% | 93.2% |
 
-At the aggregate level, SAFE AI compliance (CS4) correlates positively with
-Sharpe ratio (ρ = 0.597 / 0.618 / 0.417 for arithmetic / geometric / RMS
-aggregation, all p < 0.001) — the core SAFE-Performance Frontier result.
-This relationship holds strongly within the Ridge family (ρ = 0.498,
-p < 0.001) but is not statistically significant within XGBoost (ρ ≈ 0.09,
-p = 0.54) or the Neural Network (ρ = 0.15, p = 0.29): part of the aggregate
-pattern reflects differences *between* model families rather than within
-them.
+The edge is conditional, not unconditional: XGBoost leads on Sharpe only at
+λ = 1 and 2 — at other risk-aversion levels the Historical Mean is more
+competitive — and XGBoost's much higher turnover (78.2% vs. 46.5%) erodes
+most of its net-of-cost advantage over the simple benchmark.
 
-The empirical analysis uses a stock universe derived from the S&P 500
-(Bloomberg data, 407 stocks after cleaning, Jan 2010–Dec 2025): a 2010–2015
-warm-up, 2016–2022 in-sample training window, and a 2023–2025 out-of-sample
-test period with 36 monthly expanding-window rebalances.
+### 2. SAFE AI evaluation
+
+Only the three ML models are scored on SAFE AI (the Historical Mean is a
+benchmark, not a trained model, so it's excluded from this part). No single
+model wins on every dimension:
+
+| Dimension | Scalar metric | Compliance vector | Leader |
+|---|---|---|---|
+| Accuracy | Mean RGA | RGA vector | XGBoost |
+| Robustness | Group RGR at 5% | RGR vector | XGBoost |
+| Fairness | 1 − mean sector RGA gap | RGF* | Neural Network |
+| Explainability | Max single-feature RGE | RGE* | Ridge |
+
+The four dimensions are aggregated into a four-dimensional Integrated
+Compliance Score (CS4). Despite no model sweeping every dimension, XGBoost
+ranks first under all three aggregation methods (arithmetic, geometric, and
+RMS) — the strongest overall balance across dimensions.
+
+### 3. SAFE-Performance Frontier (core contribution)
+
+The thesis's central contribution links the two levels above. At the
+aggregate level, SAFE AI compliance (CS4) correlates positively with Sharpe
+ratio (ρ = 0.597 / 0.618 / 0.417 for arithmetic / geometric / RMS
+aggregation, all p < 0.001) and negatively with maximum drawdown
+(ρ ≈ −0.35, all p < 0.01) — trustworthy and profitable align, at least on
+average. Higher compliance is also associated with higher turnover
+(ρ = 0.611 / 0.598 / 0.669, all p < 0.01): the implementation trade-off is
+that more compliant models are typically harder (costlier) to run.
+
+This aggregate relationship comes with an honest caveat: it holds strongly
+*within* the Ridge family (ρ = 0.498, p < 0.001) but is not statistically
+significant within XGBoost (ρ ≈ 0.09, p = 0.54) or the Neural Network
+(ρ = 0.15, p = 0.29). Part of the aggregate pattern reflects differences
+*between* model families rather than a relationship that holds *within*
+each one — a limitation the thesis states explicitly rather than glossing
+over.
+
+## Selected results
+
+| | |
+|---|---|
+| ![Efficient frontier](tesi_SAFE_optimization/figures/step3/efficient_frontier.png) | ![Portfolio wealth comparison](tesi_SAFE_optimization/figures/step6/portfolio_cumulative_wealth_comparison.png) |
+| ![SAFE AI dimensions](tesi_SAFE_optimization/figures/step7/safe_dimensions_grouped_bar.png) | ![SAFE-Performance Frontier](tesi_SAFE_optimization/outputs/step11/figure_A2_safe_performance_frontier.png) |
 
 ## Repository structure
 
@@ -72,7 +113,7 @@ test period with 36 monthly expanding-window rebalances.
     ├── 4a_features.py                       # feature engineering for ML models
     ├── 5a/b/c_*.py                           # Ridge / XGBoost / MLP training
     ├── 6a-f_*.py                             # portfolio construction & comparison
-    ├── 7a-f_*.py                             # SAFE AI scalar metrics (RGA, RGE, RGR, RGF)
+    ├── 7a-f_*.py                             # SAFE AI scalar metrics (RGA, RGR, RGF*, RGE*)
     ├── 8a-e_*.py                             # SAFE AI compliance vectors + Integrated Compliance Score
     ├── 9a/b_*.py                             # SAFE-Performance Frontier
     ├── 10a_appendix.py                       # appendix tables & figures
@@ -105,18 +146,11 @@ test period with 36 monthly expanding-window rebalances.
 4. **Portfolio construction** — same optimizer, constraints and rebalancing
    rule applied to each model's return forecasts; performance compared on
    Sharpe ratio, drawdown, turnover and net returns.
-5. **SAFE AI assessment** — robustness (RGA/RGR), accuracy (RGE), fairness
-   across GICS sectors (RGF), and explainability, aggregated into an
-   Integrated Compliance Score per model.
+5. **SAFE AI assessment** — accuracy (RGA), robustness (RGR), fairness
+   across GICS sectors (RGF*), and explainability (RGE*), aggregated into a
+   four-dimensional Integrated Compliance Score (CS4) per model.
 6. **SAFE-Performance Frontier** — joint view of financial performance vs.
    compliance score across models and risk-aversion levels (λ).
-
-## Selected results
-
-| | |
-|---|---|
-| ![Efficient frontier](tesi_SAFE_optimization/figures/step3/efficient_frontier.png) | ![Portfolio wealth comparison](tesi_SAFE_optimization/figures/step6/portfolio_cumulative_wealth_comparison.png) |
-| ![SAFE AI dimensions](tesi_SAFE_optimization/figures/step7/safe_dimensions_grouped_bar.png) | ![SAFE-Performance Frontier](tesi_SAFE_optimization/outputs/step11/figure_A2_safe_performance_frontier.png) |
 
 ## Tech stack
 
