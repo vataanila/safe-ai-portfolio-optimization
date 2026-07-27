@@ -239,8 +239,8 @@ def run_oos(panel, oos_dates, returns, tickers, feature_cols):
         joblib.dump(sc,  scaler_path)
         manifest_rows.append({
             "date"        : t_str,
-            "model_path"  : str(model_path),
-            "scaler_path" : str(scaler_path),
+            "model_path"  : str(model_path.relative_to(BASE_DIR)),
+            "scaler_path" : str(scaler_path.relative_to(BASE_DIR)),
         })
 
         preds  = mdl.predict(sc.transform(X_te))

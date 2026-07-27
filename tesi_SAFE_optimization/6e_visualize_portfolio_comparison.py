@@ -150,7 +150,7 @@ def savefig(fig: plt.Figure, fname: str) -> str:
     path = os.path.join(FIGURES_DIR, fname)
     fig.savefig(path)
     plt.close(fig)
-    print(f"    Saved: {path}")
+    print(f"    Saved: {os.path.relpath(path, BASE_DIR)}")
     return path
 
 def source_note(fig: plt.Figure) -> None:
@@ -276,7 +276,7 @@ def load_data():
         comp_df = pd.read_csv(COMPARISON_SUMMARY)
         if "model" in comp_df.columns:
             comp_df = comp_df.set_index("model").reindex(MODEL_ORDER)
-        print(f"  comparison summary : loaded from {COMPARISON_SUMMARY}")
+        print(f"  comparison summary : loaded from {os.path.relpath(COMPARISON_SUMMARY, BASE_DIR)}")
     else:
         rows = []
         for key in MODEL_ORDER:
@@ -777,8 +777,8 @@ def print_final_summary():
     print("=" * 72)
     print("  STEP 6e -- PORTFOLIO COMPARISON VISUALISATIONS COMPLETE")
     print("=" * 72)
-    print(f"  Figures directory : {FIGURES_DIR}")
-    print(f"  Log file          : {LOG_PATH}")
+    print(f"  Figures directory : {os.path.relpath(FIGURES_DIR, BASE_DIR)}")
+    print(f"  Log file          : {os.path.relpath(LOG_PATH, BASE_DIR)}")
     print()
 
     EXPECTED = [

@@ -409,7 +409,8 @@ ax.set_ylabel("Annualised Return", fontsize=12)
 
 ax.text(
     0.5, 1.015,
-    f"{N} stocks · Frontier estimated in-sample (2016–2022) · Ledoit-Wolf covariance · Monte Carlo simulation (n={N_RANDOM})",
+    f"{N} stocks · Frontier estimated in-sample ({MODEL_START[:4]}–{MODEL_END[:4]}) · "
+    f"Ledoit-Wolf covariance · Monte Carlo simulation (n={N_RANDOM})",
     transform=ax.transAxes,
     ha="center", va="bottom",
     fontsize=9, color="#777777",

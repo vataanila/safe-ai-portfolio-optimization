@@ -280,7 +280,7 @@ def run_oos(panel, oos_dates, returns, tickers, feature_cols):
             "n_estimators"  : params["n_estimators"],
             "max_depth"     : params["max_depth"],
             "learning_rate" : params["learning_rate"],
-            "model_path"    : model_path,
+            "model_path"    : os.path.relpath(model_path, BASE_DIR),
         })
 
         # Per-date diagnostics

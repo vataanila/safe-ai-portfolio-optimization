@@ -267,9 +267,9 @@ def run_oos(panel, oos_dates, returns, tickers, feature_cols):
             "date":        t_str,
             "alpha":       alpha,
             "val_r2":      round(val_r2, 6) if val_r2 is not None and not np.isnan(val_r2) else np.nan,
-            "model_path":  model_path,
-            "scaler_path": scaler_path,
-            "bundle_path": bundle_path,
+            "model_path":  os.path.relpath(model_path,  BASE_DIR),
+            "scaler_path": os.path.relpath(scaler_path, BASE_DIR),
+            "bundle_path": os.path.relpath(bundle_path, BASE_DIR),
         })
 
         # Per-date diagnostics

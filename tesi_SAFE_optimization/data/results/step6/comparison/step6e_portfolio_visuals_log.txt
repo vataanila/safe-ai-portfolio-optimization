@@ -12,7 +12,7 @@
   turnover[Ridge   ]: 35 rebal dates  avg = 79.86%
   turnover[XGBoost ]: 35 rebal dates  avg = 78.15%
   turnover[MLP     ]: 35 rebal dates  avg = 93.15%
-  comparison summary : loaded from C:\Users\anila\Desktop\tesi_SAFE_optimization\data\results\step6\comparison\ml_portfolio_comparison_summary.csv
+  comparison summary : loaded from data\results\step6\comparison\ml_portfolio_comparison_summary.csv
   net-cost summary   : loaded (12 rows)
   weights [Baseline]: 36 dates × 407 tickers
   weights [Ridge   ]: 36 dates × 407 tickers
@@ -21,49 +21,49 @@
   meta               : 407 tickers · sector col = 'sector'
 
 [Fig 1] Cumulative Wealth Comparison …
-    Saved: C:\Users\anila\Desktop\tesi_SAFE_optimization\figures\step6\portfolio_cumulative_wealth_comparison.png
+    Saved: figures\step6\portfolio_cumulative_wealth_comparison.png
       Baseline: terminal wealth = 1.8597  (+85.97%)
       Ridge   : terminal wealth = 1.4870  (+48.70%)
       XGBoost : terminal wealth = 1.8969  (+89.69%)
       MLP     : terminal wealth = 1.1753  (+17.53%)
 
 [Fig 2] Drawdown Comparison …
-    Saved: C:\Users\anila\Desktop\tesi_SAFE_optimization\figures\step6\portfolio_drawdown_comparison.png
+    Saved: figures\step6\portfolio_drawdown_comparison.png
       Baseline: max drawdown = 25.66%
       Ridge   : max drawdown = 22.58%
       XGBoost : max drawdown = 23.41%
       MLP     : max drawdown = 25.57%
 
 [Fig 3] Rolling Sharpe Ratio (126-day window) …
-    Saved: C:\Users\anila\Desktop\tesi_SAFE_optimization\figures\step6\portfolio_rolling_sharpe_comparison.png
+    Saved: figures\step6\portfolio_rolling_sharpe_comparison.png
       Baseline: avg rolling Sharpe = 0.8575  pct > 0 = 83.6%
       Ridge   : avg rolling Sharpe = 0.7747  pct > 0 = 65.9%
       XGBoost : avg rolling Sharpe = 1.0400  pct > 0 = 96.5%
       MLP     : avg rolling Sharpe = 0.2335  pct > 0 = 60.3%
 
 [Fig 4] Monthly Turnover Through Time …
-    Saved: C:\Users\anila\Desktop\tesi_SAFE_optimization\figures\step6\portfolio_turnover_comparison.png
+    Saved: figures\step6\portfolio_turnover_comparison.png
 
 [Fig 5] Average Turnover Bar Chart …
-    Saved: C:\Users\anila\Desktop\tesi_SAFE_optimization\figures\step6\portfolio_average_turnover_barplot.png
+    Saved: figures\step6\portfolio_average_turnover_barplot.png
       Baseline: avg turnover = 46.46%
       Ridge   : avg turnover = 79.86%
       XGBoost : avg turnover = 78.15%
       MLP     : avg turnover = 93.15%
 
 [Fig 6] Average Sector Allocation Comparison …
-    Saved: C:\Users\anila\Desktop\tesi_SAFE_optimization\figures\step6\portfolio_average_sector_allocation_comparison.png
+    Saved: figures\step6\portfolio_average_sector_allocation_comparison.png
       Baseline: dominant sector = Information Technology  (21.4%)
       Ridge   : dominant sector = Consumer Discretionary  (18.3%)
       XGBoost : dominant sector = Industrials  (15.6%)
       MLP     : dominant sector = Consumer Discretionary  (14.7%)
 
 [Fig 7] Sector Heatmaps (Baseline and XGBoost) …
-    Saved: C:\Users\anila\Desktop\tesi_SAFE_optimization\figures\step6\baseline_sector_heatmap.png
-    Saved: C:\Users\anila\Desktop\tesi_SAFE_optimization\figures\step6\xgboost_sector_heatmap.png
+    Saved: figures\step6\baseline_sector_heatmap.png
+    Saved: figures\step6\xgboost_sector_heatmap.png
 
 [Fig 8] Sharpe vs Average Turnover Scatter (SAFE Trade-off) …
-    Saved: C:\Users\anila\Desktop\tesi_SAFE_optimization\figures\step6\portfolio_sharpe_turnover_scatter.png
+    Saved: figures\step6\portfolio_sharpe_turnover_scatter.png
       SAFE AI summary:
         Baseline: Sharpe = 0.8243  AvgTO = 46.46%
         Ridge   : Sharpe = 0.6151  AvgTO = 79.86%
@@ -73,8 +73,8 @@
 ========================================================================
   STEP 6e — PORTFOLIO COMPARISON VISUALISATIONS COMPLETE
 ========================================================================
-  Figures directory : C:\Users\anila\Desktop\tesi_SAFE_optimization\figures\step6
-  Log file          : C:\Users\anila\Desktop\tesi_SAFE_optimization\data\results\step6\comparison\step6e_portfolio_visuals_log.txt
+  Figures directory : figures\step6
+  Log file          : data\results\step6\comparison\step6e_portfolio_visuals_log.txt
 
   Figure status:
     [OK     ]  portfolio_cumulative_wealth_comparison.png
