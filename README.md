@@ -30,14 +30,32 @@ accuracy, fairness across GICS sectors, explainability), which are combined
 into an **Integrated Compliance Score** and related to performance through the
 **SAFE-Performance Frontier**.
 
-**Headline result:** XGBoost delivers the strongest out-of-sample
-risk-adjusted performance *and* the highest SAFE AI compliance score, though
-its edge over the historical-mean benchmark shrinks after transaction costs
-due to higher turnover.
+**Headline result:** at the base risk-aversion level (λ = 1), XGBoost delivers
+the highest gross and net Sharpe ratio and the highest SAFE AI compliance
+score of the four estimators — but the edge is conditional: XGBoost only
+leads at λ = 1 and 2, the Historical Mean is more competitive at other risk
+tolerances, and higher turnover erodes most of the net-of-cost advantage.
+
+| Estimator | Ann. Return | Volatility | Sharpe (gross) | Sharpe (net, 30bps) | Max DD | Avg. turnover |
+|---|---|---|---|---|---|---|
+| XGBoost | 21.60% | 23.98% | 0.90 | 0.78 | 23.41% | 78.2% |
+| Historical Mean | 20.93% | 25.39% | 0.82 | 0.76 | 25.66% | 46.5% |
+| Ridge | 13.39% | 21.76% | 0.62 | 0.48 | 22.58% | 79.9% |
+| Neural Network | 5.45% | 18.04% | 0.30 | 0.12 | 25.57% | 93.2% |
+
+At the aggregate level, SAFE AI compliance (CS4) correlates positively with
+Sharpe ratio (ρ = 0.597 / 0.618 / 0.417 for arithmetic / geometric / RMS
+aggregation, all p < 0.001) — the core SAFE-Performance Frontier result.
+This relationship holds strongly within the Ridge family (ρ = 0.498,
+p < 0.001) but is not statistically significant within XGBoost (ρ ≈ 0.09,
+p = 0.54) or the Neural Network (ρ = 0.15, p = 0.29): part of the aggregate
+pattern reflects differences *between* model families rather than within
+them.
 
 The empirical analysis uses a stock universe derived from the S&P 500
-(Bloomberg data, Jan 2010–Dec 2025), with an out-of-sample test period of
-2023–2025.
+(Bloomberg data, 407 stocks after cleaning, Jan 2010–Dec 2025): a 2010–2015
+warm-up, 2016–2022 in-sample training window, and a 2023–2025 out-of-sample
+test period with 36 monthly expanding-window rebalances.
 
 ## Repository structure
 
@@ -82,7 +100,8 @@ The empirical analysis uses a stock universe derived from the S&P 500
    Ledoit-Wolf / OAS covariance shrinkage, transaction costs, turnover
    constraints.
 3. **ML return estimation** — Ridge, XGBoost, and a small MLP trained on
-   engineered features, walk-forward out-of-sample (2023–2025).
+   engineered features over an expanding in-sample window (2016–2022),
+   re-estimated monthly and evaluated out-of-sample from 2023 to 2025.
 4. **Portfolio construction** — same optimizer, constraints and rebalancing
    rule applied to each model's return forecasts; performance compared on
    Sharpe ratio, drawdown, turnover and net returns.
